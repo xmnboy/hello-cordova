@@ -1,0 +1,124 @@
+/* --------------------------------------------------------------
+ *
+ * Sets up some default styling for forms.
+ * Gives you classes to enhance your forms.
+ *
+ * For text fields, use .title or .text class labels.
+ * For inline forms, use .inline (even when using columns).
+ *
+ * Modified forms.css file obtained from blueprint-css:
+ * https://github.com/joshuaclayton/blueprint-css
+ *
+ * blueprint-css license terms:
+ *
+ * Copyright (c) 2007 - 2010 blueprintcss.org
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ *
+-------------------------------------------------------------- */
+
+/*
+ * Copyright (c) 2013, Intel Corporation. All rights reserved.
+ * Please see http://software.intel.com/html5/license/samples
+ * and the included README.md file for license terms and conditions.
+ */
+
+/*
+  A special hack is included for IE8 since it does not apply padding
+  correctly on fieldsets
+ */
+
+label    { font-weight: bold; }
+fieldset { padding:0 1.4rem 1.4rem 1.4rem; margin: 0 0 1.5rem 0; border: 1px solid #ccc; }
+legend   { font-weight: bold; font-size:1.2rem; margin-top:-0.2rem; margin-bottom:1rem; }
+
+fieldset, #IE8#HACK { padding-top:1.4rem; }
+legend, #IE8#HACK { margin-top:0; margin-bottom:0; }
+
+/* Form fields
+-------------------------------------------------------------- */
+
+/*
+  Attribute selectors are used to differentiate the different types
+  of input elements, but to support old browsers, you will have to
+  add classes for each one. ".title" simply creates a large text
+  field, this is purely for looks.
+ */
+
+input[type=text], input[type=password], input[type=url], input[type=email], input[type=button],
+input.text, input.title,
+textarea {
+    background-color:#fff;
+    border:1px solid #bbb;
+    color:#000;
+}
+input[type=text]:focus, input[type=password]:focus, input[type=url]:focus, input[type=email]:focus,  input[type=button]:focus,
+input.text:focus, input.title:focus,
+textarea:focus {
+    border-color:#666;
+}
+
+input[type=text]:hover, input[type=password]:hover, input[type=url]:hover, input[type=email]:hover,  input[type=button]:hover,
+input.text:hover, input.title:hover,
+textarea:hover {
+    background-color:#fff6bf;
+    border-color:#666;
+}
+
+select { background-color:#fff; border-width:1px; border-style:solid; }
+
+input[type=text], input[type=password], input[type=url], input[type=email],  input[type=button],
+input.text, input.title,
+textarea, select {
+    margin:0.5rem 0;
+}
+
+input.text,
+input.title { width: 30.0rem; padding:0.5rem; }
+input.title { font-size:1.5rem; }
+textarea    { width: 39.0rem; height: 25.0rem; padding:0.5rem; }
+
+/*
+  This is to be used on forms where a variety of elements are
+  placed side-by-side. Use the p tag to denote a line.
+ */
+form.inline     { line-height:3; }
+form.inline p   { margin-bottom:0; }
+
+
+/* Success, info, notice and error/alert boxes
+-------------------------------------------------------------- */
+
+.error,
+.alert,
+.notice,
+.success,
+.info               { padding: 0.8rem; margin-bottom: 1rem; border: 2px solid #ddd; }
+
+.error, .alert      { background: #fbe3e4; color: #8a1f11; border-color: #fbc2c4; }
+.notice             { background: #fff6bf; color: #514721; border-color: #ffd324; }
+.success            { background: #e6efc2; color: #264409; border-color: #c6d880; }
+.info               { background: #d5edf8; color: #205791; border-color: #92cae4; }
+.error a, .alert a  { color: #8a1f11; }
+.notice a           { color: #514721; }
+.success a          { color: #264409; }
+.info a             { color: #205791; }

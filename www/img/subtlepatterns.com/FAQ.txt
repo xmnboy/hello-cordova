@@ -1,0 +1,20 @@
+Frequently Asked Questions
+http://subtlepatterns.com/about/
+
+Can I use the patterns in themes I make and sell on ThemeForest (or similar sites)?
+Yes you can, but you have to credit subtlepatterns.com in your theme description or source code.
+
+Is it OK to use your patterns in commercial projects?
+Yes it is, as long as you credit subtlepatterns.com some where in the project.
+
+Can I publish your patterns for download on my site/blog?
+You can link to subtlepatterns.com, but not directly to the patterns.
+
+Can I make CSS3/coded versions of your patterns?
+Yes, but please link back to the original pattern (ex: http://lea.verou.me/)
+
+Can I sell your patterns in my texture pack?
+No, absolutely not. The patterns are free to use and download, but you are not allowed to re-sell the patterns and make money off other peoples work.
+
+If I make a new pattern based on one of your patterns, can I publish it as my own?
+I guess you could, but being nice about it and crediting the original author is always a nice thing to do.

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<!--
+   * Copyright (c) 2013-2014, Intel Corporation. All rights reserved.
+   * Please see http://software.intel.com/html5/license/samples
+   * and the included README.md file for license terms and conditions.
+  -->
+<head>
+    <title>Hello, Apache Cordova!</title>
+
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="Copyright" content="&copy; 2013-2014, Intel Corporation. All rights reserved.">
+
+<!--
+  * The "meta viewport" tag (below) helps your app size appropriately to a device's screen.
+  * Note that the meta viewport approach is being phased out in favor of the @viewport CSS rule.
+  * For a quick overview of both, see this article:
+  *   http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag
+  * Additional info can be found here:
+  *   http://www.paulund.co.uk/understanding-the-viewport-meta-tag
+  *   https://github.com/andreasbovens/understanding-viewport
+  *   http://dev.w3.org/csswg/css-device-adapt/#viewport-meta
+  *   http://dev.opera.com/articles/view/an-introduction-to-meta-viewport-and-viewport
+  * To see what happens, try the app on a real device with and without a "meta viewport" tag.
+  -->
+
+    <!-- <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, target-densitydpi=device-dpi"> -->
+    <!-- <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"> -->
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=2, user-scalable=yes">
+    <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2, user-scalable=yes"> -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"> -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+
+    <style>
+        /* TODO: add @viewport tags here, equivalent to above meta viewport tags */
+    </style>
+
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+
+<body>
+    <h1 class="align-center">Hello, Apache Cordova!</h1>
+    <h2 class="align-center" id="id_cordova">Indicate Cordova presence here...</h2>
+
+        <div id="id_deviceReady" class="align-center">
+            <p class="event listening">Waiting for Device Ready...</p>
+            <p class="event received">Device Ready Event Received!</p>
+            <p class="event failed">No Device Ready Event Available...</p>
+        </div>
+        <div class="align-center">
+            <p id="id_msgLog" class="event listening">debug messages go here...</p>
+        </div>
+        <br>
+
+    <p class="align-center">
+        <audio src="audio/bark.wav" preload="metadata" controls="controls"></audio>
+        <br>
+        <input type="button" id="id_btnBeep"    value="Beep"></input>
+        <input type="button" id="id_btnVibrate" value="Vibrate"></input>
+        <input type="button" id="id_btnBark"    value="Bark"></input>
+        <br>
+        <input type="button" id="id_btnAccel"   value="Accelerometer"></input>
+        <input type="button" id="id_btnCompass" value="Compass"></input>
+        <input type="button" id="id_btnGeo"     value="GeoLocate"></input>
+    </p>
+
+<!-- TODO: need to put each of the following tables into a floating container -->
+<!-- TODO: container width needs to be determined by media query width -->
+<!-- TODO: container should then constrain total width of the tables -->
+
+<div class="columns">
+<!-- Accelerometer data display -->
+    <table id="accelOutput" class="column-left">
+        <colgroup><col width="25%" class="align-right"></colgroup>
+        <colgroup><col width="75%" class="text"></colgroup>
+        <tbody>
+            <tr>
+                <td><label for="acceleration-x">AccelX:</label></td>
+                <td><input type="text" disabled="disabled" id="acceleration-x" /></td>
+            </tr>
+            <tr>
+                <td><label for="acceleration-y">AccelY:</label></td>
+                <td><input type="text" disabled="disabled" id="acceleration-y" /></td>
+            </tr>
+            <tr>
+                <td><label for="acceleration-z">AccelZ:</label></td>
+                <td><input type="text" disabled="disabled" id="acceleration-z" /></td>
+            </tr>
+            <tr>
+                <td><label for="acceleration-t">AccelT:</label></td>
+                <td><input type="text" disabled="disabled" id="acceleration-t" /></td>
+            </tr>
+            <tr>
+                <td><label for="compass-dir">Compass:</label></td>
+                <td><input type="text" disabled="disabled" id="compass-dir" /></td>
+            </tr>
+            <tr>
+                <td><label for="geo-latitude">GeoLatitude:</label></td>
+                <td><input type="text" disabled="disabled" id="geo-latitude" /></td>
+            </tr>
+            <tr>
+                <td><label for="geo-longitude">GeoLongitude:</label></td>
+                <td><input type="text" disabled="disabled" id="geo-longitude" /></td>
+            </tr>
+            <tr>
+                <td><label for="geo-accuracy">GeoAccuracy:</label></td>
+                <td><input type="text" disabled="disabled" id="geo-accuracy" /></td>
+            </tr>
+            <tr>
+                <td><label for="geo-altitude">GeoAltitude:</label></td>
+                <td><input type="text" disabled="disabled" id="geo-altitude" /></td>
+            </tr>
+            <tr>
+                <td><label for="geo-altAcc">GeoAltAcc:</label></td>
+                <td><input type="text" disabled="disabled" id="geo-altAcc" /></td>
+            </tr>
+            <tr>
+                <td><label for="geo-heading">GeoHeading:</label></td>
+                <td><input type="text" disabled="disabled" id="geo-heading" /></td>
+            </tr>
+            <tr>
+                <td><label for="geo-speed">GeoSpeed:</label></td>
+                <td><input type="text" disabled="disabled" id="geo-speed" /></td>
+            </tr>
+            <tr>
+                <td><label for="geo-timestamp">GeoTime:</label></td>
+                <td><input type="text" disabled="disabled" id="geo-timestamp" /></td>
+            </tr>
+        </tbody>
+    </table>
+
+<!-- Basic Cordova info -->
+    <table id="cordovaInfo" class="column-right">
+        <colgroup><col width="25%" class="align-right"></colgroup>
+        <colgroup><col width="75%"></colgroup>
+        <tbody>
+            <tr>
+                <td>Cordova Version:</td>
+                <td id="id_deviceCordova"></td>
+            </tr>
+            <tr>
+                <td>Device Platform:</td>
+                <td id="id_devicePlatform"></td>
+            </tr>
+            <tr>
+                <td>Device Version:</td>
+                <td id="id_deviceVersion"></td>
+            </tr>
+            <tr>
+                <td>Device Name:</td>
+                <td id="id_deviceName"></td>
+            </tr>
+            <tr>
+                <td>Device UUID:</td>
+                <td id="id_deviceUUID"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Generic rendering engine info, not Cordova dependent -->
+    <table id="navigatorInfo">
+        <colgroup><col width="25%" class="align-right"></colgroup>
+        <colgroup><col width="75%"></colgroup>
+        <tbody>
+            <tr>
+                <td>Runtime Vendor:</td>
+                <td id="id_navigatorVendor"></td>
+            </tr>
+            <tr>
+                <td>Runtime Platform:</td>
+                <td id="id_navigatorPlatform"></td>
+            </tr>
+            <tr>
+                <td>User Agent:</td>
+                <td id="id_navigatorUserAgent"></td>
+            </tr>
+        </tbody>
+    </table>
+
+<!-- Link to Intel samples license terms -->
+    <address class="align-center">
+        <a rel="LICENSE" href="http://software.intel.com/html5/license/samples">License Terms and Conditions</a>
+    </address>
+
+<!--
+Recommended JavaScript library load order.
+ * Intel XDK library.
+ * Cordova/PhoneGap library.
+ * PhoneGap assist library.
+ * Third-party libraries.
+ * This application's JavaScript files.
+
+These libraries are being loaded at the end of the HTML file, rather than the beginning, in order
+to speedup the display of the HTML in the webview. However, it's debatable as to whether or not
+this really helps in this particular context, since you also have to wait for the underlying device
+API native code to finish init, which could take longer than the webview init. It's up to you...
+
+VERY IMPORTANT: notice that all of the libraries used in this project are located within the app's
+local directories, which means they will get bundled with the app. They are NOT being pulled in
+over the net. In most cases, this is what you should be doing when you build a hybrid mobile app.
+This insures that you always use the JS code that you debugged against AND that you are not requiring
+a data connection (network connection) to get the app started. If your app startup required a data
+connection to initialize and to start interaction with the user, lack of a reliable network connection
+coud be disasterous. Not to mention this is much faster and friendlier to your end user's data plan,
+and battery.  :-)
+
+Note: do not use a directory prefix with intelxdk.js or cordova.js - they are inserted automatically
+by the build system, emulator and other tools and are assumed to be in the project's source directory.
+You will not find either of these JS files anywhere in your project, they are "phantom" libraries. If
+you do see these files as part of your project they should be removed to avoid confusing the XDK.
+
+When building with any of the XDK "pure Cordova" build systems (e.g., "Cordova for Android") you can
+omit the "intelxdk.js" and "xhr.js" script files shown below. It does not hurt to keep them, but
+they are not used in that environment, they are only needed for the "legacy XDK" build systems.
+(In the case of the "pure Cordova" build systems, the Cordova and XDK apis are specified via plugins
+and the CORS configuration is specified in the build configuration file.)
+-->
+
+    <script src="intelxdk.js"></script>         <!-- phantom library, needed for XDK api calls -->
+    <script src="cordova.js"></script>          <!-- phantom library, needed for Cordova api calls -->
+    <script src="xhr.js"></script>              <!-- phantom library, needed for XDK CORS -->
+
+    <!-- <script src="lib/jquery/jquery-2.0.3.min.js"></script> -->
+    <!-- <script src="lib/af/appframework.js"></script> -->
+    <!-- <script src="lib/fastclick/fastclick.js"></script> -->
+    <script src="lib/ua-parser/ua-parser-0.6.16.min.js"></script>
+    <script src="lib/moment/moment.2.6.0.js"></script>
+
+    <script src="js/globals.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/cordova-acc.js"></script>
+    <script src="js/cordova-geo.js"></script>
+    <script src="js/init-app.js"></script>
+    <script src="js/init-dev.js"></script>
+
+    <!-- Place your remote debugging (weinre) script URL here, do not include it for release builds -->
+    <!-- <script src="http://debug-software.intel.com/target/target-script-min.abiglongfunkynumbergoesherefromthexdktesttab"></script> -->
+</body>
+</html>

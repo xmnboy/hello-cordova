@@ -1,0 +1,138 @@
+/*
+ * Copyright (c) 2013-2014, Intel Corporation. All rights reserved.
+ * Please see http://software.intel.com/html5/license/samples
+ * and the included README.md file for license terms and conditions.
+ */
+
+body {
+    background-image: url('../img/subtlepatterns.com/sneaker-mesh-fabric.png') ;
+    background-attachment: fixed ;
+/*    background-color: blue ;*/
+    max-width: 800px ;
+    /*margin: 0.5rem ;*/
+    /*width: 80%;*/
+    margin: 0 auto;
+
+    /* Disable certain interactions on touch devices */
+    /* derived from https://github.com/ftlabs/fastclick/blob/master/examples/input.html */
+    -webkit-touch-callout: none ;
+    -webkit-text-size-adjust: none ;
+    -webkit-user-select: none ; -moz-user-select: none ; -ms-user-select: none ;
+    -webkit-highlight: none ;
+    -webkit-tap-highlight-color: rgba(0,0,0,0) ;
+    -webkit-tap-highlight-color: transparent ;      /* For some Androids */
+}
+
+input, textarea {
+    -webkit-user-select: text ; -moz-user-select: text ; -ms-user-select: text ;
+}
+
+input.text,
+input.title {
+    width: 15.0rem ;
+}
+
+ul {
+    list-style-type: square ;
+}
+
+input[type="text"][disabled] {
+    margin: 0 ;
+    border: 0 ;
+    padding: 0.3rem 0.4rem ;
+    font-style: italic ;
+    color: red ;
+    background: none ;
+}
+
+label {
+    font-weight: normal ;
+    color: black ;
+}
+
+label.input {
+    font-style: italic;
+}
+
+td:first-child {
+    text-align: right ;
+}
+tr:nth-child(even) > td:nth-child(2) {
+    background: rgba(228, 249, 243, 0.2) ;
+}
+tr:nth-child(odd) > td:nth-child(2) {
+    background-color: rgba(215, 240, 255, 0.2) ;
+}
+
+.cl_btnOn {
+    background-color: lightgreen !important ;
+}
+
+
+
+/* for some simple columns */
+/* TODO: make it work or get rid of it */
+
+@media all and (min-width: 480px) {
+    .columns {
+        width: auto ;
+        margin: auto ;
+        /*max-width: 800px ;*/
+        max-width: 75% ;
+    }
+    .column-left {
+        float: left ;
+        width: 33% ;
+    }
+    .column-right {
+        float: left ;
+        width: 67% ;
+    }
+}
+@media all and (max-width: 479px) {
+    .columns {
+        width: auto ;
+        margin: auto ;
+    }
+    .column-left {
+        clear: both ;
+    }
+    .column-right {
+        clear: both ;
+    }
+}
+.columns:after {
+    content: "" ;
+    display: table ;
+    clear: both ;
+}
+
+
+.event {
+    -webkit-border-radius:4px ; border-radius:4px ;
+    color:#FFFFFF ;
+    /*font-size:12px ;*/
+    margin:0px 30px ;
+    padding:2px 0px ;
+}
+/* TODO: clean up the colors */
+.event.listening {
+/*    background-color:#333333 ;*/
+/*    background-color:#f0e68c ;*/
+    background-color:khaki ;
+/*    background-color:#ffd700 ;*/
+/*    background-color:gold ;*/
+    display:block ;
+}
+.event.failed {
+/*    background-color:#ffb6c1 ;*/
+    background-color:lightpink ;
+    display:none ;
+}
+.event.received {
+/*    background-color:#2e8b57 ;*/
+    background-color:seagreen ;
+/*    background-color:#3cb371 ;*/
+/*    background-color:mediumseagreen ;*/
+    display:none ;
+}
