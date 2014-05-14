@@ -1,12 +1,13 @@
 /*
- * Copyright (c) 2014, Intel Corporation. All rights reserved.
+ * Copyright (c) 2014, Paul Fischer, Intel Corporation. All rights reserved.
  * Please see http://software.intel.com/html5/license/samples
  * and the included README.md file for license terms and conditions.
  */
 
 
 /*jslint browser:true, devel:true, white:true, vars:true */
-/*global $:false, intel:false */
+/*global $:false, intel:false, moment:false */
+/*global copyObject:false, addClass:false, removeClass:false */
 
 
 // The console.log() messages sprinkled in this file are for instruction and debug.
@@ -19,7 +20,7 @@ var watchIdGeoLocate = null ;
 
 var geoOptions = {                  // global is a dirty technique, done this way for demo and debug
     enableHighAccuracy : true,      // true for "fine" position (GPS), false for "coarse" position (network)
-    timeout : 3000,                 // maximum milliseconds to return a result (default is "Infinity")
+    timeout : 5000,                 // maximum milliseconds to return a result (default is "Infinity")
     maximumAge : 60000              // max age in msecs of cached position, zero -> no caching, "Infinity" -> return a cached position
 } ;
 
@@ -94,7 +95,7 @@ function btnGeo() {
 
 // based on code from: https://developer.mozilla.org/en-US/docs/Web/API/Geolocation.getCurrentPosition
 
-function getGeoFine() {
+function btnGeoFine() {
     "use strict" ;
     var fName = "btnGeoFine():" ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
@@ -111,7 +112,7 @@ function getGeoFine() {
     console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
 }
 
-function getGeoCoarse() {
+function btnGeoCoarse() {
     "use strict" ;
     var fName = "btnGeoCoarse():" ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
@@ -133,7 +134,7 @@ function getGeoCoarse() {
 // This function is based on the built-in browser geoLocate API.
 
 function geoLocateBrowser(myGeoOptions) {
-    "use strict"
+    "use strict" ;
     var fName = "geoLocateBrowser():" ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
 
@@ -174,7 +175,7 @@ function geoLocateBrowser(myGeoOptions) {
 // The Cordova API will use the browser API if it exists.
 
 function geoLocateCordova(myGeoOptions) {
-    "use strict"
+    "use strict" ;
     var fName = "geoLocateCordova():" ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
 
@@ -214,7 +215,7 @@ function geoLocateCordova(myGeoOptions) {
 // This function is based on the XDK geoLocate API.
 
 function geoLocateXDK() {
-    "use strict"
+    "use strict" ;
     var fName = "geoLocateXDK():" ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
 

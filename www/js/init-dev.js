@@ -7,6 +7,7 @@
 
 /*jslint browser:true, devel:true, white:true, vars:true */
 /*global $:false, intel:false */
+/*global moment:false, performance:false */
 
 
 
@@ -14,6 +15,9 @@ var init = init || {} ;
 init.dev = function() {
     "use strict" ;
 
+
+// Used to keep track of time when each of these items was triggered
+// and can also be used for a general sense of the platform we're running on.
 var isDeviceReady = { browser:false, cordova:false, xdk:false, fnDeviceReady:false } ;
 
 
@@ -26,8 +30,7 @@ var isDeviceReady = { browser:false, cordova:false, xdk:false, fnDeviceReady:fal
 // NOTE: Customize this function to initialize your app.
 // NOTE: In most cases, you can leave this code alone and use it as is.
 
-var onDeviceReady = function() {
-    "use strict" ;
+function onDeviceReady() {
     var fName = "onDeviceReady():" ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
 
@@ -47,7 +50,7 @@ var onDeviceReady = function() {
     init.app.initApplication() ;
 
     console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
-} ;
+}
 
 
 
@@ -93,7 +96,7 @@ var onDeviceReady = function() {
 
 // If this event is called first, we should be in the Cordova container.
 
-var onDeviceReadyCordova = function() {
+function onDeviceReadyCordova() {
     if( window.performance && performance.now ) {
         isDeviceReady.cordova = performance.now() ;
     }
@@ -104,11 +107,11 @@ var onDeviceReadyCordova = function() {
     // console.log(moment().toISOString(), fName, isDeviceReady.cordova) ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, isDeviceReady.cordova) ;
     window.setTimeout(onDeviceReady, 250) ;     // a little insurance on the readiness
-} ;
+}
 
 // If this event is called first, we should be in the legacy XDK container.
 
-var onDeviceReadyXDK = function() {
+function onDeviceReadyXDK() {
     if( window.performance && performance.now ) {
         isDeviceReady.xdk = performance.now() ;
     }
@@ -119,11 +122,11 @@ var onDeviceReadyXDK = function() {
     // console.log(moment().toISOString(), fName, isDeviceReady.xdk) ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, isDeviceReady.xdk) ;
     window.setTimeout(onDeviceReady, 250) ;     // a little insurance on the readiness
-} ;
+}
 
 // This is a bogus onDeviceReady for browser scenario, mostly for code symmetry.
 
-var onDeviceReadyBrowser = function() {
+function onDeviceReadyBrowser() {
     if( window.performance && performance.now ) {
         isDeviceReady.browser = performance.now() ;
     }
@@ -134,7 +137,7 @@ var onDeviceReadyBrowser = function() {
     // console.log(moment().toISOString(), fName, isDeviceReady.browser) ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, isDeviceReady.browser) ;
     window.setTimeout(onDeviceReady, 250) ;     // a little insurance on the readiness
-} ;
+}
 
 
 
@@ -144,7 +147,7 @@ var onDeviceReadyBrowser = function() {
 
 // NOTE: In most cases, you can leave this code alone and use it as is.
 
-var initDeviceReady = function() {
+function initDeviceReady() {
     var fName = "initDeviceReady():" ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
 
@@ -159,11 +162,11 @@ var initDeviceReady = function() {
     console.log(moment().format("HH:mm:ss.SSS"), fName, "navigator.userAgent:", navigator.userAgent) ;
 
     console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
-} ;
+}
 
 
 var objPublic = {                               // module public interface
-    isDeviceReady: isDeviceReady,               // works because it is an object, passes by reference
+    isDeviceReady: isDeviceReady,               // for debug and demo
     onDeviceReady: onDeviceReady,               // public for debug (run manually)
     initDeviceReady: initDeviceReady
 } ;

@@ -7,12 +7,17 @@
 
 /*jslint browser:true, devel:true, white:true, vars:true */
 /*global $:false, intel:false */
+/*global moment:false, performance:false, UAParser:false */
+/*global initAccel:false, initCompass:false, initGeoLocate:false, updateDeviceInfo:false */
+/*global btnBeep:false, btnBark:false, btnAccel:false, btnVibrate:false, btnCompass:false */
+/*global btnGeoFine:false, btnGeoCoars:false, btnGeo:false */
 
 
 
 var init = init || {} ;
 init.app = function() {
     "use strict" ;
+
 
 // For demo and debug, potentially useful for device/feature detection.
 var uaParser = new UAParser() ;
@@ -24,8 +29,7 @@ var uaParser = new UAParser() ;
 
 // NOTE: Customize this function to initialize your application.
 
-var initApplication = function() {
-    "use strict" ;
+function initApplication() {
     var fName = "initApplication():" ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
 
@@ -43,23 +47,30 @@ var initApplication = function() {
     showDeviceReady() ;                             // this is optional
     hideSplashScreen() ;                            // this is optional
 
-    // Add app event handlers now.
+    // Initialize app event handlers.
     // TODO: if( test for respective components before attaching event handlers )
     // TODO: configure to work with both touch and click events (mouse + touch)
 
     var el ;
+
     el = document.getElementById("id_btnBeep") ;
     el.addEventListener("touchend", btnBeep, false) ;
     el = document.getElementById("id_btnVibrate") ;
     el.addEventListener("touchend", btnVibrate, false) ;
     el = document.getElementById("id_btnBark") ;
     el.addEventListener("touchend", btnBark, false) ;
+
     el = document.getElementById("id_btnAccel") ;
     el.addEventListener("touchend", btnAccel, false) ;
     el = document.getElementById("id_btnCompass") ;
     el.addEventListener("touchend", btnCompass, false) ;
+
     el = document.getElementById("id_btnGeo") ;
     el.addEventListener("touchend", btnGeo, false) ;
+    el = document.getElementById("id_btnGeoFine") ;
+    el.addEventListener("touchend", btnGeoFine, false) ;
+    el = document.getElementById("id_btnGeoCoarse") ;
+    el.addEventListener("touchend", btnGeoCoarse, false) ;
 
 
     // app initialization is done
@@ -67,7 +78,7 @@ var initApplication = function() {
     // exit to idle state and wait for events...
 
     console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
-} ;
+}
 
 
 
@@ -75,8 +86,7 @@ var initApplication = function() {
 // Update our status in the main view.
 // Are we running in a Cordova container or in a browser?
 
-var showDeviceReady = function() {
-    "use strict" ;
+function showDeviceReady() {
     var fName = "showDeviceReady():" ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
 
@@ -92,14 +102,13 @@ var showDeviceReady = function() {
     }
 
     console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
-} ;
+}
 
 
 // This may or may not be required, depends on your app and plugin configuration.
 // Simple study in the art of multi-platform webview API detection.
 
-var hideSplashScreen = function() {
-    "use strict" ;
+function hideSplashScreen() {
     var fName = "hideSplashScreen():" ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
 
@@ -129,11 +138,11 @@ var hideSplashScreen = function() {
     }
 
     console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
-} ;
+}
 
 
 var objPublic = {                               // module public interface
-    uaParser: uaParser,                         // for demo and debug, works because it is an object, pass by reference
+    uaParser: uaParser,                         // for demo and debug
     initApplication: initApplication
 } ;
 return objPublic ;

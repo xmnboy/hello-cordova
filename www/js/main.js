@@ -1,12 +1,13 @@
 /*
- * Copyright (c) 2013-2014, Intel Corporation. All rights reserved.
+ * Copyright (c) 2013-2014, Paul Fischer, Intel Corporation. All rights reserved.
  * Please see http://software.intel.com/html5/license/samples
  * and the included README.md file for license terms and conditions.
  */
 
 
 /*jslint browser:true, devel:true, white:true, vars:true */
-/*global $:false, intel:false, Media:false */
+/*global $:false, intel:false, Media:false, moment:false */
+/*global getWebPath:false, getWebRoot:false */
 
 
 // The console.log() messages sprinkled in this file are for instruction and debug.
@@ -62,16 +63,17 @@ function btnBark() {
         var x = window.device && window.device.platform ;
         console.log(moment().format("HH:mm.ss.SSS"), fName, "platform = ", x) ;
 
+        var media ;
         if(!getWebPath().match(/\/emulator.*\/ripple\/userapp/i)) { // if not in the emulator
             if(x.match(/(ios)|(iphone)|(ipod)|(ipad)/ig)) {         // and on a real iOS device
-                var media = new Media("audio/bark.wav", mediaSuccess, mediaError, mediaStatus) ;
+                media = new Media("audio/bark.wav", mediaSuccess, mediaError, mediaStatus) ;
             }
             else {
-                var media = new Media(getWebRoot() + "/audio/bark.wav", mediaSuccess, mediaError, mediaStatus) ;
+                media = new Media(getWebRoot() + "/audio/bark.wav", mediaSuccess, mediaError, mediaStatus) ;
             }
         }
         else {
-            var media = new Media(getWebRoot() + "/audio/bark.wav", mediaSuccess, mediaError, mediaStatus) ;
+            media = new Media(getWebRoot() + "/audio/bark.wav", mediaSuccess, mediaError, mediaStatus) ;
         }
         console.log(moment().format("HH:mm.ss.SSS"), fName, "media.src = ", media.src) ;
         media.play() ;

@@ -1,12 +1,13 @@
 /*
- * Copyright (c) 2013-2014, Intel Corporation. All rights reserved.
+ * Copyright (c) 2013-2014, Paul Fischer, Intel Corporation. All rights reserved.
  * Please see http://software.intel.com/html5/license/samples
  * and the included README.md file for license terms and conditions.
  */
 
 
 /*jslint browser:true, devel:true, white:true, vars:true */
-/*global $:false, intel:false */
+/*global $:false, intel:false, moment:false */
+/*global addClass:false, removeClass:false */
 
 
 // The console.log() messages sprinkled in this file are for instruction and debug.

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2014, Intel Corporation. All rights reserved.
+ * Copyright (c) 2013-2014, Paul Fischer, Intel Corporation. All rights reserved.
  * Please see http://software.intel.com/html5/license/samples
  * and the included README.md file for license terms and conditions.
  */
@@ -79,4 +79,4 @@ console.log = function() {
         var args = Array.prototype.slice.call(arguments, 0) ;
         el.innerHTML = args.toString() ;
     }
-}
+} ;
