@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <!--
-   * Copyright (c) 2013-2014, Intel Corporation. All rights reserved.
+   * Copyright (c) 2013-2014, Paul Fischer, Intel Corporation. All rights reserved.
    * Please see http://software.intel.com/html5/license/samples
    * and the included README.md file for license terms and conditions.
   -->
@@ -9,7 +9,7 @@
     <title>Hello, Apache Cordova!</title>
 
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta name="Copyright" content="&copy; 2013-2014, Intel Corporation. All rights reserved.">
+    <meta name="Copyright" content="&copy; 2013-2014, Paul Fischer, Intel Corporation. All rights reserved.">
 
 <!--
   * The "meta viewport" tag (below) helps your app size appropriately to a device's screen.
@@ -62,7 +62,10 @@
         <br>
         <input type="button" id="id_btnAccel"   value="Accelerometer"></input>
         <input type="button" id="id_btnCompass" value="Compass"></input>
+        <br>
+        <input type="button" id="id_btnGeoFine" value="GeoFine"></input>
         <input type="button" id="id_btnGeo"     value="GeoLocate"></input>
+        <input type="button" id="id_btnGeoCoarse" value="GeoCoarse"></input>
     </p>
 
 <!-- TODO: need to put each of the following tables into a floating container -->
@@ -180,7 +183,7 @@
 
 <!-- Link to Intel samples license terms -->
     <address class="align-center">
-        <a rel="LICENSE" href="http://software.intel.com/html5/license/samples">License Terms and Conditions</a>
+        <a rel="LICENSE" href='javascript: window.open("http://software.intel.com/html5/license/samples","_system")'>License Terms and Conditions</a>
     </address>
 
 <!--
@@ -234,7 +237,7 @@ and the CORS configuration is specified in the build configuration file.)
     <script src="js/init-app.js"></script>
     <script src="js/init-dev.js"></script>
 
-    <!-- Place your remote debugging (weinre) script URL here, do not include it for release builds -->
+    <!-- Place your remote debugging (weinre) script URL here, do not include it inside release builds -->
     <!-- <script src="http://debug-software.intel.com/target/target-script-min.abiglongfunkynumbergoesherefromthexdktesttab"></script> -->
 </body>
 </html>
