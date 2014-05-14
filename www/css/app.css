@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2014, Intel Corporation. All rights reserved.
+ * Copyright (c) 2013-2014, Paul Fischer, Intel Corporation. All rights reserved.
  * Please see http://software.intel.com/html5/license/samples
  * and the included README.md file for license terms and conditions.
  */
@@ -16,15 +16,15 @@ body {
     /* Disable certain interactions on touch devices */
     /* derived from https://github.com/ftlabs/fastclick/blob/master/examples/input.html */
     -webkit-touch-callout: none ;
-    -webkit-text-size-adjust: none ;
-    -webkit-user-select: none ; -moz-user-select: none ; -ms-user-select: none ;
+    -webkit-text-size-adjust: none ; -ms-text-size-adjust: none ;
+    -webkit-user-select: none ; -moz-user-select: none ; -ms-user-select: none ; user-select: none ;
     -webkit-highlight: none ;
     -webkit-tap-highlight-color: rgba(0,0,0,0) ;
     -webkit-tap-highlight-color: transparent ;      /* For some Androids */
 }
 
 input, textarea {
-    -webkit-user-select: text ; -moz-user-select: text ; -ms-user-select: text ;
+    -webkit-user-select: text ; -moz-user-select: text ; -ms-user-select: text ; user-select: text ;
 }
 
 input.text,
@@ -58,9 +58,11 @@ td:first-child {
     text-align: right ;
 }
 tr:nth-child(even) > td:nth-child(2) {
+    background: rgb(228, 249, 243) ;
     background: rgba(228, 249, 243, 0.2) ;
 }
 tr:nth-child(odd) > td:nth-child(2) {
+    background-color: rgb(215, 240, 255) ;
     background-color: rgba(215, 240, 255, 0.2) ;
 }
 
@@ -112,8 +114,8 @@ tr:nth-child(odd) > td:nth-child(2) {
     -webkit-border-radius:4px ; border-radius:4px ;
     color:#FFFFFF ;
     /*font-size:12px ;*/
-    margin:0px 30px ;
-    padding:2px 0px ;
+    margin:0 30px ;
+    padding:2px 0 ;
 }
 /* TODO: clean up the colors */
 .event.listening {
