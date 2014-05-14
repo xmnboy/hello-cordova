@@ -18,10 +18,10 @@
 function addClass( classname, element ) {
     "use strict" ;
     var cn = element.className ;
-    if( cn.indexOf( classname ) !== -1 ) {  //test for existence, see "Beware" note above
+    if( cn.indexOf( classname ) !== -1 ) {  // test for existence, see "Beware" note above
         return ;
     }
-    if( cn !== '' ) {                       //add a space if the element already has a class
+    if( cn !== '' ) {                       // add a space if the element already has a class
         classname = ' ' + classname ;
     }
     element.className = cn + classname ;
@@ -52,6 +52,16 @@ function getWebRoot() {
     var path = window.location.href ;
     path = path.substring( 0, path.lastIndexOf('/') ) ;
     return path ;
+}
+
+
+
+// copy simply objects
+
+function copyObject(objIn) {
+    "use strict" ;
+    var objOut = JSON.parse(JSON.stringify(objIn)) ;
+    return objIn ;
 }
 
 

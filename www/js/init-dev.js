@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2014, Intel Corporation. All rights reserved.
+ * Copyright (c) 2013-2014, Paul Fischer, Intel Corporation. All rights reserved.
  * Please see http://software.intel.com/html5/license/samples
  * and the included README.md file for license terms and conditions.
  */
@@ -8,7 +8,11 @@
 /*jslint browser:true, devel:true, white:true, vars:true */
 /*global $:false, intel:false */
 
-// TODO: get rid of this, don't care for globals...
+
+
+var init = init || {} ;
+init.dev = function() {
+    "use strict" ;
 
 var isDeviceReady = { browser:false, cordova:false, xdk:false, fnDeviceReady:false } ;
 
@@ -17,17 +21,17 @@ var isDeviceReady = { browser:false, cordova:false, xdk:false, fnDeviceReady:fal
 // Runs after underlying device native code and browser is initialized.
 // Usually not much needed here, just additional "device init" code.
 // See initDeviceReady() below for code that kicks off this function.
-// This function works with Cordova, XDK container or just browser.
+// This function works with Cordova, XDK container or just a browser.
 
-// NOTE: You need to customize this function to initialize your app.
-// TODO: Turn customization of onDeviceReady() into a closure+namespace.
-// NOTE: https://github.com/stevekwan/experiments/blob/master/javascript/module-pattern.html
+// NOTE: Customize this function to initialize your app.
+// NOTE: In most cases, you can leave this code alone and use it as is.
 
-function onDeviceReady() {
+var onDeviceReady = function() {
     "use strict" ;
     var fName = "onDeviceReady():" ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
 
+    // Useful for debug and understanding initialization flow.
     if( isDeviceReady.fnDeviceReady ) {
         console.log(moment().format("HH:mm:ss.SSS"), fName, "function terminated") ;
         return ;
@@ -39,61 +43,16 @@ function onDeviceReady() {
         isDeviceReady.fnDeviceReady = moment().valueOf() ;
     }
 
+    // All device initialization is done, call the main app init function...
+    init.app.initApplication() ;
 
-    // Primarily for demonstrations.
-    // Are we running in a Cordova container or in a browser?
-    // update the status on the main screen
-    var el = document.getElementById("id_cordova") ;
-    if( isDeviceReady.cordova ) {
-        el.innerHTML = "Cordova device ready detected!" ;
-    }
-    else if( isDeviceReady.xdk ) {
-        el.innerHTML = "Intel XDK device ready detected!" ;
-    }
-    else {
-        el.innerHTML = "Must be in a browser..." ;
-    }
-
-
-    // for demo only
-    // find the "system ready" indicator on our display
-    var parentElement = document.getElementById("id_deviceReady") ;
-    var listeningElement = parentElement.querySelector('.listening') ;
-    var receivedElement = parentElement.querySelector('.received') ;
-    var failedElement = parentElement.querySelector('.failed') ;
-
-
-    // keep this, unless you want to remove splash screen elsewhere
-    // perform platform API-specific init functions
-    if( window.Cordova && navigator.splashscreen ) {            // Cordova API detected
-        navigator.splashscreen.hide() ;
-        listeningElement.setAttribute('style', 'display:none;') ;
-        receivedElement.setAttribute('style', 'display:block;') ;
-        failedElement.setAttribute('style', 'display:none;') ;
-    }
-    else if( window.intel && intel.xdk && intel.xdk.device ) {  // Intel XDK API detected
-        intel.xdk.device.hideSplashScreen() ;
-        listeningElement.setAttribute('style', 'display:none;') ;
-        receivedElement.setAttribute('style', 'display:block;') ;
-        failedElement.setAttribute('style', 'display:none;') ;
-    }
-    else {                                                      // must be in a browser
-        listeningElement.setAttribute('style', 'display:none;') ;
-        receivedElement.setAttribute('style', 'display:none;') ;
-        failedElement.setAttribute('style', 'display:block;') ;
-    }
-
-
-    // keep this, finish your app initialization in the other init file...
-    // all device initialization is done, call the master app init function...
-    initApplication() ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
-}
+} ;
 
 
 
 /*
- * The following is an excerpt from the 2.9.0 cordova.js file and may be useful for understanding
+ * The following is an excerpt from the 2.9.0 cordova.js file and is useful for understanding
  * Cordova events. The order of events during page load and Cordova startup is as follows:
  *
  * onDOMContentLoaded*         Internal event that is received when the web page is loaded and parsed.
@@ -128,10 +87,13 @@ function onDeviceReady() {
 
 // The following is not fool-proof, we're mostly interested in detecting one
 // or both events to insure device init is finished, detecting either will do.
+// Even though the timing should indicate which container, it does not always work.
 
-// if this event is called first, we must be in the Cordova container
+// NOTE: In most cases, you can leave these functions alone and use it as is.
 
-function onDeviceReadyCordova() {
+// If this event is called first, we should be in the Cordova container.
+
+var onDeviceReadyCordova = function() {
     if( window.performance && performance.now ) {
         isDeviceReady.cordova = performance.now() ;
     }
@@ -142,11 +104,11 @@ function onDeviceReadyCordova() {
     // console.log(moment().toISOString(), fName, isDeviceReady.cordova) ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, isDeviceReady.cordova) ;
     window.setTimeout(onDeviceReady, 250) ;     // a little insurance on the readiness
-}
+} ;
 
-// if this event is called first, we must be in the legacy XDK container
+// If this event is called first, we should be in the legacy XDK container.
 
-function onDeviceReadyXDK() {
+var onDeviceReadyXDK = function() {
     if( window.performance && performance.now ) {
         isDeviceReady.xdk = performance.now() ;
     }
@@ -157,11 +119,11 @@ function onDeviceReadyXDK() {
     // console.log(moment().toISOString(), fName, isDeviceReady.xdk) ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, isDeviceReady.xdk) ;
     window.setTimeout(onDeviceReady, 250) ;     // a little insurance on the readiness
-}
+} ;
 
-// this is a bogus onDeviceReady for browser scenario, for code symmetry
+// This is a bogus onDeviceReady for browser scenario, mostly for code symmetry.
 
-function onDeviceReadyBrowser() {
+var onDeviceReadyBrowser = function() {
     if( window.performance && performance.now ) {
         isDeviceReady.browser = performance.now() ;
     }
@@ -172,17 +134,17 @@ function onDeviceReadyBrowser() {
     // console.log(moment().toISOString(), fName, isDeviceReady.browser) ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, isDeviceReady.browser) ;
     window.setTimeout(onDeviceReady, 250) ;     // a little insurance on the readiness
-}
+} ;
 
 
 
-// runs after document is loaded, and sets up wait for native code init to finish
-// if we're running in a browser we're ready to go when document is loaded, but
-// if we're running on a device we need to wait for native code to finish init
+// Runs after document is loaded, and sets up wait for native init to finish.
+// If we're running in a browser we're ready to go when document is loaded, but
+// if we're running on a device we need to wait for native code to finish its init.
 
-// NOTE: In most cases, you can leave this code alone and just use it as is.
+// NOTE: In most cases, you can leave this code alone and use it as is.
 
-function initDeviceReady() {
+var initDeviceReady = function() {
     var fName = "initDeviceReady():" ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
 
@@ -197,22 +159,31 @@ function initDeviceReady() {
     console.log(moment().format("HH:mm:ss.SSS"), fName, "navigator.userAgent:", navigator.userAgent) ;
 
     console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
-}
+} ;
+
+
+var objPublic = {                               // module public interface
+    isDeviceReady: isDeviceReady,               // works because it is an object, passes by reference
+    onDeviceReady: onDeviceReady,               // public for debug (run manually)
+    initDeviceReady: initDeviceReady
+} ;
+return objPublic ;
+}() ;
 
 
 
-// wait for document ready state before looking for device ready state
-// this insures app does not start running until system is completely ready
-// and makes it easier to deal with in-browser versus on-device scenarios
+// Wait for document ready state before looking for device ready state.
+// This insures the app does not start running until system is completely ready
+// and makes it easier to deal with either in-browser or on-device scenarios.
 
 // NOTE: In most cases, you can leave this code alone and use it as is.
 
 if( document.onreadystatechange ) {                 // some older devices don't support this
     document.onreadystatechange = function () {
         if (document.readyState === "complete") {
-            initDeviceReady() ;                     // call when document is "ready ready" :)
+            init.dev.initDeviceReady() ;            // call when document is "ready ready" :)
         }
     } ;
 } else {
-    window.addEventListener("load", initDeviceReady, false) ;
+    window.addEventListener("load", init.dev.initDeviceReady, false) ;
 }

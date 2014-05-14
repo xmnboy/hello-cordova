@@ -68,7 +68,7 @@ function btnGeo() {
     }
 
     if( watchIdGeoLocate === null ) {
-        var myGeoOptions = JSON.parse(JSON.stringify(geoOptions)) ;
+        var myGeoOptions = copyObject(geoOptions) ;
         if( myGeoOptions.maximumAge < 0 )
             myGeoOptions.maximumAge = Infinity ;    // force use of cached geo values if "cachAge" is negative
         try {                                       // watch and update geo at timeout or on change
@@ -94,12 +94,12 @@ function btnGeo() {
 
 // based on code from: https://developer.mozilla.org/en-US/docs/Web/API/Geolocation.getCurrentPosition
 
-function btnGeoFine() {
+function getGeoFine() {
     "use strict" ;
     var fName = "btnGeoFine():" ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
 
-    var myGeoOptions = JSON.parse(JSON.stringify(geoOptions)) ;
+    var myGeoOptions = copyObject(geoOptions) ;
     if( myGeoOptions.maximumAge < 0 )
         myGeoOptions.maximumAge = Infinity ;    // force use of cached geo values if "cachAge" is negative
     myGeoOptions.enableHighAccuracy = true ;    // force use of high accuracy measurement (e.g., GPS)
@@ -111,12 +111,12 @@ function btnGeoFine() {
     console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
 }
 
-function btnGeoCoarse() {
+function getGeoCoarse() {
     "use strict" ;
     var fName = "btnGeoCoarse():" ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
 
-    var myGeoOptions = JSON.parse(JSON.stringify(geoOptions)) ;
+    var myGeoOptions = copyObject(geoOptions) ;
     if( myGeoOptions.maximumAge < 0 )
         myGeoOptions.maximumAge = Infinity ;    // force use of cached geo values if "cachAge" is negative
     myGeoOptions.enableHighAccuracy = false ;   // force use of low accuracy measurement (e.g., network location)
