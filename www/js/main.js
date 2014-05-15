@@ -51,30 +51,33 @@ function btnVibrate() {
 
 
 
-function btnBark() {
+function btnBarkCordova() {
     "use strict" ;
-    var fName = "btnBark():" ;
+    var fName = "btnBarkCordova():" ;
     console.log(moment().format("HH:mm.ss.SSS"), fName, "entry") ;
 
-    console.log(moment().format("HH:mm.ss.SSS"), fName, "getWebPath() => ", getWebPath()) ;
-    console.log(moment().format("HH:mm.ss.SSS"), fName, "getWebRoot() => ", getWebRoot()) ;
-
     try {
-        var x = window.device && window.device.platform ;
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "platform = ", x) ;
+        var w = window.device && window.device.platform ;
+        var x = navigator.userAgent ;
+        var y = getWebPath() ;
+        var z = getWebRoot() ;
+        console.log(moment().format("HH:mm.ss.SSS"), fName, "platform = ", w) ;
+        console.log(moment().format("HH:mm.ss.SSS"), fName, "userAgent = ", x) ;
+        console.log(moment().format("HH:mm.ss.SSS"), fName, "getWebPath() => ", y) ;
+        console.log(moment().format("HH:mm.ss.SSS"), fName, "getWebRoot() => ", z) ;
 
-        var media ;
-        if(!getWebPath().match(/\/emulator.*\/ripple\/userapp/i)) { // if not in the emulator
-            if(x.match(/(ios)|(iphone)|(ipod)|(ipad)/ig)) {         // and on a real iOS device
-                media = new Media("audio/bark.wav", mediaSuccess, mediaError, mediaStatus) ;
-            }
-            else {
-                media = new Media(getWebRoot() + "/audio/bark.wav", mediaSuccess, mediaError, mediaStatus) ;
-            }
+        var media = "audio/bark.wav" ;
+        if( z.match(/\/emulator.*\/ripple\/userapp/i) ) {           // if in the Ripple emulator
+            media = z + "/" + media ;
         }
-        else {
-            media = new Media(getWebRoot() + "/audio/bark.wav", mediaSuccess, mediaError, mediaStatus) ;
+        else if( x.match(/(ios)|(iphone)|(ipod)|(ipad)/ig) ) {      // if on a real iOS device
+            media = "/" + media ;
         }
+        else {                                                      // everything else...
+            media = z + "/" + media ;
+        }
+
+        media = new Media(media, mediaSuccess, mediaError, mediaStatus) ;
         console.log(moment().format("HH:mm.ss.SSS"), fName, "media.src = ", media.src) ;
         media.play() ;
         console.log(moment().format("HH:mm.ss.SSS"), fName, "try, success") ;
@@ -106,6 +109,37 @@ function btnBark() {
             default:    msg = "MEDIA_undefined" ;
         }
         console.log(moment().format("HH:mm.ss.SSS"), fName, "mediaStatus: " + status + " = " + msg) ;
+    }
+
+    console.log(moment().format("HH:mm.ss.SSS"), fName, "exit") ;
+}
+
+
+
+function btnBarkXDK() {
+    "use strict" ;
+    var fName = "btnBarkXDK():" ;
+    console.log(moment().format("HH:mm.ss.SSS"), fName, "entry") ;
+
+    try {
+        var w = window.device && window.device.platform ;
+        var x = navigator.userAgent ;
+        var y = getWebPath() ;
+        var z = getWebRoot() ;
+        console.log(moment().format("HH:mm.ss.SSS"), fName, "platform = ", w) ;
+        console.log(moment().format("HH:mm.ss.SSS"), fName, "userAgent = ", x) ;
+        console.log(moment().format("HH:mm.ss.SSS"), fName, "getWebPath() => ", y) ;
+        console.log(moment().format("HH:mm.ss.SSS"), fName, "getWebRoot() => ", z) ;
+
+        var media = "audio/bark.wav" ;
+        if( z.match(/\/emulator.*\/ripple\/userapp/i) ) {           // if in the Ripple emulator
+            media = z + "/" + media ;                               // bug in the emulator...
+        }
+        intel.xdk.player.playSound(media) ;
+        console.log(moment().format("HH:mm.ss.SSS"), fName, "try, success") ;
+    }
+    catch(e) {
+        console.log(moment().format("HH:mm.ss.SSS"), fName, "catch, failure") ;
     }
 
     console.log(moment().format("HH:mm.ss.SSS"), fName, "exit") ;
