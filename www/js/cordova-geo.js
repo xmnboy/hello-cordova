@@ -42,10 +42,9 @@ function initGeoLocate() {
     console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
 }
 
-/*
- * the following watch approach updates the geo location continuously
- * until the geo button is pushed a second time to stop the watch
- */
+
+// the following watch approach updates the geo location continuously
+// until the geo button is pushed a second time to stop the watch
 
 function btnGeo() {
     "use strict" ;
@@ -94,6 +93,7 @@ function btnGeo() {
 
 
 // based on code from: https://developer.mozilla.org/en-US/docs/Web/API/Geolocation.getCurrentPosition
+// each fn will reconfig geoOptions for use by Geo (above) to make it easier to switch between settings
 
 function btnGeoFine() {
     "use strict" ;
@@ -104,6 +104,7 @@ function btnGeoFine() {
     if( myGeoOptions.maximumAge < 0 )
         myGeoOptions.maximumAge = Infinity ;    // force use of cached geo values if "cachAge" is negative
     myGeoOptions.enableHighAccuracy = true ;    // force use of high accuracy measurement (e.g., GPS)
+    geoOptions.enableHighAccuracy = true ;      // set to high accuracy for next use by btnGeo()
 
     geoLocateXDK() ;
     geoLocateCordova(myGeoOptions) ;
@@ -121,6 +122,7 @@ function btnGeoCoarse() {
     if( myGeoOptions.maximumAge < 0 )
         myGeoOptions.maximumAge = Infinity ;    // force use of cached geo values if "cachAge" is negative
     myGeoOptions.enableHighAccuracy = false ;   // force use of low accuracy measurement (e.g., network location)
+    geoOptions.enableHighAccuracy = false ;     // set to low accuracy for next use by btnGeo()
 
     geoLocateXDK() ;
     geoLocateCordova(myGeoOptions) ;
