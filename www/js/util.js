@@ -61,7 +61,7 @@ function getWebRoot() {
 function copyObject(objIn) {
     "use strict" ;
     var objOut = JSON.parse(JSON.stringify(objIn)) ;
-    return objIn ;
+    return objOut ;
 }
 
 
