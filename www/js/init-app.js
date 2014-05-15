@@ -57,8 +57,10 @@ function initApplication() {
     el.addEventListener("touchend", btnBeep, false) ;
     el = document.getElementById("id_btnVibrate") ;
     el.addEventListener("touchend", btnVibrate, false) ;
-    el = document.getElementById("id_btnBark") ;
-    el.addEventListener("touchend", btnBark, false) ;
+    el = document.getElementById("id_btnBarkCordova") ;
+    el.addEventListener("touchend", btnBarkCordova, false) ;
+    el = document.getElementById("id_btnBarkXDK") ;
+    el.addEventListener("touchend", btnBarkXDK, false) ;
 
     el = document.getElementById("id_btnAccel") ;
     el.addEventListener("touchend", btnAccel, false) ;
