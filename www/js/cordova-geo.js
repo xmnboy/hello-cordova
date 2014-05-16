@@ -20,7 +20,7 @@ var watchIdGeoLocate = null ;
 
 var geoOptions = {                  // global is a dirty technique, done this way for demo and debug
     enableHighAccuracy : true,      // true for "fine" position (GPS), false for "coarse" position (network)
-    timeout : 5000,                 // maximum milliseconds to return a result (default is "Infinity")
+    timeout : 60000,                // maximum milliseconds to return a result (default is "Infinity")
     maximumAge : 60000              // max age in msecs of cached position, zero -> no caching, "Infinity" -> return a cached position
 } ;
 
