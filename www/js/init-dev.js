@@ -153,9 +153,15 @@ function initDeviceReady() {
 
     document.addEventListener("intel.xdk.device.ready", onDeviceReadyXDK, false) ;
     document.addEventListener("deviceready", onDeviceReadyCordova, false) ;
-    if( !window.intel && !window.Cordova ) {               // we might be "in a browser" or a webapp
-        window.setTimeout(onDeviceReadyBrowser, 3000) ;    // give real device ready events a chance first, just in case
-    }
+    window.setTimeout(function() {
+        if( !window.intel && !window.Cordova )             // we might be "in a browser" or a webapp
+            window.setTimeout(onDeviceReadyBrowser, 250) ; // give real device ready events a chance first, just in case
+        },
+        3000
+    ) ;
+    // if( !window.intel && !window.Cordova ) {               // we might be "in a browser" or a webapp
+    //     window.setTimeout(onDeviceReadyBrowser, 3000) ;    // give real device ready events a chance first, just in case
+    // }
 
     console.log(moment().format("HH:mm:ss.SSS"), fName, "navigator.vendor:", navigator.vendor) ;
     console.log(moment().format("HH:mm:ss.SSS"), fName, "navigator.platform:", navigator.platform) ;
