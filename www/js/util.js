@@ -66,17 +66,27 @@ function copyObject(objIn) {
 
 
 
-// for printing console.log messages into HTML page directly
-// as well as into normal console
-// TODO: need to handle other console methods, just log() for now
+// for printing console.log messages into HTML page directly as well as normal console
+// TODO: need to handle other console methods, just console.log() for now
+// TODO: remove excess lines, https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement
 
 var orgConsoleLog = console.log ;
 console.log = function() {
     "use strict" ;
     orgConsoleLog.apply(this,arguments) ;
-    var el = document.getElementById("id_msgLog") ;
+    var args = Array.prototype.slice.call(arguments, 0) ;
+    var text = args.toString() ;
+    var node ;
+
+    var el = document.getElementById("id_textArea") ;
     if( el ) {
-        var args = Array.prototype.slice.call(arguments, 0) ;
-        el.innerHTML = args.toString() ;
+        node = document.createTextNode(text + "\r\n") ;
+        el.appendChild(node) ;
+    }
+
+    var el = document.getElementById("id_msgBar") ;
+    if( el ) {
+        node = document.createTextNode(text) ;
+        el.replaceChild(node,el.childNodes[0]) ;
     }
 } ;
