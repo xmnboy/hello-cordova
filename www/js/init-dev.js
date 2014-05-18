@@ -154,10 +154,10 @@ function initDeviceReady() {
     document.addEventListener("intel.xdk.device.ready", onDeviceReadyXDK, false) ;
     document.addEventListener("deviceready", onDeviceReadyCordova, false) ;
     window.setTimeout(function() {
-        if( !window.intel && !window.Cordova )             // we might be "in a browser" or a webapp
-            window.setTimeout(onDeviceReadyBrowser, 250) ; // give real device ready events a chance first, just in case
+        if( !window.intel && !window.Cordova )              // we might be "in a browser" or a webapp
+            window.setTimeout(onDeviceReadyBrowser, 250) ;  // delay is superfluous, but doesn't hurt
         },
-        3000
+        3000                                                // give real device ready events a chance first, just in case
     ) ;
     // if( !window.intel && !window.Cordova ) {               // we might be "in a browser" or a webapp
     //     window.setTimeout(onDeviceReadyBrowser, 3000) ;    // give real device ready events a chance first, just in case
