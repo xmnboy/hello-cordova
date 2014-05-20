@@ -14,6 +14,8 @@
 // If you reuse this code you do not need to include them as part of your app.
 
 
+// TODO: add use of browser DeviceMotionEvent and DeviceOrientationEvent
+// see: http://www.html5rocks.com/en/tutorials/device/orientation/
 
 /* Accelerometer */
 var watchIdAccel = null ;
