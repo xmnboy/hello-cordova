@@ -3,9 +3,9 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.xmnboy.hellocordova"
-        versionCode = "20140506"
-        version   = "2014.05.06">
+        id        = "com.xmnboy.pg.hellocordova"
+        versionCode = "20140519"
+        version   = "2014.05.19">
 
     <name>Hello, Cordova!</name>
     <author  email = "paul.a.fischer@intel.com" href = "software.intel.com/html5">Paul Fischer</author>

@@ -3,9 +3,9 @@
 <widget
     xmlns="http://www.w3.org/ns/widgets"
     xmlns:intelxdk="http://xdk.intel.com/ns/v1"
-    id="com.intelpaulf.hellocordova"
-    version="2014.05.07"
-    versionCode="20150507" >
+    id="com.xmnboy.xdk.hellocordova"
+    version="2014.05.19"
+    versionCode="20150519" >
 
     <name>Hello Cordova!</name>
     <author email="paul.a.fischer@intel.com" href="xdk.intel.com">Paul Fischer</author>
