@@ -7,7 +7,7 @@
         versionCode = "20140519"
         version   = "2014.05.19">
 
-    <name>Hello, Cordova!</name>
+    <name>Hello, Cordova! (CLI)</name>
     <author  email = "paul.a.fischer@intel.com" href = "software.intel.com/html5">Paul Fischer</author>
     <description>Cordova demo and test application.</description>
 
