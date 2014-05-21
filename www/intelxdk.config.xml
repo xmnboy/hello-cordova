@@ -7,7 +7,7 @@
     version="2014.05.19"
     versionCode="20150519" >
 
-    <name>Hello Cordova!</name>
+    <name>Hello, Cordova! (XDK)</name>
     <author email="paul.a.fischer@intel.com" href="xdk.intel.com">Paul Fischer</author>
     <description>Cordova demonstration app.</description>
 
