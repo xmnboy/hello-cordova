@@ -56,8 +56,10 @@
     <!-- Android specific configuration -->
     <preference name="DisallowOverscroll" value="false"/>
     <preference name="BackgroundColor" value="0xff0000ff"/>
+    <preference name="SplashScreen" value="splash.png" />
+    <preference name="SplashScreenDelay" value="1000" />
 
-    <preference name="android-minSdkVersion" value="8" />
+    <preference name="android-minSdkVersion" value="10" />
     <!-- <preference name="android-maxSdkVersion" value="17" /> -->
     <preference name="android-targetSdkVersion" value="17" />
     <preference name="android-permission" value="GET_TASKS" />
