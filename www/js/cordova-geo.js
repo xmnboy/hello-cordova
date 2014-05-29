@@ -29,17 +29,17 @@ var geoOptions = {                  // global is a dirty technique, done this wa
 function initGeoLocate() {
     "use strict" ;
     var fName = "initGeoLocate():" ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     try {
         navigator.geolocation.clearWatch(watchIdGeoLocate) ;
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "try succeeded.") ;
+        console.log(fName, "try succeeded.") ;
     }
     catch(e) {
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "catch failed.") ;
+        console.log(fName, "catch failed.") ;
     }
 
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }
 
 
@@ -49,10 +49,10 @@ function initGeoLocate() {
 function btnGeo() {
     "use strict" ;
     var fName = "btnGeo():" ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     function onSuccess(pos) {
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "onSuccess") ;
+        console.log(fName, "onSuccess") ;
         document.getElementById('geo-latitude').value = pos.coords.latitude ;
         document.getElementById('geo-longitude').value = pos.coords.longitude ;
         document.getElementById('geo-accuracy').value = pos.coords.accuracy ;
@@ -64,7 +64,7 @@ function btnGeo() {
     }
 
     function onFail(err) {
-        console.log(moment().format("HH:mm:ss.SSS"), 'geoError(' + err.code + '): ' + err.message) ;
+        console.log('geoError(' + err.code + '): ' + err.message) ;
     }
 
     if( watchIdGeoLocate === null ) {
@@ -74,20 +74,20 @@ function btnGeo() {
         try {                                       // watch and update geo at timeout or on change
             watchIdGeoLocate = navigator.geolocation.watchPosition(onSuccess, onFail, myGeoOptions) ;
             addClass("cl_btnOn", document.getElementById("id_btnGeo")) ;
-            console.log(moment().format("HH:mm:ss.SSS"), fName, "btnGeo enabled.") ;
+            console.log(fName, "btnGeo enabled.") ;
         }
         catch(e) {
-            console.log(moment().format("HH:mm:ss.SSS"), fName, "try/catch failed - device API not present.") ;
+            console.log(fName, "try/catch failed - device API not present.") ;
         }
     }
     else {
         navigator.geolocation.clearWatch(watchIdGeoLocate) ;
         watchIdGeoLocate = null ;
         removeClass("cl_btnOn", document.getElementById("id_btnGeo")) ;
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "btnGeo disabled.") ;
+        console.log(fName, "btnGeo disabled.") ;
     }
 
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }
 
 
@@ -98,7 +98,7 @@ function btnGeo() {
 function btnGeoFine() {
     "use strict" ;
     var fName = "btnGeoFine():" ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     var myGeoOptions = copyObject(geoOptions) ;
     if( myGeoOptions.maximumAge < 0 )
@@ -110,13 +110,13 @@ function btnGeoFine() {
     geoLocateCordova(myGeoOptions) ;
     geoLocateBrowser(myGeoOptions) ;
 
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }
 
 function btnGeoCoarse() {
     "use strict" ;
     var fName = "btnGeoCoarse():" ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     var myGeoOptions = copyObject(geoOptions) ;
     if( myGeoOptions.maximumAge < 0 )
@@ -128,7 +128,7 @@ function btnGeoCoarse() {
     geoLocateCordova(myGeoOptions) ;
     geoLocateBrowser(myGeoOptions) ;
 
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }
 
 // does the actual work of finding our position
@@ -138,10 +138,10 @@ function btnGeoCoarse() {
 function geoLocateBrowser(myGeoOptions) {
     "use strict" ;
     var fName = "geoLocateBrowser():" ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     function onSuccess(pos) {
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "onSuccess") ;
+        console.log(fName, "onSuccess") ;
         console.log('Latitude : ' + pos.coords.latitude) ;
         console.log('Longitude: ' + pos.coords.longitude) ;
         console.log('Accuracy : ' + pos.coords.accuracy + ' meters') ;
@@ -153,21 +153,21 @@ function geoLocateBrowser(myGeoOptions) {
     }
 
     function onFail(err) {
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "onFail") ;
+        console.log(fName, "onFail") ;
         // 1: PERMISSION_DENIED
         // 2: POSITION_UNAVAILABLE
         // 3: TIMEOUT
-        console.log(moment().format("HH:mm:ss.SSS"), 'geoError(' + err.code + '): ' + err.message) ;
+        console.log('geoError(' + err.code + '): ' + err.message) ;
     }
 
     try {
         navigator.geolocation.getCurrentPosition(onSuccess, onFail, myGeoOptions) ;
     }
     catch(e) {
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "try/catch failed - device API not present.") ;
+        console.log(fName, "try/catch failed - device API not present.") ;
     }
 
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }
 
 
@@ -179,10 +179,10 @@ function geoLocateBrowser(myGeoOptions) {
 function geoLocateCordova(myGeoOptions) {
     "use strict" ;
     var fName = "geoLocateCordova():" ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     function onSuccess(pos) {
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "onSuccess") ;
+        console.log(fName, "onSuccess") ;
         console.log('Latitude : ' + pos.coords.latitude) ;
         console.log('Longitude: ' + pos.coords.longitude) ;
         console.log('Accuracy : ' + pos.coords.accuracy + ' meters') ;
@@ -194,21 +194,21 @@ function geoLocateCordova(myGeoOptions) {
     }
 
     function onFail(err) {
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "onFail") ;
+        console.log(fName, "onFail") ;
         // 1: PERMISSION_DENIED
         // 2: POSITION_UNAVAILABLE
         // 3: TIMEOUT
-        console.log(moment().format("HH:mm:ss.SSS"), 'geoError(' + err.code + '): ' + err.message) ;
+        console.log('geoError(' + err.code + '): ' + err.message) ;
     }
 
     try {
         navigator.geolocation.getCurrentPosition(onSuccess, onFail, myGeoOptions) ;
     }
     catch(e) {
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "try/catch failed - device API not present.") ;
+        console.log(fName, "try/catch failed - device API not present.") ;
     }
 
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }
 
 
@@ -219,10 +219,10 @@ function geoLocateCordova(myGeoOptions) {
 function geoLocateXDK() {
     "use strict" ;
     var fName = "geoLocateXDK():" ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     function onSuccess(pos) {
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "onSuccess") ;
+        console.log(fName, "onSuccess") ;
         console.log('Latitude : ' + pos.coords.latitude) ;
         console.log('Longitude: ' + pos.coords.longitude) ;
         console.log('Accuracy : ' + pos.coords.accuracy + ' meters') ;
@@ -234,16 +234,16 @@ function geoLocateXDK() {
     }
 
     function onFail(err) {
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "onFail") ;
-        console.log(moment().format("HH:mm:ss.SSS"), 'geoError(' + err.code + '): ' + err.message) ;
+        console.log(fName, "onFail") ;
+        console.log('geoError(' + err.code + '): ' + err.message) ;
     }
 
     try {
         intel.xdk.geolocation.getCurrentPosition(onSuccess, onFail) ;
     }
     catch(e) {
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "try/catch failed - device API not present.") ;
+        console.log(fName, "try/catch failed - device API not present.") ;
     }
 
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }

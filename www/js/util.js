@@ -71,11 +71,21 @@ function copyObject(objIn) {
 // TODO: remove excess lines, https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement
 
 var orgConsoleLog = console.log ;
+var firstTime = Date.now() ;
 console.log = function() {
     "use strict" ;
-    orgConsoleLog.apply(this,arguments) ;
+
     var args = Array.prototype.slice.call(arguments, 0) ;
-    var text = args.toString() ;
+
+    if( window.moment ) {
+        args.unshift(moment().format("HH:mm:ss.SSS")) ;
+    }
+    else {
+        args.unshift(((Date.now()-firstTime)/1000).toFixed(3)) ;
+    }
+    orgConsoleLog.apply(this,args) ;
+
+    var text = args.join(" ") ;
     var node ;
 
     var el = document.getElementById("id_textArea") ;

@@ -32,24 +32,25 @@ var isDeviceReady = { browser:false, cordova:false, xdk:false, fnDeviceReady:fal
 
 function onDeviceReady() {
     var fName = "onDeviceReady():" ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     // Useful for debug and understanding initialization flow.
     if( isDeviceReady.fnDeviceReady ) {
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "function terminated") ;
+        console.log(fName, "function terminated") ;
         return ;
     }
     else if( window.performance && performance.now ) {
         isDeviceReady.fnDeviceReady = performance.now() ;
     }
     else {
-        isDeviceReady.fnDeviceReady = moment().valueOf() ;
+        isDeviceReady.fnDeviceReady = Date.now() ;
     }
 
     // All device initialization is done, call the main app init function...
     init.app.initApplication() ;
 
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
+    console.log(fName, isDeviceReady) ;     // NOTE: tests debug console.log redirector object formatting
+    console.log(fName, "exit") ;
 }
 
 
@@ -101,11 +102,11 @@ function onDeviceReadyCordova() {
         isDeviceReady.cordova = performance.now() ;
     }
     else {
-        isDeviceReady.cordova = moment().valueOf() ;
+        isDeviceReady.cordova = Date.now() ;
     }
     var fName = "onDeviceReadyCordova():" ;
     // console.log(moment().toISOString(), fName, isDeviceReady.cordova) ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, isDeviceReady.cordova) ;
+    console.log(fName, isDeviceReady.cordova) ;
     window.setTimeout(onDeviceReady, 250) ;     // a little insurance on the readiness
 }
 
@@ -116,11 +117,11 @@ function onDeviceReadyXDK() {
         isDeviceReady.xdk = performance.now() ;
     }
     else {
-        isDeviceReady.xdk = moment().valueOf() ;
+        isDeviceReady.xdk = Date.now() ;
     }
     var fName = "onDeviceReadyXDK():" ;
     // console.log(moment().toISOString(), fName, isDeviceReady.xdk) ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, isDeviceReady.xdk) ;
+    console.log(fName, isDeviceReady.xdk) ;
     window.setTimeout(onDeviceReady, 250) ;     // a little insurance on the readiness
 }
 
@@ -131,11 +132,11 @@ function onDeviceReadyBrowser() {
         isDeviceReady.browser = performance.now() ;
     }
     else {
-        isDeviceReady.browser = moment().valueOf() ;
+        isDeviceReady.browser = Date.now() ;
     }
     var fName = "onDeviceReadyBrowser():" ;
     // console.log(moment().toISOString(), fName, isDeviceReady.browser) ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, isDeviceReady.browser) ;
+    console.log(fName, isDeviceReady.browser) ;
     window.setTimeout(onDeviceReady, 250) ;     // a little insurance on the readiness
 }
 
@@ -149,7 +150,7 @@ function onDeviceReadyBrowser() {
 
 function initDeviceReady() {
     var fName = "initDeviceReady():" ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     document.addEventListener("intel.xdk.device.ready", onDeviceReadyXDK, false) ;
     document.addEventListener("deviceready", onDeviceReadyCordova, false) ;
@@ -163,11 +164,11 @@ function initDeviceReady() {
     //     window.setTimeout(onDeviceReadyBrowser, 3000) ;    // give real device ready events a chance first, just in case
     // }
 
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "navigator.vendor:", navigator.vendor) ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "navigator.platform:", navigator.platform) ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "navigator.userAgent:", navigator.userAgent) ;
+    console.log(fName, "navigator.vendor:", navigator.vendor) ;
+    console.log(fName, "navigator.platform:", navigator.platform) ;
+    console.log(fName, "navigator.userAgent:", navigator.userAgent) ;
 
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }
 
 

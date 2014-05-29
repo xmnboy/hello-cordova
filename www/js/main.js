@@ -18,17 +18,17 @@
 function btnBeep() {
     "use strict" ;
     var fName = "btnBeep():" ;
-    console.log(moment().format("HH:mm.ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     try {
         navigator.notification.beep(1) ;
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "try, success") ;
+        console.log(fName, "try, success") ;
     }
     catch(e) {
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "catch, failure") ;
+        console.log(fName, "catch, failure") ;
     }
 
-    console.log(moment().format("HH:mm.ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }
 
 
@@ -36,17 +36,17 @@ function btnBeep() {
 function btnVibrate() {
     "use strict" ;
     var fName = "btnVibrate():" ;
-    console.log(moment().format("HH:mm.ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     try {
         navigator.notification.vibrate(250) ;
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "try, success") ;
+        console.log(fName, "try, success") ;
     }
     catch(e) {
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "catch, failure") ;
+        console.log(fName, "catch, failure") ;
     }
 
-    console.log(moment().format("HH:mm.ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }
 
 
@@ -54,17 +54,17 @@ function btnVibrate() {
 function btnBarkCordova() {
     "use strict" ;
     var fName = "btnBarkCordova():" ;
-    console.log(moment().format("HH:mm.ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     try {
         var w = window.device && window.device.platform ;
         var x = navigator.userAgent ;
         var y = getWebPath() ;
         var z = getWebRoot() ;
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "platform = ", w) ;
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "userAgent = ", x) ;
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "getWebPath() => ", y) ;
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "getWebRoot() => ", z) ;
+        console.log(fName, "platform = ", w) ;
+        console.log(fName, "userAgent = ", x) ;
+        console.log(fName, "getWebPath() => ", y) ;
+        console.log(fName, "getWebRoot() => ", z) ;
 
         var media = "audio/bark.wav" ;
         if( z.match(/\/emulator.*\/ripple\/userapp/i) ) {           // if in the Ripple emulator
@@ -78,12 +78,12 @@ function btnBarkCordova() {
         }
 
         media = new Media(media, mediaSuccess, mediaError, mediaStatus) ;
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "media.src = ", media.src) ;
+        console.log(fName, "media.src = ", media.src) ;
         media.play() ;
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "try, success") ;
+        console.log(fName, "try, success") ;
     }
     catch(e) {
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "catch, failure") ;
+        console.log(fName, "catch, failure") ;
     }
 
 // private functions for our media object
@@ -91,12 +91,12 @@ function btnBarkCordova() {
     function mediaSuccess() {
         media.stop() ;
         media.release() ;
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "mediaSuccess") ;
+        console.log(fName, "mediaSuccess") ;
     }
     function mediaError(err) {
         media.stop() ;
         media.release() ;
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "mediaError:err.code: " + err.code + " ; " + "mediaError:err.message: " + err.message) ;
+        console.log(fName, "mediaError:err.code: " + err.code + " ; " + "mediaError:err.message: " + err.message) ;
     }
     function mediaStatus(status) {
         var msg = "undefined" ;
@@ -108,10 +108,10 @@ function btnBarkCordova() {
             case 4:     msg = "MEDIA_STOPPED" ;     break ;
             default:    msg = "MEDIA_undefined" ;
         }
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "mediaStatus: " + status + " = " + msg) ;
+        console.log(fName, "mediaStatus: " + status + " = " + msg) ;
     }
 
-    console.log(moment().format("HH:mm.ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }
 
 
@@ -119,30 +119,30 @@ function btnBarkCordova() {
 function btnBarkXDK() {
     "use strict" ;
     var fName = "btnBarkXDK():" ;
-    console.log(moment().format("HH:mm.ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     try {
         var w = window.device && window.device.platform ;
         var x = navigator.userAgent ;
         var y = getWebPath() ;
         var z = getWebRoot() ;
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "platform = ", w) ;
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "userAgent = ", x) ;
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "getWebPath() => ", y) ;
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "getWebRoot() => ", z) ;
+        console.log(fName, "platform = ", w) ;
+        console.log(fName, "userAgent = ", x) ;
+        console.log(fName, "getWebPath() => ", y) ;
+        console.log(fName, "getWebRoot() => ", z) ;
 
         var media = "audio/bark.wav" ;
         if( z.match(/\/emulator.*\/ripple\/userapp/i) ) {           // if in the Ripple emulator
             media = z + "/" + media ;                               // bug in the emulator...
         }
         intel.xdk.player.playSound(media) ;
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "try, success") ;
+        console.log(fName, "try, success") ;
     }
     catch(e) {
-        console.log(moment().format("HH:mm.ss.SSS"), fName, "catch, failure") ;
+        console.log(fName, "catch, failure") ;
     }
 
-    console.log(moment().format("HH:mm.ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }
 
 
@@ -150,7 +150,7 @@ function btnBarkXDK() {
 function updateDeviceInfo() {
     "use strict" ;
     var fName = "updateDeviceReady():" ;
-    console.log(moment().format("HH:mm.ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     // "device" global object contains device capabilities (device.name, device.platform, device.uuid, etc.)
     // and is only present when we are running under Cordova (or an appropriate emulator)
@@ -179,5 +179,5 @@ function updateDeviceInfo() {
     document.getElementById("id_navigatorPlatform").textContent = navigator.platform ;
     document.getElementById("id_navigatorUserAgent").textContent = navigator.userAgent ;
 
-    console.log(moment().format("HH:mm.ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }

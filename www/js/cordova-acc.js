@@ -23,17 +23,17 @@ var watchIdAccel = null ;
 function initAccel() {
     "use strict" ;
     var fName = "initAccel():" ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     try {
         navigator.accelerometer.clearWatch(watchIdAccel) ;
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "try succeeded.") ;
+        console.log(fName, "try succeeded.") ;
     }
     catch(e) {
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "catch failed.") ;
+        console.log(fName, "catch failed.") ;
     }
 
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }
 
 /*
@@ -44,7 +44,7 @@ function initAccel() {
 function btnAccel() {
     "use strict" ;
     var fName = "btnAccel():" ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     function onSuccess(acceleration) {
         document.getElementById('acceleration-x').value = acceleration.x.toFixed(6) ;
@@ -54,7 +54,7 @@ function btnAccel() {
     }
 
     function onFail() {
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "Failed to get acceleration data.") ;
+        console.log(fName, "Failed to get acceleration data.") ;
     }
 
 
@@ -62,20 +62,20 @@ function btnAccel() {
         try {                               // watch and update accelerometer values every 250 msecs
             watchIdAccel = navigator.accelerometer.watchAcceleration(onSuccess, onFail, {frequency:250}) ;
             addClass("cl_btnOn", document.getElementById("id_btnAccel")) ;
-            console.log(moment().format("HH:mm:ss.SSS"), fName, "btnAccel enabled.") ;
+            console.log(fName, "btnAccel enabled.") ;
         }
         catch(e) {
-            console.log(moment().format("HH:mm:ss.SSS"), fName, "try/catch failed - device API not present.") ;
+            console.log(fName, "try/catch failed - device API not present.") ;
         }
     }
     else {
         navigator.accelerometer.clearWatch(watchIdAccel) ;
         watchIdAccel = null ;
         removeClass("cl_btnOn", document.getElementById("id_btnAccel")) ;
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "btnAccel disabled.") ;
+        console.log(fName, "btnAccel disabled.") ;
     }
 
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }
 
 
@@ -87,17 +87,17 @@ var watchIdCompass = null ;
 function initCompass() {
     "use strict" ;
     var fName = "initCompass():" ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     try {
         navigator.compass.clearWatch(watchIdCompass) ;
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "try succeeded.") ;
+        console.log(fName, "try succeeded.") ;
     }
     catch(e) {
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "catch failed.") ;
+        console.log(fName, "catch failed.") ;
     }
 
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }
 
 /*
@@ -108,14 +108,14 @@ function initCompass() {
 function btnCompass() {
     "use strict" ;
     var fName = "btnCompass():" ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     function onSuccess(heading) {
         document.getElementById('compass-dir').value = heading.magneticHeading.toFixed(6) ;
     }
 
     function onFail(compassError) {
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "Compass error: " + compassError.code) ;
+        console.log(fName, "Compass error: " + compassError.code) ;
     }
 
 
@@ -123,18 +123,18 @@ function btnCompass() {
         try {                               // watch and update compass value every 500 msecs
             watchIdCompass = navigator.compass.watchHeading(onSuccess, onFail, {frequency:500}) ;
             addClass("cl_btnOn", document.getElementById("id_btnCompass")) ;
-            console.log(moment().format("HH:mm:ss.SSS"), fName, "btnCompass enabled.") ;
+            console.log(fName, "btnCompass enabled.") ;
         }
         catch(e) {
-            console.log(moment().format("HH:mm:ss.SSS"), fName, "try/catch failed - device API not present.") ;
+            console.log(fName, "try/catch failed - device API not present.") ;
         }
     }
     else {
         navigator.compass.clearWatch(watchIdCompass) ;
         watchIdCompass = null ;
         removeClass("cl_btnOn", document.getElementById("id_btnCompass")) ;
-        console.log(moment().format("HH:mm:ss.SSS"), fName, "btnCompass disabled.") ;
+        console.log(fName, "btnCompass disabled.") ;
     }
 
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }

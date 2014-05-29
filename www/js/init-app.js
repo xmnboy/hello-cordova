@@ -31,7 +31,7 @@ var uaParser = new UAParser() ;
 
 function initApplication() {
     var fName = "initApplication():" ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     // initialize application code
 
@@ -79,7 +79,7 @@ function initApplication() {
     // event handlers are ready
     // exit to idle state and wait for events...
 
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }
 
 
@@ -90,7 +90,7 @@ function initApplication() {
 
 function showDeviceReady() {
     var fName = "showDeviceReady():" ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     var el = document.getElementById("id_cordova") ;
     if( init.dev.isDeviceReady.cordova ) {
@@ -103,7 +103,7 @@ function showDeviceReady() {
         el.innerHTML = "Must be in a browser..." ;
     }
 
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }
 
 
@@ -112,7 +112,7 @@ function showDeviceReady() {
 
 function hideSplashScreen() {
     var fName = "hideSplashScreen():" ;
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "entry") ;
+    console.log(fName, "entry") ;
 
     // Following is for demonstration.
     // find the "system ready" indicator on our display
@@ -139,7 +139,7 @@ function hideSplashScreen() {
         failedElement.setAttribute('style', 'display:block;') ;
     }
 
-    console.log(moment().format("HH:mm:ss.SSS"), fName, "exit") ;
+    console.log(fName, "exit") ;
 }
 
 
