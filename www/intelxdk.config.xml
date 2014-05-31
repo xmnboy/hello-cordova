@@ -4,8 +4,8 @@
     xmlns="http://www.w3.org/ns/widgets"
     xmlns:intelxdk="http://xdk.intel.com/ns/v1"
     id="com.xmnboy.xdk.hellocordova"
-    version="2014.05.19"
-    versionCode="20150519" >
+    version="2014.05.30"
+    versionCode="20150530" >
 
     <name>Hello, Cordova! (XDK)</name>
     <author email="paul.a.fischer@intel.com" href="xdk.intel.com">Paul Fischer</author>
@@ -23,31 +23,32 @@
 <!-- iOS -->
 
     <!-- iOS specific configuration -->
-    <preference name="ios-target" value="7" />
+    <preference name="ios-target" value="5" />
+    <!-- <preference name="target-device" value="handset" /> -->
     <preference name="exit-on-suspend" value="false" />
     <preference name="DisallowOverscroll" value="false"/>
     <preference name="HideKeyboardFormAccessoryBar" value="false"/>
 
     <preference name="ios-configuration" value="adhoc" />
-    <intelxdk:provisioning intelxdk:src="prov/some_name.mobileprovision" intelxdk:type="adhoc" />
+    <intelxdk:provisioning intelxdk:src="Paul.mobileprovision" intelxdk:type="adhoc" />
 
     <!-- iOS icons iPhone and iPad-->
-    <icon platform="ios" src="pkg/icon/icon_57x57.png"      width="57" height="57" />
-    <icon platform="ios" src="pkg/icon/icon_72x72.png"      width="72" height="72" />
-    <icon platform="ios" src="pkg/icon/icon_114x114.png"    width="114" height="114" />
-    <icon platform="ios" src="pkg/icon/icon_144x144.png"    width="144" height="144" />
-    <icon platform="ios" src="pkg/icon/icon_76x76.png"      width="76" height="76" />
-    <icon platform="ios" src="pkg/icon/icon_120x120.png"    width="120" height="120" />
-    <icon platform="ios" src="pkg/icon/icon_152x152.png"    width="152" height="152" />
+    <!-- <icon platform="ios" src="pkg/icon/icon_57x57.png"      width="57" height="57" /> -->
+    <!-- <icon platform="ios" src="pkg/icon/icon_72x72.png"      width="72" height="72" /> -->
+    <!-- <icon platform="ios" src="pkg/icon/icon_114x114.png"    width="114" height="114" /> -->
+    <!-- <icon platform="ios" src="pkg/icon/icon_144x144.png"    width="144" height="144" /> -->
+    <!-- <icon platform="ios" src="pkg/icon/icon_76x76.png"      width="76" height="76" /> -->
+    <!-- <icon platform="ios" src="pkg/icon/icon_120x120.png"    width="120" height="120" /> -->
+    <!-- <icon platform="ios" src="pkg/icon/icon_152x152.png"    width="152" height="152" /> -->
 
     <!-- iOS splash screens iPhone -->
-    <splash platform="ios" src="pkg/splash/splash_320x480.png"      width="320" height="480" />
-    <splash platform="ios" src="pkg/splash/splash_640x960.png"      width="640" height="960" />
-    <splash platform="ios" src="pkg/splash/splash_640x1136.png"     width="640" height="1136" />
+    <!-- <splash platform="ios" src="pkg/splash/splash_320x480.png"      width="320" height="480" /> -->
+    <!-- <splash platform="ios" src="pkg/splash/splash_640x960.png"      width="640" height="960" /> -->
+    <!-- <splash platform="ios" src="pkg/splash/splash_640x1136.png"     width="640" height="1136" /> -->
     <!-- iOS splash screens iPad -->
-    <splash platform="ios" src="pkg/splash/splash_768x1024.png"     width="768" height="1024" />
+    <!-- <splash platform="ios" src="pkg/splash/splash_768x1024.png"     width="768" height="1024" /> -->
     <!-- <splash platform="ios" src="pkg/splash/splash_1536x2008.png"    width="1536" height="2008" /> -->
-    <splash platform="ios" src="pkg/splash/splash_1024x768.png"     width="1024" height="768" />
+    <!-- <splash platform="ios" src="pkg/splash/splash_1024x768.png"     width="1024" height="768" /> -->
     <!-- <splash platform="ios" src="pkg/splash/splash_2048x1496.png"    width="2048" height="1496" /> -->
 
 
@@ -56,8 +57,8 @@
     <!-- Android specific configuration -->
     <preference name="DisallowOverscroll" value="false"/>
     <preference name="BackgroundColor" value="0xff0000ff"/>
-    <preference name="SplashScreen" value="splash.png" />
-    <preference name="SplashScreenDelay" value="1000" />
+    <!-- <preference name="SplashScreen" value="splash" /> -->
+    <!-- <preference name="SplashScreenDelay" value="1000" /> -->
 
     <preference name="android-minSdkVersion" value="10" />
     <!-- <preference name="android-maxSdkVersion" value="17" /> -->
@@ -69,20 +70,19 @@
     <preference name="android-signed" value="true" />
     <preference name="debuggable" value="true" />
 
-    <!--
-    <preference name="android-installLocation" value="<LOCATION>" />
-    <preference name="android-windowSoftInputMode" value="<INPUTMODE>" />
-    -->
+    <!-- <preference name="android-installLocation" value="<LOCATION>" /> -->
+    <!-- <preference name="android-windowSoftInputMode" value="<INPUTMODE>" /> -->
 
     <!-- Android icons -->
-    <icon platform="android"    src="pkg/icon/icon_36x36.png"               density="ldpi" />
-    <icon platform="android"    src="pkg/icon/icon_48x48.png"               density="mdpi" />
-    <icon platform="android"    src="pkg/icon/icon_72x72.png"               density="hdpi" />
-    <icon platform="android"    src="pkg/icon/icon_96x96.png"               density="xhdpi" />
-    <icon platform="android"    src="pkg/icon/icon_144x144.png"             density="xxhdpi" />
+    <!-- <icon platform="android"    src="pkg/icon/icon_36x36.png"               density="ldpi" /> -->
+    <!-- <icon platform="android"    src="pkg/icon/icon_48x48.png"               density="mdpi" /> -->
+    <!-- <icon platform="android"    src="pkg/icon/icon_72x72.png"               density="hdpi" /> -->
+    <!-- <icon platform="android"    src="pkg/icon/icon_96x96.png"               density="xhdpi" /> -->
+    <!-- <icon platform="android"    src="pkg/icon/icon_144x144.png"             density="xxhdpi" /> -->
 
     <!-- Android splash screens -->
-    <!-- <splash platform="android" src="assets/splash-ldpi.png" density="ldpi" width="320" height="426" /> -->
+    <!-- <splash platform="android" orientation="portrait" src="assets/splash-ldpi.png" density="ldpi" width="320" height="426" /> -->
+    <!-- <splash platform="android" orientation="landscape" src="assets/splash-ldpi.png" density="ldpi" width="320" height="426" /> -->
     <!-- <splash platform="android" src="assets/splash-mdpi.png" density="mdpi" width="320" height="470" /> -->
     <!-- <splash platform="android" src="assets/splash-hdpi.png" density="hdpi" width="480" height="640" /> -->
     <!-- <splash platform="android" src="assets/splash-lxhdpi.png" density="xhdpi" width="720" height="960" /> -->
@@ -94,11 +94,11 @@
     <preference name="windows-publisher-display-name" value="appname" />
 
     <!-- Windows Phone 8 icons -->
-    <icon platform="wp8"   src="pkg/icon/icon_62x62.png" />
-    <icon platform="wp8"   src="pkg/icon/icon_173x173.png" />
+    <!-- <icon platform="wp8"   src="pkg/icon/icon_62x62.png" /> -->
+    <!-- <icon platform="wp8"   src="pkg/icon/icon_173x173.png" /> -->
 
     <!-- Windows Phone 8 splash screens -->
-    <splash platform="wp8" src="assets/screen-portrait.jpg" />
+    <!-- <splash platform="wp8" src="assets/screen-portrait.jpg" /> -->
 
 <!-- Plugins -->
 <!-- Standard Cordova Plugins -->
