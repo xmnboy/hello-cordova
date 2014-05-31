@@ -105,7 +105,6 @@ function onDeviceReadyCordova() {
         isDeviceReady.cordova = Date.now() ;
     }
     var fName = "onDeviceReadyCordova():" ;
-    // console.log(moment().toISOString(), fName, isDeviceReady.cordova) ;
     console.log(fName, isDeviceReady.cordova) ;
     window.setTimeout(onDeviceReady, 250) ;     // a little insurance on the readiness
 }
@@ -120,7 +119,6 @@ function onDeviceReadyXDK() {
         isDeviceReady.xdk = Date.now() ;
     }
     var fName = "onDeviceReadyXDK():" ;
-    // console.log(moment().toISOString(), fName, isDeviceReady.xdk) ;
     console.log(fName, isDeviceReady.xdk) ;
     window.setTimeout(onDeviceReady, 250) ;     // a little insurance on the readiness
 }
@@ -135,7 +133,6 @@ function onDeviceReadyBrowser() {
         isDeviceReady.browser = Date.now() ;
     }
     var fName = "onDeviceReadyBrowser():" ;
-    // console.log(moment().toISOString(), fName, isDeviceReady.browser) ;
     console.log(fName, isDeviceReady.browser) ;
     window.setTimeout(onDeviceReady, 250) ;     // a little insurance on the readiness
 }
