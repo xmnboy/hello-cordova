@@ -67,11 +67,11 @@ function copyObject(objIn) {
 
 
 // for printing console.log messages into HTML page directly as well as normal console
-// TODO: need to handle other console methods, just console.log() for now
+// TODO: need to handle other console methods, just console.log() for now...
 // TODO: remove excess lines, https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement
 
 var orgConsoleLog = console.log ;
-var firstTime = Date.now() ;
+var orgTime = Date.now() ;
 console.log = function() {
     "use strict" ;
 
@@ -81,7 +81,7 @@ console.log = function() {
         args.unshift(moment().format("HH:mm:ss.SSS")) ;
     }
     else {
-        args.unshift(((Date.now()-firstTime)/1000).toFixed(3)) ;
+        args.unshift(((Date.now()-orgTime)/1000).toFixed(3)) ;
     }
     orgConsoleLog.apply(this,args) ;
 
@@ -90,7 +90,7 @@ console.log = function() {
 
     var el = document.getElementById("id_textArea") ;
     if( el ) {
-        node = document.createTextNode(text + "\r\n") ;
+        node = document.createTextNode(text + "\n") ;
         el.appendChild(node) ;
     }
 
