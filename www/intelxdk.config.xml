@@ -4,8 +4,8 @@
     xmlns="http://www.w3.org/ns/widgets"
     xmlns:intelxdk="http://xdk.intel.com/ns/v1"
     id="com.xmnboy.xdk.hellocordova"
-    version="2014.05.30"
-    versionCode="20150530" >
+    version="2014.06.02"
+    versionCode="20140602" >
 
     <name>Hello, Cordova! (XDK)</name>
     <author email="paul.a.fischer@intel.com" href="xdk.intel.com">Paul Fischer</author>
@@ -57,11 +57,8 @@
     <!-- Android specific configuration -->
     <preference name="DisallowOverscroll" value="false"/>
     <preference name="BackgroundColor" value="0xff0000ff"/>
-    <!-- <preference name="SplashScreen" value="splash" /> -->
-    <!-- <preference name="SplashScreenDelay" value="1000" /> -->
 
     <preference name="android-minSdkVersion" value="10" />
-    <!-- <preference name="android-maxSdkVersion" value="17" /> -->
     <preference name="android-targetSdkVersion" value="17" />
     <preference name="android-permission" value="GET_TASKS" />
     <preference name="android-permission" value="VIBRATE" />
@@ -74,18 +71,24 @@
     <!-- <preference name="android-windowSoftInputMode" value="<INPUTMODE>" /> -->
 
     <!-- Android icons -->
-    <!-- <icon platform="android"    src="pkg/icon/icon_36x36.png"               density="ldpi" /> -->
-    <!-- <icon platform="android"    src="pkg/icon/icon_48x48.png"               density="mdpi" /> -->
-    <!-- <icon platform="android"    src="pkg/icon/icon_72x72.png"               density="hdpi" /> -->
-    <!-- <icon platform="android"    src="pkg/icon/icon_96x96.png"               density="xhdpi" /> -->
-    <!-- <icon platform="android"    src="pkg/icon/icon_144x144.png"             density="xxhdpi" /> -->
+    <icon platform="android" src="pkg/icon/icon_36x36_round.png"   density="ldpi" />
+    <icon platform="android" src="pkg/icon/icon_48x48_round.png"   density="mdpi" />
+    <icon platform="android" src="pkg/icon/icon_72x72_round.png"   density="hdpi" />
+    <icon platform="android" src="pkg/icon/icon_96x96_round.png"   density="xhdpi" />
+    <icon platform="android" src="pkg/icon/icon_144x144_round.png" density="xxhdpi" />
 
     <!-- Android splash screens -->
-    <!-- <splash platform="android" orientation="portrait" src="assets/splash-ldpi.png" density="ldpi" width="320" height="426" /> -->
-    <!-- <splash platform="android" orientation="landscape" src="assets/splash-ldpi.png" density="ldpi" width="320" height="426" /> -->
-    <!-- <splash platform="android" src="assets/splash-mdpi.png" density="mdpi" width="320" height="470" /> -->
-    <!-- <splash platform="android" src="assets/splash-hdpi.png" density="hdpi" width="480" height="640" /> -->
-    <!-- <splash platform="android" src="assets/splash-lxhdpi.png" density="xhdpi" width="720" height="960" /> -->
+    <preference name="SplashScreen" value="splash" />
+    <preference name="SplashScreenDelay" value="250" />
+
+    <splash platform="android" orientation="portrait" src="pkg/splash/splash_720x960_portrait.png" density="xhdpi" width="720" height="960" />
+    <splash platform="android" orientation="portrait" src="pkg/splash/splash_480x640_portrait.png" density="hdpi" width="480" height="640" />
+    <splash platform="android" orientation="portrait" src="pkg/splash/splash_320x470_portrait.png" density="mdpi" width="320" height="470" />
+    <splash platform="android" orientation="portrait" src="pkg/splash/splash_320x426_portrait.png" density="ldpi" width="320" height="426" />
+    <splash platform="android" orientation="landscape" src="pkg/splash/splash_960x720_landscape.png" density="xhdpi" width="960" height="720" />
+    <splash platform="android" orientation="landscape" src="pkg/splash/splash_640x480_landscape.png" density="hdpi" width="640" height="480" />
+    <splash platform="android" orientation="landscape" src="pkg/splash/splash_470x320_landscape.png" density="mdpi" width="470" height="320" />
+    <splash platform="android" orientation="landscape" src="pkg/splash/splash_426x320_landscape.png" density="ldpi" width="426" height="320" />
 
 <!-- Windows Phone 8 -->
 
