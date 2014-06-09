@@ -10,28 +10,22 @@
 /*global moment:false, performance:false, UAParser:false */
 /*global initAccel:false, initCompass:false, initGeoLocate:false, updateDeviceInfo:false */
 /*global btnBeep:false, btnBark:false, btnAccel:false, btnVibrate:false, btnCompass:false */
-/*global btnGeoFine:false, btnGeoCoars:false, btnGeo:false */
+/*global btnGeoFine:false, btnGeoCoarse:false, btnGeo:false */
 
 
 
-var init = init || {} ;
-init.app = function() {
+var app = app || {} ;
+app.initApplication = function() {
     "use strict" ;
+    var fName = "app.initApplication():" ;
+    console.log(fName, "entry") ;
 
-
-// For demo and debug, potentially useful for device/feature detection.
-var uaParser = new UAParser() ;
-
-
-// Main app starting point (what initDeviceReady calls after system is ready).
-// Runs after all underlying device native code and webview is initialized.
+// Main app starting point (what init.onDeviceReady calls after system is ready).
+// Runs after underlying device native code and webview/browser is initialized.
 // Where you should "kick off" your application by initializing app events, etc.
 
 // NOTE: Customize this function to initialize your application.
 
-function initApplication() {
-    var fName = "initApplication():" ;
-    console.log(fName, "entry") ;
 
     // initialize application code
 
@@ -42,10 +36,12 @@ function initApplication() {
 
     // initialize third-party libraries and event handlers
 
-    // FastClick.attach(document.body) ;               // Fastclick setup
+    // init.some.library() ;
 
-    showDeviceReady() ;                             // this is optional
-    hideSplashScreen() ;                            // this is optional
+    // after all init is done, tine to remove our splash screen
+
+    app.hideSplashScreen() ;                        // this is optional for your app
+    app.showDeviceReady() ;                         // this is a demo-specific function
 
     // Initialize app event handlers.
     // TODO: if( test for respective components before attaching event handlers )
@@ -80,7 +76,7 @@ function initApplication() {
     // exit to idle state and wait for events...
 
     console.log(fName, "exit") ;
-}
+} ;
 
 
 
@@ -88,64 +84,65 @@ function initApplication() {
 // Update our status in the main view.
 // Are we running in a Cordova container or in a browser?
 
-function showDeviceReady() {
-    var fName = "showDeviceReady():" ;
-    console.log(fName, "entry") ;
-
-    var el = document.getElementById("id_cordova") ;
-    if( init.dev.isDeviceReady.cordova ) {
-        el.innerHTML = "Cordova device ready detected!" ;
-    }
-    else if( init.dev.isDeviceReady.xdk ) {
-        el.innerHTML = "Intel XDK device ready detected!" ;
-    }
-    else {
-        el.innerHTML = "Must be in a browser..." ;
-    }
-
-    console.log(fName, "exit") ;
-}
-
-
-// This may or may not be required, depends on your app and plugin configuration.
-// Simple study in the art of multi-platform webview API detection.
-
-function hideSplashScreen() {
-    var fName = "hideSplashScreen():" ;
+app.showDeviceReady = function() {
+    var fName = "app.showDeviceReady():" ;
     console.log(fName, "entry") ;
 
     // Following is for demonstration.
     // find the "system ready" indicator on our display
+    var el = document.getElementById("id_cordova") ;
     var parentElement = document.getElementById("id_deviceReady") ;
     var listeningElement = parentElement.querySelector('.listening') ;
     var receivedElement = parentElement.querySelector('.received') ;
     var failedElement = parentElement.querySelector('.failed') ;
 
-    if( window.Cordova && navigator.splashscreen ) {            // Cordova API detected
-        navigator.splashscreen.hide() ;
+    // set the "system ready" indicator on our display
+    if( window.Cordova && dev.isDeviceReady.c_cordova________) {
+        el.innerHTML = "Cordova device ready detected!" ;
         listeningElement.setAttribute('style', 'display:none;') ;
         receivedElement.setAttribute('style', 'display:block;') ;
         failedElement.setAttribute('style', 'display:none;') ;
     }
-    else if( window.intel && intel.xdk && intel.xdk.device ) {  // Intel XDK API detected
-        intel.xdk.device.hideSplashScreen() ;
+    else if( window.intel && intel.xdk && dev.isDeviceReady.d_xdk____________ ) {
+        el.innerHTML = "Intel XDK device ready detected!" ;
         listeningElement.setAttribute('style', 'display:none;') ;
         receivedElement.setAttribute('style', 'display:block;') ;
         failedElement.setAttribute('style', 'display:none;') ;
     }
-    else {                                                      // must be in a browser
+    else {
+        el.innerHTML = "Must be in a browser..." ;
         listeningElement.setAttribute('style', 'display:none;') ;
         receivedElement.setAttribute('style', 'display:none;') ;
         failedElement.setAttribute('style', 'display:block;') ;
     }
 
     console.log(fName, "exit") ;
-}
-
-
-var objPublic = {                               // module public interface
-    uaParser: uaParser,                         // for demo and debug
-    initApplication: initApplication
 } ;
-return objPublic ;
-}() ;
+
+
+
+// This may or may not be required, depends on your app and plugin configuration.
+// This is also a simple study in the art of multi-platform device API detection.
+
+app.hideSplashScreen = function() {
+    var fName = "app.hideSplashScreen():" ;
+    console.log(fName, "entry") ;
+
+    if( window.Cordova && navigator.splashscreen ) {            // Cordova API detected
+        navigator.splashscreen.hide() ;
+    }
+    else if( window.intel && intel.xdk && intel.xdk.device ) {  // Intel XDK API detected
+        intel.xdk.device.hideSplashScreen() ;
+    }
+    else {                                                      // must be in a browser
+    }
+
+    console.log(fName, "exit") ;
+} ;
+
+
+
+// For demo and debug, potentially useful for device/feature detection.
+// var uaParser = new UAParser() ;
+
+app.uaParser = new UAParser() ;
