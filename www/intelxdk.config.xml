@@ -33,23 +33,23 @@
     <intelxdk:provisioning intelxdk:src="Paul.mobileprovision" intelxdk:type="adhoc" />
 
     <!-- iOS icons iPhone and iPad-->
-    <!-- <icon platform="ios" src="pkg/icon/icon_57x57.png"      width="57" height="57" /> -->
-    <!-- <icon platform="ios" src="pkg/icon/icon_72x72.png"      width="72" height="72" /> -->
-    <!-- <icon platform="ios" src="pkg/icon/icon_114x114.png"    width="114" height="114" /> -->
-    <!-- <icon platform="ios" src="pkg/icon/icon_144x144.png"    width="144" height="144" /> -->
-    <!-- <icon platform="ios" src="pkg/icon/icon_76x76.png"      width="76" height="76" /> -->
-    <!-- <icon platform="ios" src="pkg/icon/icon_120x120.png"    width="120" height="120" /> -->
-    <!-- <icon platform="ios" src="pkg/icon/icon_152x152.png"    width="152" height="152" /> -->
+    <!-- <icon platform="ios" src="pkg/icon/icon_57x57.png"   height="57"  width="57"  /> -->
+    <!-- <icon platform="ios" src="pkg/icon/icon_72x72.png"   height="72"  width="72"  /> -->
+    <!-- <icon platform="ios" src="pkg/icon/icon_114x114.png" height="114" width="114" /> -->
+    <!-- <icon platform="ios" src="pkg/icon/icon_144x144.png" height="144" width="144" /> -->
+    <!-- <icon platform="ios" src="pkg/icon/icon_76x76.png"   height="76"  width="76"  /> -->
+    <!-- <icon platform="ios" src="pkg/icon/icon_120x120.png" height="120" width="120" /> -->
+    <!-- <icon platform="ios" src="pkg/icon/icon_152x152.png" height="152" width="152" /> -->
 
     <!-- iOS splash screens iPhone -->
-    <!-- <splash platform="ios" src="pkg/splash/splash_320x480.png"      width="320" height="480" /> -->
-    <!-- <splash platform="ios" src="pkg/splash/splash_640x960.png"      width="640" height="960" /> -->
-    <!-- <splash platform="ios" src="pkg/splash/splash_640x1136.png"     width="640" height="1136" /> -->
+    <!-- <splash platform="ios" src="pkg/splash/splash_320x480.png"  height="480"  width="320" /> -->
+    <!-- <splash platform="ios" src="pkg/splash/splash_640x960.png"  height="960"  width="640" /> -->
+    <!-- <splash platform="ios" src="pkg/splash/splash_640x1136.png" height="1136" width="640" /> -->
     <!-- iOS splash screens iPad -->
-    <!-- <splash platform="ios" src="pkg/splash/splash_768x1024.png"     width="768" height="1024" /> -->
-    <!-- <splash platform="ios" src="pkg/splash/splash_1536x2008.png"    width="1536" height="2008" /> -->
-    <!-- <splash platform="ios" src="pkg/splash/splash_1024x768.png"     width="1024" height="768" /> -->
-    <!-- <splash platform="ios" src="pkg/splash/splash_2048x1496.png"    width="2048" height="1496" /> -->
+    <!-- <splash platform="ios" src="pkg/splash/splash_768x1024.png"  height="1024" width="768"  /> -->
+    <!-- <splash platform="ios" src="pkg/splash/splash_1536x2008.png" height="2008" width="1536" /> -->
+    <!-- <splash platform="ios" src="pkg/splash/splash_1024x768.png"  height="768"  width="1024" /> -->
+    <!-- <splash platform="ios" src="pkg/splash/splash_2048x1496.png" height="1496" width="2048" /> -->
 
 
 <!-- Android -->
@@ -81,14 +81,14 @@
     <preference name="SplashScreen" value="splash" />
     <preference name="SplashScreenDelay" value="250" />
 
-    <splash platform="android" orientation="portrait" src="pkg/splash/splash_720x960_portrait.png" density="xhdpi" width="720" height="960" />
-    <splash platform="android" orientation="portrait" src="pkg/splash/splash_480x640_portrait.png" density="hdpi" width="480" height="640" />
-    <splash platform="android" orientation="portrait" src="pkg/splash/splash_320x470_portrait.png" density="mdpi" width="320" height="470" />
-    <splash platform="android" orientation="portrait" src="pkg/splash/splash_320x426_portrait.png" density="ldpi" width="320" height="426" />
-    <splash platform="android" orientation="landscape" src="pkg/splash/splash_960x720_landscape.png" density="xhdpi" width="960" height="720" />
-    <splash platform="android" orientation="landscape" src="pkg/splash/splash_640x480_landscape.png" density="hdpi" width="640" height="480" />
-    <splash platform="android" orientation="landscape" src="pkg/splash/splash_470x320_landscape.png" density="mdpi" width="470" height="320" />
-    <splash platform="android" orientation="landscape" src="pkg/splash/splash_426x320_landscape.png" density="ldpi" width="426" height="320" />
+    <splash platform="android" src="pkg/splash/splash_720x960_portrait.png"  density="xhdpi" height="960" width="720" orientation="portrait"  />
+    <splash platform="android" src="pkg/splash/splash_480x640_portrait.png"  density="hdpi"  height="640" width="480" orientation="portrait"  />
+    <splash platform="android" src="pkg/splash/splash_320x470_portrait.png"  density="mdpi"  height="470" width="320" orientation="portrait"  />
+    <splash platform="android" src="pkg/splash/splash_320x426_portrait.png"  density="ldpi"  height="426" width="320" orientation="portrait"  />
+    <splash platform="android" src="pkg/splash/splash_960x720_landscape.png" density="xhdpi" height="720" width="960" orientation="landscape" />
+    <splash platform="android" src="pkg/splash/splash_640x480_landscape.png" density="hdpi"  height="480" width="640" orientation="landscape" />
+    <splash platform="android" src="pkg/splash/splash_470x320_landscape.png" density="mdpi"  height="320" width="470" orientation="landscape" />
+    <splash platform="android" src="pkg/splash/splash_426x320_landscape.png" density="ldpi"  height="320" width="426" orientation="landscape" />
 
 <!-- Windows Phone 8 -->
 
