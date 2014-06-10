@@ -31,6 +31,13 @@
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"> -->
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 
+<!-- See long explanation at the bottom of this file for info regarding placement of JS libraries.   -->
+    <!-- <script src="lib/jquery/jquery-2.1.1.min.js"></script> -->
+    <!-- <script src="lib/af/appframework.js"></script> -->
+    <!-- <script src="lib/fastclick/fastclick.js"></script> -->
+    <script src="lib/ua-parser/ua-parser-0.6.16.min.js"></script>
+    <script src="lib/moment/moment.2.6.0.js"></script>
+
     <style>
         /* TODO: add @viewport tags here, equivalent to above meta viewport tags */
         /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
@@ -198,24 +205,29 @@
 <!--
 Recommended JavaScript library load order:
 
+<head>
  * "Device-Independent" JavaScript libraries.
+<style> (or CSS loads) </style>
+</head>
+<body>
+...html tags...
  * Intel XDK device JavaScript library.
  * Cordova/PhoneGap device JavaScript library.
  * "Device-Dependent" JavaScript libraries.
  * Application JavaScript <script> tags and libraries.
  * weinre debug script tag for remote console debug.
+</body>
 
-The JavaScript is being loaded at the end of the HTML file, rather than the beginning, in order
-to speedup the initialization of the webview. It is debatable as to whether or not this really
-is necessary in a webview context, since you also have to wait for the underlying device API
-native code to finish its init, which could take longer than the webview init...
+JavaScript is being loaded at both ends of the HTML file, in order to coordinate the loading of
+the JavaScript libraries in the webview. You have to wait for the underlying device API native
+code to finish its init, which can take longer than the webview init...
 
 VERY IMPORTANT: notice that all of the libraries used in this project are located within the app's
 local directories, which means they will get bundled with the app. They are NOT being pulled in
 over the net. In most cases, this is what you should be doing when you build a hybrid mobile app.
 This insures that you always use the JS code that you debugged against AND that you are not requiring
 a data connection (network connection) to get the app started. If your app startup required a data
-connection to initialize and to start interaction with the user, lack of a reliable network connection
+connection to initialize and start interaction with the user, lack of a reliable network connection
 coud be disasterous. Not to mention this generally results in a faster load time and is much, much
 friendlier to your end user's data plan and battery.  :-)
 
@@ -224,7 +236,7 @@ by the build system, emulator and other tools and are assumed to be in the index
 You will not find these JS files anywhere in your project, they are "phantom" libraries. If you do see
 copies of these files as part of your project they should be removed to avoid confusing the XDK.
 
-When building with any of the XDK "pure Cordova" build systems (e.g., "Cordova for Android") you can
+When building with any of the XDK "Cordova" build systems (e.g., "Cordova for Android") you can
 omit the "intelxdk.js" and "xhr.js" script files shown below. It does not hurt to keep them, but
 they are not used in that environment, they are only needed for the "legacy XDK" build systems.
 (In the case of the "pure Cordova" build systems, the Cordova and XDK apis are includes as plugins
@@ -232,34 +244,29 @@ and the CORS configuration is specified as a parameter in the build configuratio
 
 FINAL VERY IMPORTANT NOTE: If you are using a large number of JavaScript libraries, especially
 third-party libraries (like jQuery, {{ mustache }}, Underscore, etc.) that are "independent" of the
-device APIs provided by the XDK and Cordova libraries, system initialization tends to be most
-successful if you load these libraries BEFORE the Cordova and XDK libraries. Obviously, any
-libraries that depend on the Cordova or XDK library APIs should be loaded AFTER these libraries.
+device APIs provided by the XDK and Cordova libraries and are independent of your application,
+app initialization tends to be most successful if you load these libraries BEFORE the Cordova and
+XDK libraries in the <head> section of your index.html file. Obviously, any libraries that depend
+on the Cordova or XDK library APIs should be loaded AFTER these libraries.
 
 Libraries that are "independent" of the device APIs are libraries that you could use in a desktop
 browser in a normal web page or web app. "Dependent" libraries are, most likely, your own code
 that you've written specifically to work with the Cordova or XDK device APIs. In some cases, if
 your device-dependent code requires access to the device-independent code to get started, you may
-have to use something like RequireJS to force the device-dependent code to wait for the device-
+have to use something like CommonJS to force the device-dependent code to wait for the device-
 independent code to initialize, otherwise you may have trouble getting your app started.
 
 Because of this added dependency on the underlying native code (device) initialization, you should
 not use the "document ready" event to start your application. You should wait for the "device ready"
-event before you begin your application (if it uses any device APIs); it is best to wait for both.
-See the init-dev.js file in this demo app for an example of how to do this.
+event before you begin your application (if it uses any device APIs); in practice, it is best to wait
+for both. See the init-dev.js file in this demo app for an example of how to do this.
 
 NOTE: any library that redefines addEventListener() or fiddles with outstanding events may
 interfere with capturing the "device ready" event and should, therefore, be placed *BEFORE*
-the Cordova and XDK libraries in the load order. For example, jQuery can cause some troubles
-in this regard and should be loaded first, as shown below.
+the Cordova and XDK libraries in the load order.
 -->
 
-    <!-- <script src="lib/jquery/jquery-2.0.3.min.js"></script> -->
-    <!-- <script src="lib/af/appframework.js"></script> -->
-    <!-- <script src="lib/fastclick/fastclick.js"></script> -->
-    <script src="lib/ua-parser/ua-parser-0.6.16.min.js"></script>
-    <script src="lib/moment/moment.2.6.0.js"></script>
-
+<!-- See <head> section above for additional JS libraries loaded as part of this application. -->
     <script src="intelxdk.js"></script>         <!-- phantom library, needed for XDK api calls -->
     <script src="cordova.js"></script>          <!-- phantom library, needed for Cordova api calls -->
     <script src="xhr.js"></script>              <!-- phantom library, needed for XDK CORS -->
@@ -273,6 +280,5 @@ in this regard and should be loaded first, as shown below.
 
     <!-- Place your remote debugging (weinre) script URL here, do not include it as part of your release builds -->
     <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
-    <script src="http://debug-software.intel.com/target/target-script-min.js#BPi8Tln30rjwCwIERDT2mCBDPyoqWaD5tUI41K-0i8E"></script>
 </body>
 </html>
