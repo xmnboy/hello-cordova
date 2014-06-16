@@ -39,10 +39,15 @@
     <script src="lib/moment/moment.2.6.0.js"></script>
 
     <style>
-        /* TODO: add @viewport tags here, equivalent to above meta viewport tags */
-        /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+    /* TODO: add @viewport tags here, equivalent to above meta viewport tags */
+    /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+    /* see http://dev.w3.org/csswg/css-device-adapt/ */
         @-ms-viewport {
-            width: device-width;
+            width: 100vw;
+            zoom: 100%;
+            min-zoom: 100%;
+            max-zoom: 200%;
+            user-zoom: zoom;
         }
     </style>
 
