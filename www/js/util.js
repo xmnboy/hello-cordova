@@ -69,6 +69,8 @@ function copyObject(objIn) {
 // for printing console.log messages into HTML page directly as well as normal console
 // TODO: need to handle other console methods, just console.log() for now...
 // TODO: remove excess lines, https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement
+// NOTE: this implementation hides file:ln on log message, which really sucks...
+// TODO: http://stackoverflow.com/questions/11308239/console-log-wrapper-that-keeps-line-numbers-and-supports-most-methods
 
 var orgConsoleLog = console.log ;
 var orgTime = Date.now() ;
