@@ -15,12 +15,13 @@
 
 
 var app = app || {} ;
+
 app.initApplication = function() {
     "use strict" ;
     var fName = "app.initApplication():" ;
     console.log(fName, "entry") ;
 
-// Main app starting point (what init.onDeviceReady calls after system is ready).
+// Main app starting point (what dev.onDeviceReady calls after system is ready).
 // Runs after underlying device native code and webview/browser is initialized.
 // Where you should "kick off" your application by initializing app events, etc.
 
