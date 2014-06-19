@@ -59,7 +59,7 @@
     <preference name="BackgroundColor" value="0xff0000ff"/>
 
     <preference name="android-minSdkVersion" value="10" />
-    <preference name="android-targetSdkVersion" value="17" />
+    <preference name="android-targetSdkVersion" value="19" />
     <preference name="android-permission" value="GET_TASKS" />
     <preference name="android-permission" value="VIBRATE" />
     <preference name="android-permission" value="ACCESS_COARSE_LOCATION" />
