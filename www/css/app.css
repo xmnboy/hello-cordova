@@ -112,18 +112,16 @@ tr:nth-child(odd) > td:nth-child(2) {
 
 .event {
     -webkit-border-radius:4px ; border-radius:4px ;
-    color:#FFFFFF ;
-    /*font-size:12px ;*/
+/*    color:#ffffff ;*/
+    color:white ;
+/*    background-color:#00008b ;*/
+    background-color:darkblue ;
     margin:0 30px ;
     padding:2px 0 ;
 }
-/* TODO: clean up the colors */
 .event.listening {
-/*    background-color:#333333 ;*/
 /*    background-color:#f0e68c ;*/
     background-color:khaki ;
-/*    background-color:#ffd700 ;*/
-/*    background-color:gold ;*/
     display:block ;
 }
 .event.failed {
@@ -134,7 +132,5 @@ tr:nth-child(odd) > td:nth-child(2) {
 .event.received {
 /*    background-color:#2e8b57 ;*/
     background-color:seagreen ;
-/*    background-color:#3cb371 ;*/
-/*    background-color:mediumseagreen ;*/
     display:none ;
 }
