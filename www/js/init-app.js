@@ -6,11 +6,12 @@
 
 
 /*jslint browser:true, devel:true, white:true, vars:true */
-/*global $:false, intel:false */
+/*jshint -W079 */
+/*global $:false, intel:false, app:false, dev:false */
 /*global moment:false, performance:false, UAParser:false */
 /*global initAccel:false, initCompass:false, initGeoLocate:false, updateDeviceInfo:false */
 /*global btnBeep:false, btnBark:false, btnAccel:false, btnVibrate:false, btnCompass:false */
-/*global btnGeoFine:false, btnGeoCoarse:false, btnGeo:false */
+/*global btnBarkCordova:false, btnBarkXDK:false, btnGeoFine:false, btnGeoCoarse:false, btnGeo:false */
 
 
 
@@ -27,6 +28,11 @@ app.initApplication = function() {
 
 // NOTE: Customize this function to initialize your application.
 
+    // initialize third-party libraries and event handlers
+
+    // initThirdPartyLibraryNumberOne() ;
+    // initThirdPartyLibraryNumberTwo() ;
+    // initThirdPartyLibraryNumberEtc() ;
 
     // initialize application code
 
@@ -34,15 +40,6 @@ app.initApplication = function() {
     initCompass() ;
     initGeoLocate() ;
     updateDeviceInfo() ;
-
-    // initialize third-party libraries and event handlers
-
-    // init.some.library() ;
-
-    // after all init is done, tine to remove our splash screen
-
-    app.hideSplashScreen() ;                        // this is optional for your app
-    app.showDeviceReady() ;                         // this is a demo-specific function
 
     // Initialize app event handlers.
     // TODO: if( test for respective components before attaching event handlers )
@@ -71,6 +68,14 @@ app.initApplication = function() {
     el = document.getElementById("id_btnGeoCoarse") ;
     el.addEventListener("touchend", btnGeoCoarse, false) ;
 
+    // after init is all done is a good time to remove our splash screen
+
+    app.hideSplashScreen() ;                // this is optional for your app
+    app.showDeviceReady() ;                 // this specific to this demo
+
+    // app initialization is done
+    // app event handlers are ready
+    // exit to idle state and just wait for events...
 
     // app initialization is done
     // event handlers are ready
