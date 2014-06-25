@@ -6,8 +6,9 @@
 
 
 /*jslint browser:true, devel:true, white:true, vars:true */
-/*global $:false, intel:false, app:false */
-/*global moment:false, performance:false */
+/*jshint -W079 */
+/*global $:false, intel:false, app:false, dev:false */
+/*global performance:false */
 
 
 
