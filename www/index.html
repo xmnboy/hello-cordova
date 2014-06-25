@@ -22,35 +22,31 @@
   *   http://dev.w3.org/csswg/css-device-adapt/#viewport-meta
   *   http://dev.opera.com/articles/view/an-introduction-to-meta-viewport-and-viewport
   * To see what happens, try the app on a real device with and without a "meta viewport" tag.
-  -->
+-->
 
-    <!-- <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, target-densitydpi=device-dpi"> -->
-    <!-- <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"> -->
-    <!-- <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=2, user-scalable=yes"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2, user-scalable=yes">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"> -->
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2">
 
-<!-- See long explanation at the bottom of this file for info regarding placement of JS libraries.   -->
-    <!-- <script src="lib/jquery/jquery-2.1.1.min.js"></script> -->
-    <!-- <script src="lib/af/appframework.js"></script> -->
-    <!-- <script src="lib/fastclick/fastclick.js"></script> -->
+    <style>
+    /* following three (cascaded) are equivalent to above three meta viewport statements */
+    /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+    /* see http://dev.w3.org/csswg/css-device-adapt/ */
+        @-ms-viewport { width: 100vw ; zoom: 100% ; }                           @viewport { width: 100vw ; zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; }                                    @viewport { user-zoom: fixed ; }
+        @-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }
+    </style>
+
+<!-- See long explanation at the bottom of this file for info regarding placement of JS libraries. -->
+<!-- These libraries (below) are just examples to give you the general idea... -->
+    <!-- <script src="lib/jq/jquery.js"></script> -->
+    <!-- <script src="lib/af/jq.appframework.js"></script> -->
+    <!-- <script src="lib/af/appframework.ui.js"></script> -->
     <script src="lib/ua-parser/ua-parser-0.6.16.min.js"></script>
     <script src="lib/moment/moment.2.6.0.js"></script>
 
-    <style>
-    /* TODO: add @viewport tags here, equivalent to above meta viewport tags */
-    /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
-    /* see http://dev.w3.org/csswg/css-device-adapt/ */
-        @-ms-viewport {
-            width: 100vw;
-            zoom: 100%;
-            min-zoom: 100%;
-            max-zoom: 200%;
-            user-zoom: zoom;
-        }
-    </style>
-
+    <!-- <link rel="stylesheet" href="lib/af/icons.css"> -->
+    <!-- <link rel="stylesheet" href="lib/af/af.ui.css"> -->
     <link rel="stylesheet" href="css/index.css">
 </head>
 
@@ -59,30 +55,30 @@
     <h1 class="align-center">Hello, Apache Cordova!</h1>
     <h2 class="align-center" id="id_cordova">Indicate Cordova presence here...</h2>
 
-        <div id="id_deviceReady" class="align-center">
-            <p class="event listening">Waiting for Device Ready...</p>
-            <p class="event received">Device Ready Event Received!</p>
-            <p class="event failed">No Device Ready Event Available...</p>
-        </div>
-        <div class="align-center">
-            <p id="id_msgBar" class="event listening"><span>debug messages go here...</span></p>
-        </div>
-        <br>
+    <div class="align-center" id="id_deviceReady">
+        <p class="event listening">Waiting for Device Ready...</p>
+        <p class="event received">Device Ready Event Received!</p>
+        <p class="event failed">No Device Ready Event Detected...</p>
+    </div>
+    <div class="align-center">
+        <p class="event listening" id="id_msgBar"><span>debug messages go here...</span></p>
+    </div>
+    <br>
 
     <p class="align-center">
         <audio src="audio/bark.wav" preload="metadata" controls="controls"></audio>
         <br>
-        <input type="button" id="id_btnBeep"    value="Beep" />
-        <input type="button" id="id_btnVibrate" value="Vibrate" />
-        <input type="button" id="id_btnBarkCordova" value="BarkCordova" />
-        <input type="button" id="id_btnBarkXDK" value="BarkXDK" />
+        <input type="button" value="Beep"           id="id_btnBeep"    />
+        <input type="button" value="Vibrate"        id="id_btnVibrate" />
+        <input type="button" value="BarkCordova"    id="id_btnBarkCordova" />
+        <input type="button" value="BarkXDK"        id="id_btnBarkXDK" />
         <br>
-        <input type="button" id="id_btnAccel"   value="Accelerometer" />
-        <input type="button" id="id_btnCompass" value="Compass" />
+        <input type="button" value="Accelerometer"  id="id_btnAccel"   />
+        <input type="button" value="Compass"        id="id_btnCompass" />
         <br>
-        <input type="button" id="id_btnGeoFine" value="GeoFine" />
-        <input type="button" id="id_btnGeo"     value="GeoLocate" />
-        <input type="button" id="id_btnGeoCoarse" value="GeoCoarse" />
+        <input type="button" value="GeoFine"        id="id_btnGeoFine" />
+        <input type="button" value="GeoLocate"      id="id_btnGeo"     />
+        <input type="button" value="GeoCoarse"      id="id_btnGeoCoarse" />
     </p>
 
 <!-- TODO: need to put each of the following tables into a floating container -->
@@ -91,7 +87,7 @@
 
 <div class="columns">
 <!-- Accelerometer data display -->
-    <table id="accelOutput" class="column-left">
+    <table class="column-left" id="accelOutput">
         <colgroup><col width="25%" class="align-right"></colgroup>
         <colgroup><col width="75%" class="text"></colgroup>
         <tbody>
@@ -151,7 +147,7 @@
     </table>
 
 <!-- Basic Cordova info -->
-    <table id="cordovaInfo" class="column-right">
+    <table class="column-right" id="cordovaInfo">
         <colgroup><col width="25%" class="align-right"></colgroup>
         <colgroup><col width="75%"></colgroup>
         <tbody>
@@ -207,68 +203,72 @@
         <textarea id="id_textArea" class="align-left" style="height:35rem; width:90%" readonly="readonly" wrap="off"></textarea>
     </div>
 
+
 <!--
-Recommended JavaScript library load order:
+    Recommended JavaScript library load order:
 
-<head>
- * "Device-Independent" JavaScript libraries.
-<style> (or CSS loads) </style>
-</head>
-<body>
-...html tags...
- * Intel XDK device JavaScript library.
- * Cordova/PhoneGap device JavaScript library.
- * "Device-Dependent" JavaScript libraries.
- * Application JavaScript <script> tags and libraries.
- * weinre debug script tag for remote console debug.
-</body>
+    <head>
+    ...
+     * "Device-Independent" JavaScript libraries.
+    ...
+    <style> (or CSS loads) </style>
+    </head>
 
-JavaScript is being loaded at both ends of the HTML file, in order to coordinate the loading of
-the JavaScript libraries in the webview. You have to wait for the underlying device API native
-code to finish its init, which can take longer than the webview init...
+    <body>
+    ...html tags...
+     * Intel XDK device JavaScript library.
+     * Cordova/PhoneGap device JavaScript library.
+     * "Device-Dependent" JavaScript libraries.
+     * Application JavaScript <script> tags and libraries.
+     * weinre debug script tag for remote console debug.
+    </body>
 
-VERY IMPORTANT: notice that all of the libraries used in this project are located within the app's
-local directories, which means they will get bundled with the app. They are NOT being pulled in
-over the net. In most cases, this is what you should be doing when you build a hybrid mobile app.
-This insures that you always use the JS code that you debugged against AND that you are not requiring
-a data connection (network connection) to get the app started. If your app startup required a data
-connection to initialize and start interaction with the user, lack of a reliable network connection
-coud be disasterous. Not to mention this generally results in a faster load time and is much, much
-friendlier to your end user's data plan and battery.  :-)
+    JavaScript is being loaded at both ends of the HTML file, in order to coordinate the loading of
+    the JavaScript libraries in the webview. You have to wait for the underlying device API native
+    code to finish its init, which can take longer than the webview init...
 
-NOTE: do not use a directory prefix with intelxdk.js or cordova.js - they are inserted automatically
-by the build system, emulator and other tools and are assumed to be in the index.html source directory.
-You will not find these JS files anywhere in your project, they are "phantom" libraries. If you do see
-copies of these files as part of your project they should be removed to avoid confusing the XDK.
+    VERY IMPORTANT: notice that all of the libraries used in this project are located within the app's
+    local directories, which means they will get bundled with the app. They are NOT being pulled in
+    over the net. In most cases, this is what you should be doing when you build a hybrid mobile app.
+    This insures that you always use the JS code that you debugged against AND that you are not requiring
+    a data connection (network connection) to get the app started. If your app startup required a data
+    connection to initialize and start interaction with the user, lack of a reliable network connection
+    coud be disasterous. Not to mention this generally results in a faster load time and is much, much
+    friendlier to your end user's data plan and battery.  :-)
 
-When building with any of the XDK "Cordova" build systems (e.g., "Cordova for Android") you can
-omit the "intelxdk.js" and "xhr.js" script files shown below. It does not hurt to keep them, but
-they are not used in that environment, they are only needed for the "legacy XDK" build systems.
-(In the case of the "pure Cordova" build systems, the Cordova and XDK apis are includes as plugins
-and the CORS configuration is specified as a parameter in the build configuration file.)
+    NOTE: do not use a directory prefix with intelxdk.js or cordova.js - they are inserted automatically
+    by the build system, emulator and other tools and are assumed to be in the index.html source directory.
+    You will not find these JS files anywhere in your project, they are "phantom" libraries. If you do see
+    copies of these files as part of your project they should be removed to avoid confusing the XDK.
 
-FINAL VERY IMPORTANT NOTE: If you are using a large number of JavaScript libraries, especially
-third-party libraries (like jQuery, {{ mustache }}, Underscore, etc.) that are "independent" of the
-device APIs provided by the XDK and Cordova libraries and are independent of your application,
-app initialization tends to be most successful if you load these libraries BEFORE the Cordova and
-XDK libraries in the <head> section of your index.html file. Obviously, any libraries that depend
-on the Cordova or XDK library APIs should be loaded AFTER these libraries.
+    When building with any of the XDK "Cordova" build systems (e.g., "Cordova for Android") you can
+    omit the "intelxdk.js" and "xhr.js" script files shown below. It does not hurt to keep them, but
+    they are not used in that environment, they are only needed for the "legacy XDK" build systems.
+    (In the case of the "pure Cordova" build systems, the Cordova and XDK apis are included as plugins
+    and the CORS configuration is specified as a parameter in the build configuration file.)
 
-Libraries that are "independent" of the device APIs are libraries that you could use in a desktop
-browser in a normal web page or web app. "Dependent" libraries are, most likely, your own code
-that you've written specifically to work with the Cordova or XDK device APIs. In some cases, if
-your device-dependent code requires access to the device-independent code to get started, you may
-have to use something like CommonJS to force the device-dependent code to wait for the device-
-independent code to initialize, otherwise you may have trouble getting your app started.
+    FINAL VERY IMPORTANT NOTE: If you are using a large number of JavaScript libraries, especially
+    third-party libraries (like jQuery, {{ mustache }}, Underscore, etc.) that are "independent" of the
+    device APIs provided by the XDK and Cordova libraries and are independent of your application,
+    app initialization tends to be most successful if you load these libraries BEFORE the Cordova and
+    XDK libraries in the <head> section of your index.html file. Obviously, any libraries that depend
+    on the Cordova or XDK library APIs should be loaded AFTER these device libraries.
 
-Because of this added dependency on the underlying native code (device) initialization, you should
-not use the "document ready" event to start your application. You should wait for the "device ready"
-event before you begin your application (if it uses any device APIs); in practice, it is best to wait
-for both. See the init-dev.js file in this demo app for an example of how to do this.
+    Libraries that are "independent" of the device APIs are libraries that you could use in a desktop
+    browser in a normal web page or web app. "Dependent" libraries are, most likely, your own code
+    that you've written specifically to work with the Cordova or XDK device APIs. In some cases, if
+    your device-dependent code requires access to the device-independent code to get started, you may
+    have to use something like CommonJS to force the device-dependent code to wait for the device-
+    independent code to initialize, otherwise you may have trouble getting your app started.
 
-NOTE: any library that redefines addEventListener() or fiddles with outstanding events may
-interfere with capturing the "device ready" event and should, therefore, be placed *BEFORE*
-the Cordova and XDK libraries in the load order.
+    Because of this added dependency on the underlying native code (device) initialization, you should
+    not use the "document ready" event to start your application. You should wait for the "device ready"
+    event before you begin your application (if it uses any device APIs); in practice, it is best to wait
+    for both. See the init-dev.js file in this demo app for an example of how to do this.
+
+    NOTE: any library that redefines addEventListener() or fiddles with outstanding events may
+    interfere with capturing the "device ready" event and should, therefore, be placed *BEFORE*
+    the Cordova and XDK libraries in the load order.
 -->
 
 <!-- See <head> section above for additional JS libraries loaded as part of this application. -->
