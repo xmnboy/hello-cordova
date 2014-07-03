@@ -103,13 +103,13 @@ app.showDeviceReady = function() {
     var failedElement = parentElement.querySelector('.failed') ;
 
     // set the "system ready" indicator on our display
-    if( window.Cordova && dev.isDeviceReady.c_cordova________) {
+    if( window.Cordova && dev.isDeviceReady.c_cordova_ready__) {
         el.innerHTML = "Cordova device ready detected!" ;
         listeningElement.setAttribute('style', 'display:none;') ;
         receivedElement.setAttribute('style', 'display:block;') ;
         failedElement.setAttribute('style', 'display:none;') ;
     }
-    else if( window.intel && intel.xdk && dev.isDeviceReady.d_xdk____________ ) {
+    else if( window.intel && intel.xdk && dev.isDeviceReady.d_xdk_ready______ ) {
         el.innerHTML = "Intel XDK device ready detected!" ;
         listeningElement.setAttribute('style', 'display:none;') ;
         receivedElement.setAttribute('style', 'display:block;') ;
