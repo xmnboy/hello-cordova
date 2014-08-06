@@ -5,7 +5,7 @@
       "type": "Import",
       "src": "",
       "projectGuid": "aee078dc-3d66-45d3-b2dc-5a4d1e5ba853",
-      "lastModifiedDate": 1407289502332,
+      "lastModifiedDate": 1407342274246,
       "creationDate": 1394663301756
     },
     "sourceDirectory": "www",
@@ -145,7 +145,7 @@
           "android-targetedSdkVersion": "19"
         },
         "isActive_": true,
-        "appName_": "Hello, Cordova! (XDK)",
+        "appName_": "Hello, Cordova!",
         "appID_": "com.xmnboy.xdk.hellocordova",
         "appAccess_": "*",
         "icons_": [],
@@ -155,11 +155,11 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.3",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.8.5",
+        "appVersion_": "14.8.6",
         "runtime_": "Cordova 3.x",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation",
-        "appVersionCode_": "140805"
+        "appVersionCode_": "140806"
       },
       "Android-Crosswalk": {
         "platform_": "android",
@@ -179,11 +179,11 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.3",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.8.5",
+        "appVersion_": "14.8.6",
         "runtime_": "Crosswalk with Cordova 3.x",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation",
-        "appVersionCode_": "140805"
+        "appVersionCode_": "140806"
       },
       "iOS": {
         "platform_": "ios",
@@ -193,7 +193,7 @@
           "exit-on-suspend": false
         },
         "isActive_": true,
-        "appName_": "Hello, Cordova (XDK)",
+        "appName_": "Hello, Cordova",
         "appID_": "com.xmnboy.xdk.hellocordova",
         "appAccess_": "*",
         "icons_": [],
@@ -208,7 +208,7 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.3",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.8.5",
+        "appVersion_": "14.8.6",
         "runtime_": "Cordova 3.x",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation"
@@ -221,7 +221,7 @@
           "windows-publisher-display-name": "xmnboy"
         },
         "isActive_": true,
-        "appName_": "Hello, Cordova! (XDK)",
+        "appName_": "Hello, Cordova!",
         "appID_": "com.xmnboy.xdk.hellocordova",
         "appAccess_": "*",
         "icons_": [],
@@ -231,7 +231,7 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.3",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.8.5",
+        "appVersion_": "14.8.6",
         "runtime_": "Cordova 3.x",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation"
