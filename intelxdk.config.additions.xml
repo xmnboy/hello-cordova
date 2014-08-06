@@ -1,1 +1,1 @@
-<preference name="debuggable" value="true" />
+<preference name="debuggable" value="true" /> <!-- debuggable on Android 4.4 devices -->
