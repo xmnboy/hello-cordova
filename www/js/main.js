@@ -67,7 +67,8 @@ function btnBarkCordova() {
         console.log(fName, "getWebRoot() => ", z) ;
 
         var media = "audio/bark.wav" ;
-        if( z.match(/\/emulator.*\/ripple\/userapp/i) ) {           // if in the Ripple emulator
+//        if( z.match(/\/emulator.*\/ripple\/userapp/i) ) {           // if in the Ripple emulator
+        if( window.tinyHippos ) {                                   // if in the Ripple emulator
             media = z + "/" + media ;
         }
         else if( x.match(/(ios)|(iphone)|(ipod)|(ipad)/ig) ) {      // if on a real iOS device
@@ -132,7 +133,8 @@ function btnBarkXDK() {
         console.log(fName, "getWebRoot() => ", z) ;
 
         var media = "audio/bark.wav" ;
-        if( z.match(/\/emulator.*\/ripple\/userapp/i) ) {           // if in the Ripple emulator
+//        if( z.match(/\/emulator.*\/ripple\/userapp/i) ) {           // if in the Ripple emulator
+        if( window.tinyHippos ) {                                   // if in the Ripple emulator
             media = z + "/" + media ;                               // bug in the emulator...
         }
         intel.xdk.player.playSound(media) ;
@@ -141,6 +143,19 @@ function btnBarkXDK() {
     catch(e) {
         console.log(fName, "catch, failure") ;
     }
+
+    console.log(fName, "exit") ;
+}
+
+
+
+function btnBarkHTML5() {
+    "use strict" ;
+    var fName = "btnBarkHTML5():" ;
+    console.log(fName, "entry") ;
+
+    var a = document.getElementsByTagName("audio")[0] ;
+    a.play() ;
 
     console.log(fName, "exit") ;
 }

@@ -55,6 +55,8 @@ app.initApplication = function() {
     el.addEventListener("touchend", btnBarkCordova, false) ;
     el = document.getElementById("id_btnBarkXDK") ;
     el.addEventListener("touchend", btnBarkXDK, false) ;
+    el = document.getElementById("id_btnBarkHTML5") ;
+    el.addEventListener("touchend", btnBarkHTML5, false) ;
 
     el = document.getElementById("id_btnAccel") ;
     el.addEventListener("touchend", btnAccel, false) ;
