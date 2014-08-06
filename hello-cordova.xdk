@@ -1,11 +1,11 @@
 {
   "project": {
-    "projectSettingsVersion": "1.0",
+    "projectSettingsVersion": "1.1",
     "creationData": {
       "type": "Import",
       "src": "",
       "projectGuid": "aee078dc-3d66-45d3-b2dc-5a4d1e5ba853",
-      "lastModifiedDate": 1395088996705,
+      "lastModifiedDate": 1407289502332,
       "creationDate": 1394663301756
     },
     "sourceDirectory": "www",
@@ -36,7 +36,224 @@
         }
       }
     ],
+    "servicesUglifyGeneratedCode": false,
+    "cordovaPluginsDirectory": "plugins",
+    "cordovaPlugins": [
+      {
+        "id": "org.apache.cordova.device-motion",
+        "version": "",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.battery-status",
+        "version": "",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.device-orientation",
+        "version": "",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.network-information",
+        "version": "",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.device",
+        "version": "",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.geolocation",
+        "version": "",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.inappbrowser",
+        "version": "0.3.0",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.media",
+        "version": "",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.dialogs",
+        "version": "",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.vibration",
+        "version": "",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.splashscreen",
+        "version": "",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "intel.xdk.geolocation",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "intel.xdk.base",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "intel.xdk.player",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      }
+    ],
     "serviceMethods": [],
-    "servicesUglifyGeneratedCode": false
+    "buildConfigurations": {
+      "Android": {
+        "platform_": "android",
+        "name_": "Android",
+        "preferences_": {
+          "android-minSdkVersion": "10",
+          "android-targetedSdkVersion": "19"
+        },
+        "isActive_": true,
+        "appName_": "Hello, Cordova! (XDK)",
+        "appID_": "com.xmnboy.xdk.hellocordova",
+        "appAccess_": "*",
+        "icons_": [],
+        "splashes_": [],
+        "iosProvs_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "cordovaCLIVersion_": "3.3",
+        "crosswalkVersion_": "stable",
+        "appVersion_": "14.8.5",
+        "runtime_": "Cordova 3.x",
+        "appDescription_": "Cordova demonstration app.",
+        "appAuthor_": "Paul Fischer, Intel Corporation",
+        "appVersionCode_": "140805"
+      },
+      "Android-Crosswalk": {
+        "platform_": "android",
+        "name_": "Android-Crosswalk",
+        "preferences_": {
+          "android-minSdkVersion": "14",
+          "android-targetedSdkVersion": "19"
+        },
+        "isActive_": true,
+        "appName_": "Hello, Cordova! (Crosswalk)",
+        "appID_": "com.xmnboy.xdk.hellocordova",
+        "appAccess_": "*",
+        "icons_": [],
+        "splashes_": [],
+        "iosProvs_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "cordovaCLIVersion_": "3.3",
+        "crosswalkVersion_": "stable",
+        "appVersion_": "14.8.5",
+        "runtime_": "Crosswalk with Cordova 3.x",
+        "appDescription_": "Cordova demonstration app.",
+        "appAuthor_": "Paul Fischer, Intel Corporation",
+        "appVersionCode_": "140805"
+      },
+      "iOS": {
+        "platform_": "ios",
+        "name_": "iOS",
+        "preferences_": {
+          "ios-target": "6",
+          "exit-on-suspend": false
+        },
+        "isActive_": true,
+        "appName_": "Hello, Cordova (XDK)",
+        "appID_": "com.xmnboy.xdk.hellocordova",
+        "appAccess_": "*",
+        "icons_": [],
+        "splashes_": [],
+        "iosProvs_": [
+          {
+            "relPath": "Paul.mobileprovision",
+            "type": "adhoc"
+          }
+        ],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "cordovaCLIVersion_": "3.3",
+        "crosswalkVersion_": "stable",
+        "appVersion_": "14.8.5",
+        "runtime_": "Cordova 3.x",
+        "appDescription_": "Cordova demonstration app.",
+        "appAuthor_": "Paul Fischer, Intel Corporation"
+      },
+      "Windows8": {
+        "platform_": "windows8",
+        "name_": "Windows8",
+        "preferences_": {
+          "windows-publisher-id": "",
+          "windows-publisher-display-name": "xmnboy"
+        },
+        "isActive_": true,
+        "appName_": "Hello, Cordova! (XDK)",
+        "appID_": "com.xmnboy.xdk.hellocordova",
+        "appAccess_": "*",
+        "icons_": [],
+        "splashes_": [],
+        "iosProvs_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "cordovaCLIVersion_": "3.3",
+        "crosswalkVersion_": "stable",
+        "appVersion_": "14.8.5",
+        "runtime_": "Cordova 3.x",
+        "appDescription_": "Cordova demonstration app.",
+        "appAuthor_": "Paul Fischer, Intel Corporation"
+      },
+      "WindowsPhone8": {
+        "platform_": "wp8",
+        "name_": "WindowsPhone8",
+        "preferences_": {},
+        "isActive_": true,
+        "appName_": "hello-cordova",
+        "appID_": "not.yet.specified",
+        "appAccess_": "*",
+        "icons_": [],
+        "splashes_": [],
+        "iosProvs_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "cordovaCLIVersion_": "3.3",
+        "crosswalkVersion_": "stable",
+        "appVersion_": "1.0.0.0",
+        "runtime_": "Cordova 3.x"
+      }
+    }
   }
 }
