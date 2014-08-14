@@ -1,4 +1,5 @@
-hello-cordova
-=============
+# hello-cordova
 
-Sample webview app illustrating use of Cordova and XDK APIs. Especially how to detect device ready event and detect when running in a browser (not inside Cordova container).
+Sample webview app illustrating the use of some select Cordova and XDK APIs and equivalent HTML5 APIs.
+
+More to be written...

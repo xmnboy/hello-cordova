@@ -1,21 +1,24 @@
 /*
  * Copyright (c) 2013-2014, Paul Fischer, Intel Corporation. All rights reserved.
  * Please see http://software.intel.com/html5/license/samples
- * and the included README.md file for license terms and conditions.
+ * and included README.md file for license terms and conditions.
  */
 
 
 /*jslint browser:true, devel:true, white:true, vars:true */
-/*jshint -W079 */
 /*global $:false, intel:false, app:false, dev:false */
 /*global moment:false, performance:false, UAParser:false */
 /*global initAccel:false, initCompass:false, initGeoLocate:false, updateDeviceInfo:false */
 /*global btnBeep:false, btnBark:false, btnAccel:false, btnVibrate:false, btnCompass:false */
-/*global btnBarkCordova:false, btnBarkXDK:false, btnGeoFine:false, btnGeoCoarse:false, btnGeo:false */
+/*global btnBarkCordova:false, btnBarkXDK:false, btnBarkHTML5:false, btnGeoFine:false, btnGeoCoarse:false, btnGeo:false */
 
 
 
-var app = app || {} ;
+window.app = window.app || {} ;         // there should only be one of these, but...
+
+
+app.uaParser = {} ;                     // for holding the user agent object
+
 
 app.initApplication = function() {
     "use strict" ;
@@ -30,9 +33,7 @@ app.initApplication = function() {
 
     // initialize third-party libraries and event handlers
 
-    // initThirdPartyLibraryNumberOne() ;
-    // initThirdPartyLibraryNumberTwo() ;
-    // initThirdPartyLibraryNumberEtc() ;
+    app.uaParser = new UAParser() ;
 
     // initialize application code
 
@@ -85,6 +86,7 @@ app.initApplication = function() {
 
     console.log(fName, "exit") ;
 } ;
+document.addEventListener("app.Ready", app.initApplication, false) ;
 
 
 
@@ -136,7 +138,7 @@ app.hideSplashScreen = function() {
     var fName = "app.hideSplashScreen():" ;
     console.log(fName, "entry") ;
 
-    if( window.Cordova && navigator.splashscreen ) {            // Cordova API detected
+    if( navigator.splashscreen ) {                              // Cordova API detected
         navigator.splashscreen.hide() ;
     }
     else if( window.intel && intel.xdk && intel.xdk.device ) {  // Intel XDK API detected
@@ -147,10 +149,3 @@ app.hideSplashScreen = function() {
 
     console.log(fName, "exit") ;
 } ;
-
-
-
-// For demo and debug, potentially useful for device/feature detection.
-// var uaParser = new UAParser() ;
-
-app.uaParser = new UAParser() ;
