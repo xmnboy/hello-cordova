@@ -20,9 +20,9 @@ window.app = window.app || {} ;         // there should only be one of these, bu
 app.uaParser = {} ;                     // for holding the user agent object
 
 
-app.initApplication = function() {
+app.initEvents = function() {
     "use strict" ;
-    var fName = "app.initApplication():" ;
+    var fName = "app.initEvents():" ;
     console.log(fName, "entry") ;
 
 // Main app starting point (what dev.onDeviceReady calls after system is ready).
@@ -45,61 +45,63 @@ app.initApplication = function() {
     // Initialize app event handlers.
     // TODO: if( test for respective components before attaching event handlers )
     // TODO: configure to work with both touch and click events (mouse + touch)
+    // See main.js, cordova-acc.js and cordova-geo.js for event handlers.
 
-    var el ;
+    var el, evt ;
+
+    if( navigator.msPointerEnabled )                            // if on a Windows 8 machine
+        evt = "click" ;                                         // let touch become a click event
+    else                                                        // else, assume touch events available
+        evt = "touchend" ;                                      // not optimum, but works
 
     el = document.getElementById("id_btnBeep") ;
-    el.addEventListener("touchend", btnBeep, false) ;
+    el.addEventListener(evt, btnBeep, false) ;
     el = document.getElementById("id_btnVibrate") ;
-    el.addEventListener("touchend", btnVibrate, false) ;
+    el.addEventListener(evt, btnVibrate, false) ;
     el = document.getElementById("id_btnBarkCordova") ;
-    el.addEventListener("touchend", btnBarkCordova, false) ;
+    el.addEventListener(evt, btnBarkCordova, false) ;
     el = document.getElementById("id_btnBarkXDK") ;
-    el.addEventListener("touchend", btnBarkXDK, false) ;
+    el.addEventListener(evt, btnBarkXDK, false) ;
     el = document.getElementById("id_btnBarkHTML5") ;
-    el.addEventListener("touchend", btnBarkHTML5, false) ;
+    el.addEventListener(evt, btnBarkHTML5, false) ;
 
     el = document.getElementById("id_btnAccel") ;
-    el.addEventListener("touchend", btnAccel, false) ;
+    el.addEventListener(evt, btnAccel, false) ;
     el = document.getElementById("id_btnCompass") ;
-    el.addEventListener("touchend", btnCompass, false) ;
+    el.addEventListener(evt, btnCompass, false) ;
 
     el = document.getElementById("id_btnGeo") ;
-    el.addEventListener("touchend", btnGeo, false) ;
+    el.addEventListener(evt, btnGeo, false) ;
     el = document.getElementById("id_btnGeoFine") ;
-    el.addEventListener("touchend", btnGeoFine, false) ;
+    el.addEventListener(evt, btnGeoFine, false) ;
     el = document.getElementById("id_btnGeoCoarse") ;
-    el.addEventListener("touchend", btnGeoCoarse, false) ;
+    el.addEventListener(evt, btnGeoCoarse, false) ;
 
     // after init is all done is a good time to remove our splash screen
 
     app.hideSplashScreen() ;                // this is optional for your app
-    app.showDeviceReady() ;                 // this specific to this demo
 
     // app initialization is done
     // app event handlers are ready
     // exit to idle state and just wait for events...
 
-    // app initialization is done
-    // event handlers are ready
-    // exit to idle state and wait for events...
-
     console.log(fName, "exit") ;
 } ;
-document.addEventListener("app.Ready", app.initApplication, false) ;
+document.addEventListener("app.Ready", app.initEvents, false) ;
 
 
 
 // Primarily for debug and demonstration.
-// Update our status in the main view.
-// Are we running in a Cordova container or in a browser?
+// Update our status in the main view. Are we running in a Cordova container or in a browser?
 
-app.showDeviceReady = function() {
-    var fName = "app.showDeviceReady():" ;
+app.initDebug = function() {
+    "use strict" ;
+    var fName = "app.initDebug():" ;
     console.log(fName, "entry") ;
 
     // Following is for demonstration.
     // find the "system ready" indicator on our display
+
     var el = document.getElementById("id_cordova") ;
     var parentElement = document.getElementById("id_deviceReady") ;
     var listeningElement = parentElement.querySelector('.listening') ;
@@ -128,6 +130,7 @@ app.showDeviceReady = function() {
 
     console.log(fName, "exit") ;
 } ;
+document.addEventListener("app.Ready", app.initDebug, false) ;
 
 
 
@@ -141,10 +144,8 @@ app.hideSplashScreen = function() {
     if( navigator.splashscreen ) {                              // Cordova API detected
         navigator.splashscreen.hide() ;
     }
-    else if( window.intel && intel.xdk && intel.xdk.device ) {  // Intel XDK API detected
+    if( window.intel && intel.xdk && intel.xdk.device ) {       // Intel XDK API detected
         intel.xdk.device.hideSplashScreen() ;
-    }
-    else {                                                      // must be in a browser
     }
 
     console.log(fName, "exit") ;
