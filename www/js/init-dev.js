@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2014, Paul Fischer, Intel Corporation. All rights reserved.
+ * Copyright (c) 2013-2014, Intel Corporation. All rights reserved.
  * Please see http://software.intel.com/html5/license/samples for license terms and conditions.
  */
 
@@ -43,7 +43,8 @@ window.dev = window.dev || {} ;         // there should only be one of these, bu
 
 if( window.performance && performance.now ) {
     dev.timeStamp = function() { return performance.now().toFixed(3) ; } ;
-} else {
+}
+else {
     dev.timeStart = Date.now() ;        // feeble zero ref for relative time in ms
     dev.timeStamp = function() { return (Date.now() - dev.timeStart) ; } ;
 }
@@ -114,38 +115,35 @@ dev.onDeviceReady = function() {
 
 
 /*
- * The following is an excerpt from the 2.9.0 cordova.js file and is useful for understanding
+ * The following is an excerpt from the 3.3.0 cordova.js file and is useful for understanding
  * Cordova events. The order of events during page load and Cordova startup is as follows:
  *
  * onDOMContentLoaded*         Internal event that is received when the web page is loaded and parsed.
  * onNativeReady*              Internal event that indicates the Cordova native side is ready.
  * onCordovaReady*             Internal event fired when all Cordova JavaScript objects have been created.
- * onCordovaInfoReady*         Internal event fired when device properties are available.
- * onCordovaConnectionReady*   Internal event fired when the connection property has been set.
  * onDeviceReady*              User event fired to indicate that Cordova is ready
  * onResume                    User event fired to indicate a start/resume lifecycle event
  * onPause                     User event fired to indicate a pause lifecycle event
  * onDestroy*                  Internal event fired when app is being destroyed (User should use window.onunload event, not this one).
  *
  * The events marked with an * are sticky. Once they have fired, they will stay in the fired state.
- * Listeners that subscribe to a sticky (*) event, after the event is fired, will execute right away.
+ * All listeners that subscribe after the event is fired will be executed right away.
  *
  * The only Cordova events that user code should register for are:
  *      deviceready           Cordova native code is initialized and Cordova APIs can be called from JavaScript
  *      pause                 App has moved to background
  *      resume                App has returned to foreground
  *
- * Listeners can be registered as follows:
+ * Listeners can be registered as:
  *      document.addEventListener("deviceready", myDeviceReadyListener, false);
  *      document.addEventListener("resume", myResumeListener, false);
  *      document.addEventListener("pause", myPauseListener, false);
  *
- * The following DOM lifecycle events should be used for saving and restoring state:
+ * The DOM lifecycle events should be used for saving and restoring state
  *      window.onload
  *      window.onunload
+ *
  */
-
-
 
 // The following is not fool-proof, we're mostly interested in detecting one
 // or both events to insure device init is finished, detecting either will do.
