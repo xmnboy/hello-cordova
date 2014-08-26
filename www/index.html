@@ -273,6 +273,10 @@
     the Cordova and XDK libraries in the load order.
 -->
 
+    <!-- IMPORTANT: Do not include your weinre script tag as part of your release builds! -->
+    <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
+    <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
 <!-- See <head> section above for additional JS libraries loaded as part of this application. -->
     <script src="intelxdk.js"></script>         <!-- phantom library, needed for XDK api calls -->
     <script src="cordova.js"></script>          <!-- phantom library, needed for Cordova api calls -->
@@ -285,7 +289,9 @@
     <script src="js/init-app.js"></script>
     <script src="js/init-dev.js"></script>
 
-    <!-- Place your remote debugging (weinre) script URL here, do not include it as part of your release builds -->
+    <!-- IMPORTANT: Do not include your weinre script tag as part of your release builds! -->
+    <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
     <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
 </body>
 </html>
