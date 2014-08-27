@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2013-2014, Intel Corporation. All rights reserved.
- * Please see http://software.intel.com/html5/license/samples for license terms and conditions.
+ * Please see the included README.md file for license terms and conditions.
  */
 
 
