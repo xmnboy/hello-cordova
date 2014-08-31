@@ -1,1 +1,2 @@
-<preference name="debuggable" value="true" /> <!-- for remote Chrome DevTools and Android 4.4 devices -->
+<!-- add the following for remote Chrome DevTools on Android 4.4 devices -->
+<!--<preference name="debuggable" value="true" />-->
