@@ -5,7 +5,7 @@
       "type": "Import",
       "src": "",
       "projectGuid": "aee078dc-3d66-45d3-b2dc-5a4d1e5ba853",
-      "lastModifiedDate": 1408943440203,
+      "lastModifiedDate": 1409451566373,
       "creationDate": 1394663301756
     },
     "sourceDirectory": "www",
@@ -139,13 +139,14 @@
     "buildConfigurations": {
       "Android": {
         "platform_": "android",
+        "runtime_": "Cordova 3.x",
         "name_": "Android",
         "preferences_": {
           "android-minSdkVersion": "10",
-          "android-targetedSdkVersion": "19"
+          "android-targetSdkVersion": "19"
         },
         "isActive_": true,
-        "appName_": "Hello, Cordova!",
+        "appName_": "Hello, Cordova",
         "appID_": "com.xmnboy.xdk.hellocordova",
         "appAccess_": "*",
         "icons_": [],
@@ -155,21 +156,21 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.3",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.8.24",
-        "runtime_": "Cordova 3.x",
+        "appVersion_": "14.8.30",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation",
-        "appVersionCode_": "140824"
+        "appVersionCode_": "140830"
       },
       "Android-Crosswalk": {
         "platform_": "android",
+        "runtime_": "Crosswalk with Cordova 3.x",
         "name_": "Android-Crosswalk",
         "preferences_": {
           "android-minSdkVersion": "14",
-          "android-targetedSdkVersion": "19"
+          "android-targetSdkVersion": "19"
         },
         "isActive_": true,
-        "appName_": "Hello, Cordova! (Crosswalk)",
+        "appName_": "Hello, Cordova (Crosswalk)",
         "appID_": "com.xmnboy.xdk.hellocordova",
         "appAccess_": "*",
         "icons_": [],
@@ -179,17 +180,17 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.3",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.8.24",
-        "runtime_": "Crosswalk with Cordova 3.x",
+        "appVersion_": "14.8.30",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation",
-        "appVersionCode_": "140824"
+        "appVersionCode_": "140830"
       },
       "iOS": {
         "platform_": "ios",
+        "runtime_": "Cordova 3.x",
         "name_": "iOS",
         "preferences_": {
-          "ios-target": "6",
+          "ios-target": "5",
           "exit-on-suspend": false
         },
         "isActive_": true,
@@ -208,20 +209,20 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.3",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.8.24",
-        "runtime_": "Cordova 3.x",
+        "appVersion_": "14.8.30",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation"
       },
       "Windows8": {
         "platform_": "windows8",
+        "runtime_": "Cordova 3.x",
         "name_": "Windows8",
         "preferences_": {
           "windows-publisher-id": "",
           "windows-publisher-display-name": "xmnboy"
         },
         "isActive_": true,
-        "appName_": "Hello, Cordova!",
+        "appName_": "Hello, Cordova",
         "appID_": "com.xmnboy.xdk.hellocordova",
         "appAccess_": "*",
         "icons_": [],
@@ -231,13 +232,13 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.3",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.8.24",
-        "runtime_": "Cordova 3.x",
+        "appVersion_": "14.8.30",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation"
       },
       "WindowsPhone8": {
         "platform_": "wp8",
+        "runtime_": "Cordova 3.x",
         "name_": "WindowsPhone8",
         "preferences_": {},
         "isActive_": true,
@@ -251,8 +252,7 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.3",
         "crosswalkVersion_": "stable",
-        "appVersion_": "1.0.0.0",
-        "runtime_": "Cordova 3.x"
+        "appVersion_": "1.0.0.0"
       }
     }
   }
