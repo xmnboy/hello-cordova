@@ -5,7 +5,7 @@
       "type": "Import",
       "src": "",
       "projectGuid": "aee078dc-3d66-45d3-b2dc-5a4d1e5ba853",
-      "lastModifiedDate": 1409451566373,
+      "lastModifiedDate": 1410242741222,
       "creationDate": 1394663301756
     },
     "sourceDirectory": "www",
@@ -154,12 +154,12 @@
         "iosProvs_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "cordovaCLIVersion_": "3.3",
+        "cordovaCLIVersion_": "3.5",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.8.30",
+        "appVersion_": "14.9.8",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation",
-        "appVersionCode_": "140830"
+        "appVersionCode_": "140908"
       },
       "Android-Crosswalk": {
         "platform_": "android",
@@ -171,7 +171,7 @@
         },
         "isActive_": true,
         "appName_": "Hello, Cordova (Crosswalk)",
-        "appID_": "com.xmnboy.xdk.hellocordova",
+        "appID_": "com.xmnboy.xdk.hellocordova.crosswalk",
         "appAccess_": "*",
         "icons_": [],
         "splashes_": [],
@@ -179,11 +179,11 @@
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.3",
-        "crosswalkVersion_": "stable",
-        "appVersion_": "14.8.30",
+        "crosswalkVersion_": "beta",
+        "appVersion_": "14.9.8",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation",
-        "appVersionCode_": "140830"
+        "appVersionCode_": "140908"
       },
       "iOS": {
         "platform_": "ios",
@@ -207,9 +207,9 @@
         ],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "cordovaCLIVersion_": "3.3",
+        "cordovaCLIVersion_": "3.5",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.8.30",
+        "appVersion_": "14.9.8",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation"
       },
@@ -230,9 +230,9 @@
         "iosProvs_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "cordovaCLIVersion_": "3.3",
+        "cordovaCLIVersion_": "3.5",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.8.30",
+        "appVersion_": "14.9.8",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation"
       },
