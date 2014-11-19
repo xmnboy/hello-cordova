@@ -112,25 +112,23 @@ tr:nth-child(odd) > td:nth-child(2) {
 
 .event {
     -webkit-border-radius:4px ; border-radius:4px ;
-/*    color:#ffffff ;*/
-    color:white ;
-/*    background-color:#00008b ;*/
     background-color:darkblue ;
+    color:white ;
     margin:0 30px ;
     padding:2px 0 ;
 }
 .event.listening {
-/*    background-color:#f0e68c ;*/
     background-color:khaki ;
+    color:black ;
     display:block ;
 }
 .event.failed {
-/*    background-color:#ffb6c1 ;*/
     background-color:lightpink ;
+    color:black ;
     display:none ;
 }
 .event.received {
-/*    background-color:#2e8b57 ;*/
     background-color:seagreen ;
+    color:white ;
     display:none ;
 }

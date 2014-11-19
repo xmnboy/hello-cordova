@@ -8,9 +8,9 @@
 /*jslint browser:true, devel:true, white:true, vars:true */
 /*global $:false, intel:false, app:false, dev:false, device:false, cordova:false */
 /*global moment:false, performance:false, UAParser:false */
-/*global initAccel:false, initCompass:false, initGeoLocate:false, updateDeviceInfo:false */
+/*global initAccel:false, initCompass:false, updateDeviceInfo:false */
 /*global btnBeep:false, btnBark:false, btnAccel:false, btnVibrate:false, btnCompass:false */
-/*global btnBarkCordova:false, btnBarkXDK:false, btnBarkHTML5:false, btnGeoFine:false, btnGeoCoarse:false, btnGeo:false */
+/*global btnBarkCordova:false, btnBarkXDK:false, btnBarkHTML5:false, geo:false */
 
 
 
@@ -54,7 +54,7 @@ app.initEvents = function() {
 
     initAccel() ;
     initCompass() ;
-    initGeoLocate() ;
+    geo.initGeoLocate() ;
     updateDeviceInfo() ;
 
     // NOTE: initialize your app event handlers
@@ -86,12 +86,14 @@ app.initEvents = function() {
     el = document.getElementById("id_btnCompass") ;
     el.addEventListener(evt, btnCompass, false) ;
 
-    el = document.getElementById("id_btnGeo") ;
-    el.addEventListener(evt, btnGeo, false) ;
     el = document.getElementById("id_btnGeoFine") ;
-    el.addEventListener(evt, btnGeoFine, false) ;
+    el.addEventListener(evt, geo.btnGeoFine, false) ;
     el = document.getElementById("id_btnGeoCoarse") ;
-    el.addEventListener(evt, btnGeoCoarse, false) ;
+    el.addEventListener(evt, geo.btnGeoCoarse, false) ;
+    el = document.getElementById("id_btnGeo") ;
+    el.addEventListener(evt, geo.btnGeo, false) ;
+    el = document.getElementById("id_btnGeoXDK") ;
+    el.addEventListener(evt, geo.btnGeoXDK, false) ;
 
     // NOTE: ...you can put other miscellaneous init stuff in this function...
     // NOTE: ...and add whatever else you want to do now that the app has started...
