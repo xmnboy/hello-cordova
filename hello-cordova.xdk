@@ -5,7 +5,7 @@
       "type": "Import",
       "src": "",
       "projectGuid": "aee078dc-3d66-45d3-b2dc-5a4d1e5ba853",
-      "lastModifiedDate": 1416374319335,
+      "lastModifiedDate": 1416530624979,
       "creationDate": 1394663301756
     },
     "sourceDirectory": "www",
@@ -153,10 +153,10 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.5",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.11.18",
+        "appVersion_": "14.11.20",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation",
-        "appVersionCode_": "141118"
+        "appVersionCode_": "141120"
       },
       "Android-Crosswalk": {
         "platform_": "android",
@@ -176,11 +176,11 @@
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.3",
-        "crosswalkVersion_": "beta",
-        "appVersion_": "14.11.18",
+        "crosswalkVersion_": "stable",
+        "appVersion_": "14.11.20",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation",
-        "appVersionCode_": "141118"
+        "appVersionCode_": "141120"
       },
       "iOS": {
         "platform_": "ios",
@@ -211,7 +211,7 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.5",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.11.18",
+        "appVersion_": "14.11.20",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation"
       },
@@ -234,7 +234,7 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.5",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.11.18",
+        "appVersion_": "14.11.20",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation"
       },

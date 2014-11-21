@@ -87,6 +87,9 @@
         <input type="button" value="GeoFine"        id="id_btnGeoFine" />
         <input type="button" value="GeoCoarse"      id="id_btnGeoCoarse" />
         <input type="button" value="GeoWatch"       id="id_btnGeo"     />
+        <br>
+        <input type="button" value="GeoFineXDK"     id="id_btnGeoFineXDK" />
+        <input type="button" value="GeoCoarseXDK"   id="id_btnGeoCoarseXDK" />
         <input type="button" value="GeoWatchXDK"    id="id_btnGeoXDK"  />
     </p>
 
@@ -119,6 +122,14 @@
             <tr>
                 <td><label for="compass-dir">Compass:</label></td>
                 <td><input type="text" disabled="disabled" id="compass-dir" /></td>
+            </tr>
+            <tr>
+                <td><label for="geo-latitude">GeoInfo:</label></td>
+                <td><input type="text" disabled="disabled" id="geo-info" /></td>
+            </tr>
+            <tr>
+                <td><label for="geo-latitude">GeoMode:</label></td>
+                <td><input type="text" disabled="disabled" id="geo-mode" /></td>
             </tr>
             <tr>
                 <td><label for="geo-latitude">GeoLatitude:</label></td>
@@ -216,7 +227,6 @@
     <!-- IMPORTANT: Do not include your weinre script tag as part of your release builds! -->
     <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
     <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
-<!--    <script src="http://debug-software.intel.com/target/target-script-min.js#BPi8Tln30rjwCwIERDT2mCBDPyoqWaD5tUI41K-0i8E"></script>-->
     <!-- See <head> section above for additional JS libraries loaded as part of this application. -->
 
     <script src="intelxdk.js"></script>         <!-- phantom library, needed for XDK api calls -->

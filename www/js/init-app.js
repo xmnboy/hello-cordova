@@ -92,6 +92,11 @@ app.initEvents = function() {
     el.addEventListener(evt, geo.btnGeoCoarse, false) ;
     el = document.getElementById("id_btnGeo") ;
     el.addEventListener(evt, geo.btnGeo, false) ;
+
+    el = document.getElementById("id_btnGeoFineXDK") ;
+    el.addEventListener(evt, geo.btnGeoFineXDK, false) ;
+    el = document.getElementById("id_btnGeoCoarseXDK") ;
+    el.addEventListener(evt, geo.btnGeoCoarseXDK, false) ;
     el = document.getElementById("id_btnGeoXDK") ;
     el.addEventListener(evt, geo.btnGeoXDK, false) ;
 
