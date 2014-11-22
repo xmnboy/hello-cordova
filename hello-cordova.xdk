@@ -5,7 +5,7 @@
       "type": "Import",
       "src": "",
       "projectGuid": "aee078dc-3d66-45d3-b2dc-5a4d1e5ba853",
-      "lastModifiedDate": 1416530624979,
+      "lastModifiedDate": 1416587860535,
       "creationDate": 1394663301756
     },
     "sourceDirectory": "www",
@@ -128,6 +128,12 @@
         "selectedState": "Included",
         "data": {},
         "paramvals": {}
+      },
+      {
+        "id": "intel.xdk.geolocation",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
       }
     ],
     "serviceMethods": [],
@@ -153,10 +159,10 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.5",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.11.20",
+        "appVersion_": "14.11.21",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation",
-        "appVersionCode_": "141120"
+        "appVersionCode_": "141121"
       },
       "Android-Crosswalk": {
         "platform_": "android",
@@ -177,10 +183,10 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.3",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.11.20",
+        "appVersion_": "14.11.21",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation",
-        "appVersionCode_": "141120"
+        "appVersionCode_": "141121"
       },
       "iOS": {
         "platform_": "ios",
@@ -211,7 +217,7 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.5",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.11.20",
+        "appVersion_": "14.11.21",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation"
       },
@@ -234,7 +240,7 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.5",
         "crosswalkVersion_": "stable",
-        "appVersion_": "14.11.20",
+        "appVersion_": "14.11.21",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation"
       },

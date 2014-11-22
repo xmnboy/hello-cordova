@@ -42,7 +42,7 @@ geo.watchIdGeoLocateXDK = null ;    // holds handle for watchPosition(), pass as
 
 geo.optionsXDK = {
     enableHighAccuracy : true,      // true for "fine" position (GPS), false for "coarse" position (network, et al)
-    timeout : 2000,                 // milliseconds interval to return a result (default is "Infinity")
+    timeout : 2000,                 // milliseconds interval to return a result (default is 10,000 msecs)
     maximumAge : 60000              // max age in milliseconds to wait for position before returning error
 } ;
 
