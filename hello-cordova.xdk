@@ -5,7 +5,7 @@
       "type": "Import",
       "src": "",
       "projectGuid": "aee078dc-3d66-45d3-b2dc-5a4d1e5ba853",
-      "lastModifiedDate": 1424832005461,
+      "lastModifiedDate": 1424845694716,
       "creationDate": 1394663301756,
       "projectTypeName": "com.intel.xdk.projecttype.jsapp"
     },
@@ -33,22 +33,8 @@
         "paramvals": {}
       },
       {
-        "id": "org.apache.cordova.battery-status",
-        "version": "0.2.12",
-        "selectedState": "Included",
-        "data": {},
-        "paramvals": {}
-      },
-      {
         "id": "org.apache.cordova.device-orientation",
         "version": "0.3.10",
-        "selectedState": "Included",
-        "data": {},
-        "paramvals": {}
-      },
-      {
-        "id": "org.apache.cordova.network-information",
-        "version": "0.2.14",
         "selectedState": "Included",
         "data": {},
         "paramvals": {}
@@ -68,22 +54,8 @@
         "paramvals": {}
       },
       {
-        "id": "org.apache.cordova.inappbrowser",
-        "version": "0.5.4",
-        "selectedState": "Included",
-        "data": {},
-        "paramvals": {}
-      },
-      {
         "id": "org.apache.cordova.media",
         "version": "0.2.15",
-        "selectedState": "Included",
-        "data": {},
-        "paramvals": {}
-      },
-      {
-        "id": "org.apache.cordova.dialogs",
-        "version": "0.2.11",
         "selectedState": "Included",
         "data": {},
         "paramvals": {}
@@ -97,13 +69,6 @@
       },
       {
         "id": "intel.xdk.player",
-        "selectedState": "Included",
-        "data": {},
-        "paramvals": {}
-      },
-      {
-        "id": "org.apache.cordova.file",
-        "version": "1.3.2",
         "selectedState": "Included",
         "data": {},
         "paramvals": {}
