@@ -5,7 +5,7 @@
       "type": "Import",
       "src": "",
       "projectGuid": "aee078dc-3d66-45d3-b2dc-5a4d1e5ba853",
-      "lastModifiedDate": 1424845694716,
+      "lastModifiedDate": 1424846098154,
       "creationDate": 1394663301756,
       "projectTypeName": "com.intel.xdk.projecttype.jsapp"
     },
@@ -69,6 +69,20 @@
       },
       {
         "id": "intel.xdk.player",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.inappbrowser",
+        "version": "0.5.4",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.dialogs",
+        "version": "0.2.11",
         "selectedState": "Included",
         "data": {},
         "paramvals": {}
