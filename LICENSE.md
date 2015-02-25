@@ -1,6 +1,6 @@
 # Intel® HTML5 Samples License Terms and Conditions
 
-Copyright © 2012-2015, Intel Corporation. All rights reserved.
+Copyright © 2012-2015, Paul Fischer, Intel Corporation. All rights reserved.
 
 This is a “BSD-3” license. <http://www.tldrlegal.com/l/bsd3>
 
