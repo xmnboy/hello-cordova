@@ -8,3 +8,6 @@ APIs and equivalent HTML5 APIs.
 More to be written... plan is to split this into multiple instructional apps.
 
   [LICENSE.md]: LICENSE.md
+
+p.s. Ignore the config.xml file, it has not been updated and probably does
+not work. It was meant for use with PhoneGap CLI.

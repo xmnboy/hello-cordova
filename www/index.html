@@ -9,7 +9,7 @@
     <title>Hello, Apache Cordova!</title>
 
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta name="Copyright" content="&copy; 2013-2014, Paul Fischer, Intel Corporation. All rights reserved.">
+    <meta name="Copyright" content="&copy; 2013-2015, Paul Fischer, Intel Corporation. All rights reserved.">
 
 <!--
   * The "meta viewport" tag (below) helps your app size appropriately to a device's screen.
@@ -19,17 +19,16 @@
   * To see what happens, try the app on a real device with and without a "meta viewport" tag.
 -->
 
-
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"> -->
+    <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
+    <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2">
 
     <style>
     /* following three (cascaded) are equivalent to above three meta viewport statements */
     /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
     /* see http://dev.w3.org/csswg/css-device-adapt/ */
-        @-ms-viewport { width: 100vw ; zoom: 100% ; }                           @viewport { width: 100vw ; zoom: 100% ; }
-        @-ms-viewport { user-zoom: fixed ; }                                    @viewport { user-zoom: fixed ; }
+        @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
         @-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }
     </style>
 
@@ -40,8 +39,8 @@
     <!-- <script src="lib/jq/jquery.js"></script> -->
     <!-- <script src="lib/af/jq.appframework.js"></script> -->
     <!-- <script src="lib/af/appframework.ui.js"></script> -->
-    <script src="lib/ua-parser/ua-parser-0.6.16.min.js"></script>
-    <script src="lib/moment/moment.2.6.0.js"></script>
+    <script src="lib/ua-parser/ua-parser-0.7.3.min.js"></script>
+    <script src="lib/moment/moment.2.9.0.js"></script>
 
     <!-- <link rel="stylesheet" href="lib/af/icons.css"> -->
     <!-- <link rel="stylesheet" href="lib/af/af.ui.css"> -->
@@ -61,6 +60,9 @@
     <h1 class="align-center">Hello, Apache Cordova!</h1>
     <h2 class="align-center" id="id_cordova">Indicate Cordova presence here...</h2>
 
+    <div class="align-center">
+        <p class="event"  id="id_windowCordova">Waiting for window.cordova...</p>
+    </div>
     <div class="align-center" id="id_deviceReady">
         <p class="event listening">Waiting for Device Ready...</p>
         <p class="event received">Device Ready Event Received!</p>
@@ -72,11 +74,12 @@
     <br>
 
     <p class="align-center">
-<!--        <audio src="audio/bark.wav" preload="metadata" controls="controls"></audio>-->
-        <audio src="audio/bark.wav" preload="auto" ></audio>
-<!--        <br>-->
         <input type="button" value="Beep"           id="id_btnBeep"    />
         <input type="button" value="Vibrate"        id="id_btnVibrate" />
+        <br>
+        <audio src="audio/bark.wav" preload="metadata" controls="controls" style="display: none;"></audio>
+<!--        <audio src="audio/bark.wav" preload="auto" ></audio>-->
+        <br style="display: none;">
         <input type="button" value="BarkHTML5"      id="id_btnBarkHTML5" />
         <input type="button" value="BarkCordova"    id="id_btnBarkCordova" />
         <input type="button" value="BarkXDK"        id="id_btnBarkXDK" />
@@ -87,11 +90,12 @@
         <input type="button" value="GeoFine"        id="id_btnGeoFine" />
         <input type="button" value="GeoCoarse"      id="id_btnGeoCoarse" />
         <input type="button" value="GeoWatch"       id="id_btnGeo"     />
-        <br>
-        <input type="button" value="GeoFineXDK"     id="id_btnGeoFineXDK" />
-        <input type="button" value="GeoCoarseXDK"   id="id_btnGeoCoarseXDK" />
-        <input type="button" value="GeoWatchXDK"    id="id_btnGeoXDK"  />
-    </p>
+        <br style="display: none;">
+        <input type="button" value="GeoFineXDK"     id="id_btnGeoFineXDK" style="display: none;"/>
+        <input type="button" value="GeoCoarseXDK"   id="id_btnGeoCoarseXDK" style="display: none;"/>
+        <input type="button" value="GeoWatchXDK"    id="id_btnGeoXDK"  style="display: none;"/>
+
+     </p>
 
 <!-- TODO: need to put each of the following tables into a floating container -->
 <!-- TODO: container width needs to be determined by media query width -->

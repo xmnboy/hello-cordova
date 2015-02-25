@@ -6,12 +6,12 @@
 
 
 /*jslint browser:true, devel:true, white:true, vars:true */
-/*global $:false, intel:false */
+/*global $:false, intel:false, moment:false */
 
 
 
 // addClass() and removeClass() are alternatives to using jQuery
-// TODO: this function has flaws, see comments below...
+// NOTE: this function has flaws, see comments below...
 // Beware: if( cn.indexOf( classname ) != -1 ) { return ; }
 // Beware: fails if you add class “btn” and class “btn-info” is already there
 
@@ -56,7 +56,7 @@ function getWebRoot() {
 
 
 
-// copy simply objects
+// copy simple objects
 
 function copyObject(objIn) {
     "use strict" ;
@@ -89,16 +89,29 @@ console.log = function() {
 
     var text = args.join(" ") ;
     var node ;
+    var el ;
 
-    var el = document.getElementById("id_textArea") ;
+    el = document.getElementById("id_textArea") ;
     if( el ) {
         node = document.createTextNode(text + "\n") ;
         el.appendChild(node) ;
     }
 
-    var el = document.getElementById("id_msgBar") ;
+    el = document.getElementById("id_msgBar") ;
     if( el ) {
         node = document.createTextNode(text) ;
         el.replaceChild(node,el.childNodes[0]) ;
     }
 } ;
+
+
+
+// use to print error messages to console.log() or alert()
+// uncomment appropriate lines to get what you need...
+// TODO: not yet debugged and tested
+
+// window.onerror = function (errorMsg, url, lineNumber, column, errorObj) {
+//     "use strict" ;
+// //    alert('Error: ' + errorMsg + ' Script: ' + url + ' Line: ' + lineNumber + ' Column: ' + column + ' StackTrace: ' +  errorObj) ;
+// //    console.log('Error: ' + errorMsg + ' Script: ' + url + ' Line: ' + lineNumber + ' Column: ' + column + ' StackTrace: ' +  errorObj) ;
+// } ;

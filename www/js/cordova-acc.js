@@ -59,8 +59,8 @@ function btnAccel() {
 
 
     if( watchIdAccel === null ) {
-        try {                               // watch and update accelerometer values every 250 msecs
-            watchIdAccel = navigator.accelerometer.watchAcceleration(onSuccess, onFail, {frequency:250}) ;
+        try {                               // watch and update accelerometer values every 500 msecs
+            watchIdAccel = navigator.accelerometer.watchAcceleration(onSuccess, onFail, {frequency:500}) ;
             addClass("cl_btnOn", document.getElementById("id_btnAccel")) ;
             console.log(fName, "btnAccel enabled.") ;
         }

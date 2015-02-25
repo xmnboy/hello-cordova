@@ -139,10 +139,21 @@ app.initDebug = function() {
         }
     }
 
-    // Following is for demonstration.
-    // find the "system ready" indicator on our display
+    // Following is for demonstration and debug.
+    // Update the "system ready" and "cordova present" indicators on our display.
 
-    var el = document.getElementById("id_cordova") ;
+    var el, text, node ;
+
+    el = document.getElementById("id_windowCordova") ;
+    text = "window.cordova is NOT present" ;
+    if( window.cordova )
+        text = "window.cordova IS present" ;
+    if( el ) {
+        node = document.createTextNode(text) ;
+        el.replaceChild(node,el.childNodes[0]) ;
+    }
+
+    el = document.getElementById("id_cordova") ;
     var parentElement = document.getElementById("id_deviceReady") ;
     var listeningElement = parentElement.querySelector('.listening') ;
     var receivedElement = parentElement.querySelector('.received') ;

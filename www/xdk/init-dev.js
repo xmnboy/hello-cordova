@@ -38,7 +38,7 @@
 
 
 
-window.dev = window.dev || {} ;         // there should only be one of these...
+window.dev = window.dev || {} ;         // could be predefined in index.html file...
 
 
 
@@ -57,7 +57,7 @@ else {
 // Set to "true" if you want the console.log messages to appear.
 // Helpful for debugging and understanding how this thing works.
 
-dev.LOG = false ;
+dev.LOG = dev.LOG || false ;
 
 dev.consoleLog = function() {       // only emits console.log messages if dev.LOG != false
     if( dev.LOG ) {
@@ -70,14 +70,18 @@ dev.consoleLog = function() {       // only emits console.log messages if dev.LO
 
 // Defines some delays constants used throughout for ready detections.
 // Each should be smaller than the next; most cases should work as is.
-// Lowering dev.BROWSER will speed up detection of browser scenario...
+// Lowering dev.BROWSER speeds up detection of browser scenario...
 // ...at expense of possible false detects of browser environment...
 // ...probably okay to go as low as 3000ms, depends on external libraries, etc.
+// dev.NAME = dev.NAME || ## ; allows for override of values in index.html
 
-dev.INSURANCE = 250 ;                   // ms, insurance on registering ready events detected
-dev.WINDOW_LOAD = 500 ;                 // ms, for combating premature window load events
-dev.BROWSER = 7000 ;                    // ms, detecting in a browser (probably best at >5 seconds)
-dev.FAIL_SAFE = 10000 ;                 // ms, if all else fails, this saves our bacon :-)
+if( typeof window.cordova !== "undefined" ) // if real cordova.js is present, we should detect a "deviceready"...
+    dev.BROWSER = dev.BROWSER || 7000 ;     // ...fall back to "in browser" (best if >5 seconds when Cordova present)
+
+dev.INSURANCE = dev.INSURANCE || 250 ;      // msecs, insurance on registering ready events detected
+dev.WINDOW_LOAD = dev.WINDOW_LOAD || 500 ;  // msecs, for combating premature window load events
+dev.BROWSER = dev.BROWSER || 500 ;          // msecs, non-Cordova apps don't care about "deviceready" events
+dev.FAIL_SAFE = dev.FAIL_SAFE || 10000 ;    // msecs, if all else fails, this saves our bacon :-)
 
 
 
@@ -89,7 +93,7 @@ dev.isDeviceReady = {                   // listed in approximate order expected
     a_startTime______:dev.timeStamp(),  // when we started execution of this module
     b_fnDocumentReady:false,            // detected document.readyState == "complete"
     c_cordova_ready__:false,            // detected cordova device ready event
-    d_xdk_ready______:false,            // detected xdk device ready event
+    d_xdk_ready______:false,            // detected Intel XDK device ready event
     e_fnDeviceReady__:false,            // entered onDeviceReady()
     f_browser_ready__:false             // detected browser container
 } ;
@@ -100,7 +104,7 @@ dev.isDeviceReady = {                   // listed in approximate order expected
 // Runs after underlying device native code and browser is initialized.
 // Usually not much needed here, just additional "device init" code.
 // See initDeviceReady() below for code that kicks off this function.
-// This function works with Cordova and XDK webview or in a browser.
+// This function works with Cordova and Intel XDK webview or in a browser.
 
 // NOTE: Customize this function, if necessary, for low-level init of your app.
 
@@ -174,7 +178,7 @@ dev.onDeviceReadyCordova = function() {
     window.setTimeout(dev.onDeviceReady, dev.INSURANCE) ;
 } ;
 
-// If this event is called first, we should be in the legacy XDK container.
+// If this event is called first, we should be in the legacy Intel XDK container.
 
 dev.onDeviceReadyXDK = function() {
     dev.isDeviceReady.d_xdk_ready______ = dev.timeStamp() ;
@@ -214,7 +218,7 @@ dev.initDeviceReady = function() {
     document.addEventListener("deviceready", dev.onDeviceReadyCordova, false) ;
     window.setTimeout(dev.onDeviceReadyBrowser, dev.BROWSER) ;
 
-    // Last one, above, is fail-safe, in case we got no device ready event from Cordova or XDK.
+    // Last one, above, is fail-safe, in case we got no device ready event from Cordova or Intel XDK.
     // Cordova will timeout after five seconds, so we use a longer timeout to be conservative.
     // Very end of this file includes a "fail-safe, fail-safe" in case all else fails!
 
@@ -240,16 +244,35 @@ dev.initDeviceReady = function() {
 
 // NOTE: document.readyState seems to be more reliable, but seems not to be omnipresent.
 // NOTE: Delay after "load" event is added because some webviews appear to trigger prematurely.
+// NOTE: Looks like overkill, we are trying to capture any and all doc ready events.
+// Parts derived from http://dean.edwards.name/weblog/2006/06/again/
 
-if( document.readyState ) {                     // some devices don't support this, why???
+if( document.readyState ) {
     dev.consoleLog("document.readyState:", document.readyState) ;
     document.onreadystatechange = function () {
         dev.consoleLog("document.readyState:", document.readyState) ;
-        if (document.readyState === "complete") {
-            dev.initDeviceReady() ;             // call when document is "ready ready" :)
+        if( (document.readyState === "complete") || (document.readyState === "loaded") ) {
+            dev.initDeviceReady() ;
         }
     } ;
 }
-dev.consoleLog("addEventListener:", dev.timeStamp()) ;
-window.addEventListener("load", function(){window.setTimeout(dev.initDeviceReady,dev.WINDOW_LOAD);}.bind(dev), false) ;
+
+if( document.addEventListener ) {
+    dev.consoleLog("document.addEventListener:", dev.timeStamp()) ;
+    document.addEventListener("DOMContentLoaded", dev.initDeviceReady, false) ;
+}
+
+if( window.addEventListener ) {
+    dev.consoleLog("window.addEventListener:", dev.timeStamp()) ;
+    window.addEventListener("load", dev.initDeviceReady, false) ;
+} else if( window.attachEvent ) {
+    dev.consoleLog("window.attachEvent:", dev.timeStamp()) ;
+    window.attachEvent("onload", dev.initDeviceReady) ;
+}
+
+// window.addEventListener("load", function(){window.setTimeout(dev.initDeviceReady,dev.WINDOW_LOAD);}.bind(dev), false) ;
+// window.onload = function(){window.setTimeout(dev.initDeviceReady,dev.WINDOW_LOAD);}.bind(dev) ;
+// window.onload = dev.initDeviceReady ;
+
 window.setTimeout(dev.initDeviceReady, dev.FAIL_SAFE) ;     // fail-safe fail-safe, just in case we miss all events!
+dev.consoleLog("end init-dev.js:", dev.timeStamp()) ;       // debug marker to indicate finished reading init-dev.js

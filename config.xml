@@ -4,12 +4,12 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.xmnboy.pg.hellocordova"
-        versionCode = "20140602"
-        version   = "2014.06.02">
+        versionCode = "150224"
+        version   = "15.02.24">
 
     <name>Hello, Cordova! (CLI)</name>
     <author  email = "paul.a.fischer@intel.com" href = "xdk.intel.com">Paul Fischer</author>
-    <description>Cordova demo and test application.</description>
+    <description>Cordova demo and test app.</description>
 
 <!--
 Enable individual API permissions by defining each here.
