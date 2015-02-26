@@ -4,8 +4,8 @@
     "creationData": {
       "type": "Import",
       "src": "",
-      "projectGuid": "aee078dc-3d66-45d3-b2dc-5a4d1e5ba853",
-      "lastModifiedDate": 1424846098154,
+      "projectGuid": "00000000-0000-0000-0000-000000000000",
+      "lastModifiedDate": 1424971825944,
       "creationDate": 1394663301756,
       "projectTypeName": "com.intel.xdk.projecttype.jsapp"
     },
@@ -112,10 +112,10 @@
         "iosProvs_": [],
         "cordovaCLIVersion_": "4.1.2",
         "crosswalkVersion_": "stable",
-        "appVersion_": "15.02.24",
+        "appVersion_": "15.02.26",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation",
-        "appVersionCode_": "150224"
+        "appVersionCode_": "150226"
       },
       "Android-Crosswalk": {
         "platform_": "android",
@@ -138,10 +138,10 @@
         "iosProvs_": [],
         "cordovaCLIVersion_": "3.3",
         "crosswalkVersion_": "10",
-        "appVersion_": "15.02.24",
+        "appVersion_": "15.02.26",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation",
-        "appVersionCode_": "150224"
+        "appVersionCode_": "150226"
       },
       "iOS": {
         "platform_": "ios",
@@ -173,7 +173,7 @@
         ],
         "cordovaCLIVersion_": "4.1.2",
         "crosswalkVersion_": "stable",
-        "appVersion_": "15.02.24",
+        "appVersion_": "15.02.26",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation"
       },
@@ -197,7 +197,7 @@
         "iosProvs_": [],
         "cordovaCLIVersion_": "4.1.2",
         "crosswalkVersion_": "stable",
-        "appVersion_": "15.02.24",
+        "appVersion_": "15.02.26",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation"
       }
