@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2014, Paul Fischer, Intel Corporation. All rights reserved.
+ * Copyright (c) 2013-2015, Paul Fischer, Intel Corporation. All rights reserved.
  * Please see http://software.intel.com/html5/license/samples
  * and included README.md file for license terms and conditions.
  */
