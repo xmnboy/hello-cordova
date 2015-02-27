@@ -19,13 +19,11 @@ What you will need to follow this tutorial:
 -   Android 4.0 (or higher) phone or tablet + USB cable
 
 -   [Intel App Preview][2] installed on your Android device
-
     [2]: <https://play.google.com/store/apps/details?id=com.intel.html5tools.apppreview&hl=en>
 
 -   Workstation running Linux, Windows 7+ or Mac OS X
 
 -   The [Intel XDK][3] installed on your workstation
-
     [3]: <http://xdk.intel.com>
 
 Download and unzip a copy of this “hello-cordova” sample app onto your
@@ -51,15 +49,12 @@ tab will start the app inside a simulated device. The **Emulate** tab does not
 simulate real devices, it primarily does the following three things:
 
 -   simulates popular [device viewports][5]
-
     [5]: <http://www.quirksmode.org/mobile/viewports.html>
 
 -   simulates [device userAgent strings][6]
-
     [6]: <http://www.useragentstring.com/>
 
 -   simulates the [“core” Cordova APIs][7]
-
     [7]: <http://cordova.apache.org/docs/en/4.0.0/cordova_plugins_pluginapis.md.html#Plugin APIs>
 
 See this doc page for more details about these limitations:
@@ -158,11 +153,11 @@ If you push the “Beep” button it will cause the simulated device to issue a
 short audio alert. You might have to turn up the volume of your workstation to
 hear the short beep. Notice that the button does not turn green, like the
 “Compass” or “GeoWatch” buttons did. This is because the Cordova API that is
-being used to issue this audio alert has not “watch” feature, it is a simple
-call to a function that generates the alert.
+being used to issue this audio alert has no “watch” feature, it is a simple
+call to a function that generates the audio alert.
 
-This is an easy function to try your JavaScript debugging skills. You’ll find
-the function associated with that button inside the `main.js` file in the
+This is an easy function to test out your JavaScript debugging skills. You’ll
+find the function associated with that button inside the `main.js` file in the
 “hello-cordova” project. The specific function you are looking for is called,
 appropriately, `btnBeep()`. It is a very simple function, so there’s not much
 debugging that can be done, but it will help you get started.
@@ -190,7 +185,7 @@ were debugging a web page in Chrome and CDT. For example, similar to this image:
 From here you can use CDT to monitor the many `console.log()` messages that have
 been included in the “hello-cordova” application. You can also select a specific
 HTML element and fine-tune the CSS associated with the application. Try a few
-things to see what happens. Don’t worry about breaking something, changes you
+things to see what happens. Don’t worry about breaking the app, changes you
 make in the CDT window are temporary and do not impact your actual source code
 files, so you can always get back to where you started by simply restarting the
 session with the “refresh” icon on the toolbar (the “refresh” icon is located to
@@ -217,18 +212,18 @@ breakpoint:
 
 ![](<emulate-hit-breakpoint.png>)
 
-Notice the “Paused in debugger” notice at the top of the **Emulate** tab and the
+Notice the “Paused in debugger” alert at the top of the **Emulate** tab and the
 highlighted line of JavaScript code, where our breakpoint was placed.
 
-From here you can inspect local variables by hovering over them in the source
-panel (as shown below) or use the JavaScript console.
+From here you can inspect variables by hovering over them in the source
+panel (as shown below) and by using the JavaScript console.
 
 ![](<emulate-var-inspect.png>)
 
 To control execution following a break use the panel to the right of the of the
 source panel. The blue arrow (see image below) causes execution of the
 application to resume. Pushing the curved arrow that is jumping over a dot (to
-the right of the blue resume icon) causes your code to single-step. Try
+the right of the blue "resume" icon) causes your code to single-step. Try
 single-stepping through the function.
 
 ![](<emulate-debug-controls.png>)
@@ -278,10 +273,23 @@ present, before it loads and starts your app.
 
 ### Debugging Your App on the Device
 
-After the **Debug** tab has started your app on your device and the CDT window
-is present, you can go through the same sequence of steps described in the
-**Emulate** tab in the first part of this article. Unlike the **Emulate** tab
-exercise, there are no simulation panels to effect the accelerometer, compass or
-geolocation data. Instead, you must interact with the attached device to see the
-data displayed by the app change. In other words, you must rotate and move the
-device to see any results, because your app is now running on a real device!
+After the **Debug** tab has started running your app on your device, and the CDT
+window is present, you can go through the same sequence of steps described in
+the **Emulate** tab in the first part of this article. Unlike the **Emulate**
+tab exercise, there are no simulation panels to effect the accelerometer,
+compass or geolocation data. Instead, you must interact with the attached device
+to see the data displayed by the app change. In other words, you must rotate and
+move the device to see any results, because your app is now running on a real
+device!
+
+Note that not all devices are guaranteed to include the hardware necessary to
+use all the features of this simple "hello-cordova" application. For example, it
+is quite common to encounter devices that do not include compass or GPS hardware.
+In that case the "Compass" button will not read any data and the precision of
+the GPS data may be quite low or non-existent. The precise capabilities of
+geolocation hardware in Android devices can vary widely. In addition, the
+ability to read geolocation data on a real device can be also restricted by the
+Android "Location" settings or mode. For example, if a device includes GPS
+hardware but that GPS hardware has been disabled in the Android settings, it may
+result in no "fine" geolocation data being read from the device, or the data
+may be identical to the "coarse" geolocation data results.
