@@ -57,7 +57,7 @@ simulate real devices, it primarily does the following three things:
 
 [5]: <http://www.quirksmode.org/mobile/viewports.html>
 [6]: <http://www.useragentstring.com/>
-[7]: <http://cordova.apache.org/docs/en/4.0.0/cordova_plugins_pluginapis.md.html#Plugin APIs>
+[7]: <http://cordova.apache.org/docs/en/4.0.0/cordova_plugins_pluginapis.md.html#Plugin%20APIs>
 
 See this doc page for more details about these limitations:
 <https://software.intel.com/en-us/html5/intel-xdk-debug-and-test-overview#EmulateTab>.
