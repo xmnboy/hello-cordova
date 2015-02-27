@@ -19,12 +19,13 @@ What you will need to follow this tutorial:
 -   Android 4.0 (or higher) phone or tablet + USB cable
 
 -   [Intel App Preview][2] installed on your Android device
-    [2]: <https://play.google.com/store/apps/details?id=com.intel.html5tools.apppreview&hl=en>
 
 -   Workstation running Linux, Windows 7+ or Mac OS X
 
 -   The [Intel XDK][3] installed on your workstation
-    [3]: <http://xdk.intel.com>
+
+[2]: <https://play.google.com/store/apps/details?id=com.intel.html5tools.apppreview&hl=en>
+[3]: <http://xdk.intel.com>
 
 Download and unzip a copy of this “hello-cordova” sample app onto your
 workstation. Then, from the Intel XDK **Projects** tab (click *PROJECTS* in the
@@ -49,13 +50,14 @@ tab will start the app inside a simulated device. The **Emulate** tab does not
 simulate real devices, it primarily does the following three things:
 
 -   simulates popular [device viewports][5]
-    [5]: <http://www.quirksmode.org/mobile/viewports.html>
 
 -   simulates [device userAgent strings][6]
-    [6]: <http://www.useragentstring.com/>
 
 -   simulates the [“core” Cordova APIs][7]
-    [7]: <http://cordova.apache.org/docs/en/4.0.0/cordova_plugins_pluginapis.md.html#Plugin APIs>
+
+[5]: <http://www.quirksmode.org/mobile/viewports.html>
+[6]: <http://www.useragentstring.com/>
+[7]: <http://cordova.apache.org/docs/en/4.0.0/cordova_plugins_pluginapis.md.html#Plugin APIs>
 
 See this doc page for more details about these limitations:
 <https://software.intel.com/en-us/html5/intel-xdk-debug-and-test-overview#EmulateTab>.
@@ -288,8 +290,8 @@ is quite common to encounter devices that do not include compass or GPS hardware
 In that case the "Compass" button will not read any data and the precision of
 the GPS data may be quite low or non-existent. The precise capabilities of
 geolocation hardware in Android devices can vary widely. In addition, the
-ability to read geolocation data on a real device can be also restricted by the
-Android "Location" settings or mode. For example, if a device includes GPS
+ability to read geolocation data on a real device can also be restricted by the
+Android "Location" settings, or mode. For example, if a device includes GPS
 hardware but that GPS hardware has been disabled in the Android settings, it may
-result in no "fine" geolocation data being read from the device, or the data
+result in no "fine" geolocation data being returned from the device, or the data
 may be identical to the "coarse" geolocation data results.
