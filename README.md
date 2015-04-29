@@ -8,7 +8,7 @@ This sample webview app illustrates the use of some common Cordova APIs and
 APIs and some equivalent HTML5 APIs within a hybrid mobile HTML5 app.
 
 A detailed "how to" use this app with the [Intel XDK][1] is provided in the
-[included tutorial][]]. Please read the tutorial for an introduction to this
+[included tutorial][]. Please read the tutorial for an introduction to this
 sample app and the Intel XDK.
 
 [included tutorial]: docs/README.md
