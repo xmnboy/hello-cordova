@@ -76,7 +76,7 @@ dev.consoleLog = function() {       // only emits console.log messages if dev.LO
 // dev.NAME = dev.NAME || ## ; allows for override of values in index.html
 
 if( typeof window.cordova !== "undefined" ) // if real cordova.js is present, we should detect a "deviceready"...
-    dev.BROWSER = dev.BROWSER || 7000 ;     // ...fall back to "in browser" (best if >5 seconds when Cordova present)
+    dev.BROWSER = dev.BROWSER || 7000 ;     // ...best if >5 seconds when Cordova is expected to be present
 
 dev.INSURANCE = dev.INSURANCE || 250 ;      // msecs, insurance on registering ready events detected
 dev.WINDOW_LOAD = dev.WINDOW_LOAD || 500 ;  // msecs, for combating premature window load events

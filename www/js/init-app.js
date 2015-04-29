@@ -49,6 +49,7 @@ app.initEvents = function() {
     // NOTE: initialize third-party libraries and event handlers
 
     app.uaParser = new UAParser() ;
+    app.consoleLog(fName, app.uaParser.getResult()) ;
 
     // NOTE: initialize your application code
 

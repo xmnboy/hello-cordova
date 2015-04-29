@@ -5,7 +5,7 @@ As the [table on this page][1] illustrates, there are many ways to debug a
 hybrid HTML5 app using the Intel XDK. In this article I’m going to go through
 just two of these options:
 
-[1]: <https://software.intel.com/en-us/html5/intel-xdk-debug-and-test-overview>
+[1]: <https://software.intel.com/en-us/xdk/docs/intel-xdk-debug-and-test-overview>
 
 1.  using the **Emulate** tab
 
@@ -24,7 +24,7 @@ What you will need to follow this tutorial:
 
 -   The [Intel XDK][3] installed on your workstation
 
-[2]: <https://play.google.com/store/apps/details?id=com.intel.html5tools.apppreview&hl=en>
+[2]: <https://play.google.com/store/apps/details?id=com.intel.html5tools.apppreview>
 [3]: <http://xdk.intel.com>
 
 Download and unzip a copy of this “hello-cordova” sample app onto your
@@ -57,10 +57,10 @@ simulate real devices, it primarily does the following three things:
 
 [5]: <http://www.quirksmode.org/mobile/viewports.html>
 [6]: <http://www.useragentstring.com/>
-[7]: <http://cordova.apache.org/docs/en/4.0.0/cordova_plugins_pluginapis.md.html#Plugin%20APIs>
+[7]: <http://cordova.apache.org/docs/en/5.0.0/cordova_plugins_pluginapis.md.html#Plugin%20APIs>
 
 See this doc page for more details about these limitations:
-<https://software.intel.com/en-us/html5/intel-xdk-debug-and-test-overview#EmulateTab>.
+<https://software.intel.com/en-us/xdk/docs/intel-xdk-debug-and-test-overview#EmulateTab>.
 
 What the **Emulate** tab does do, very well, is make it easy to test and debug
 your basic application code (HTML, CSS and JavaScript). The fact that it
@@ -100,7 +100,7 @@ simulated device screen. This is because the application is calling the Cordova
 device-motion plugin][9] (which is included as part of the project by selecting
 `Accelerometer` from the **Plugins** section of the **Projects** tab).
 
-[9]: <https://github.com/apache/cordova-plugin-device-motion/blob/master/doc/index.md>
+[9]: <https://github.com/apache/cordova-plugin-device-motion/>
 
 If you want to inspect the accelerometer code, find the `cordova-acc.js` file
 inside the “hello-cordova” project.
@@ -240,9 +240,9 @@ Using the Debug Tab
 
 For a quick overview of the **Debug** tab requirements and features, see this
 article:
-<https://software.intel.com/en-us/html5/intel-xdk-debug-and-test-overview#DebugTab>.
+<https://software.intel.com/en-us/xdk/docs/intel-xdk-debug-and-test-overview#DebugTab>.
 A more detailed explanation of the **Debug** tab can be found here:
-<https://software.intel.com/en-us/html5/articles/using-the-debug-tab>.
+<https://software.intel.com/en-us/xdk/docs/using-the-debug-tab>.
 
 ### Getting Started with the Debug Tab
 
@@ -256,7 +256,7 @@ left of the **Debug** tab’s toolbar, at the upper left of the window.
 If your device does not appear, as shown above, [follow the steps in this
 article][12] to configure your device and workstation for Android USB debugging.
 
-[12]: <https://software.intel.com/en-us/html5/documentation/configuring-your-windows-usb-android-debug-connection-for-the-intel-xdk>
+[12]: <https://software.intel.com/en-us/xdk/docs/configuring-your-windows-usb-android-debug-connection-for-the-intel-xdk>
 
 ### Running Your App on the Device
 

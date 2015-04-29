@@ -67,8 +67,8 @@ function btnBarkCordova() {
         console.log(fName, "getWebRoot() => ", z) ;
 
         var media = "audio/bark.wav" ;
-//        if( z.match(/\/emulator.*\/ripple\/userapp/i) ) {           // if in the Ripple emulator
-        if( window.tinyHippos ) {                                   // if in the Ripple emulator
+//        if( z.match(/\/emulator.*\/ripple\/userapp/i) ) {           // if in the Emulate tab
+        if( window.tinyHippos ) {                                   // if in the Emulate tab
             media = z + "/" + media ;
         }
         else if( x.match(/(ios)|(iphone)|(ipod)|(ipad)/ig) ) {      // if on a real iOS device
