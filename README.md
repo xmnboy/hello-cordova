@@ -6,7 +6,7 @@ See [LICENSE.md][] for license terms and conditions.
 
 This sample webview app illustrates the use of some common core Cordova APIs
 and, where possible, the equivalent HTML5 APIs within a hybrid mobile HTML5 app.
-This app has been built and installed on Crosswalk for Android, Android, iOS
+This app has been built and installed on Android Crosswalk, Android, iOS
 and Windows 8 devices. It may run on other Cordova platforms, but has not been
 tested on those other platforms.
 

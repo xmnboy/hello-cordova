@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2014, Paul Fischer, Intel Corporation. All rights reserved.
+ * Copyright (c) 2013-2015, Paul Fischer, Intel Corporation. All rights reserved.
  * Please see http://software.intel.com/html5/license/samples
  * and the included README.md file for license terms and conditions.
  */
@@ -7,10 +7,7 @@
 body {
     background-image: url('../img/subtlepatterns.com/sneaker-mesh-fabric.png') ;
     background-attachment: fixed ;
-/*    background-color: blue ;*/
     max-width: 800px ;
-    /*margin: 0.5rem ;*/
-    /*width: 80%;*/
     margin: 0 auto;
 
     /* Disable certain interactions on touch devices */
@@ -116,6 +113,9 @@ tr:nth-child(odd) > td:nth-child(2) {
     color:white ;
     margin:0 30px ;
     padding:2px 0 ;
+    overflow:hidden ;
+    white-space:nowrap ;
+    text-overflow:ellipsis ;
 }
 .event.listening {
     background-color:khaki ;

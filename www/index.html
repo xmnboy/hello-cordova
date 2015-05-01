@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <!--
-   * Copyright (c) 2013-2014, Paul Fischer, Intel Corporation. All rights reserved.
+   * Copyright (c) 2013-2015, Paul Fischer, Intel Corporation. All rights reserved.
    * Please see http://software.intel.com/html5/license/samples
    * and the included README.md file for license terms and conditions.
   -->
@@ -58,42 +58,55 @@
 
 <body>
     <h1 class="align-center">Hello, Apache Cordova!</h1>
-    <h2 class="align-center" id="id_cordova">Indicate Cordova presence here...</h2>
+    <h2 id="id_cordova" class="align-center">Indicate Cordova presence here...</h2>
 
     <div class="align-center">
-        <p class="event"  id="id_windowCordova">Waiting for window.cordova...</p>
+        <p id="id_windowCordova" class="event">Waiting for window.cordova...</p>
     </div>
-    <div class="align-center" id="id_deviceReady">
+    <div id="id_deviceReady" class="align-center">
         <p class="event listening">Waiting for Device Ready...</p>
         <p class="event received">Device Ready Event Received!</p>
         <p class="event failed">No Device Ready Event Detected...</p>
     </div>
     <div class="align-center">
-        <p class="event listening" id="id_msgBar"><span>debug messages go here...</span></p>
+        <p id="id_msgBar" class="event listening"><span>debug messages go here...</span></p>
     </div>
     <br>
 
     <p class="align-center">
-        <input type="button" value="Beep"           id="id_btnBeep"    />
-        <input type="button" value="Vibrate"        id="id_btnVibrate" />
+        <input id="id_btnBeep"          type="button" value="Beep" />
+        <input id="id_btnVibrate"       type="button" value="Vibrate" />
         <br>
-        <audio src="audio/bark.wav" preload="metadata" controls="controls" style="display: none;"></audio>
+        <audio
+               src="audio/bark.wav"
+               preload="metadata"
+               style="width: 0; overflow: hidden; float: left; display: none;"
+               >
+        </audio>
+<!--        <audio src="audio/bark.wav" preload="metadata" controls="controls" style="display: none;"></audio>-->
 <!--        <audio src="audio/bark.wav" preload="auto" ></audio>-->
         <br style="display: none;">
-        <input type="button" value="BarkHTML5"      id="id_btnBarkHTML5" />
-        <input type="button" value="BarkCordova"    id="id_btnBarkCordova" />
-        <input type="button" value="BarkXDK"        id="id_btnBarkXDK" />
+
+        <input id="id_btnBarkHTML5"     type="button" value="BarkHTML5" />
+        <input id="id_btnBarkCordova"   type="button" value="BarkCordova" />
+        <input id="id_btnBarkXDK"       type="button" value="BarkXDK" style="display: none;" />
+
         <br>
-        <input type="button" value="Accelerometer"  id="id_btnAccel"   />
-        <input type="button" value="Compass"        id="id_btnCompass" />
+
+        <input id="id_btnAccel"         type="button" value="Accelerometer" />
+        <input id="id_btnCompass"       type="button" value="Compass" />
+
         <br>
-        <input type="button" value="GeoFine"        id="id_btnGeoFine" />
-        <input type="button" value="GeoCoarse"      id="id_btnGeoCoarse" />
-        <input type="button" value="GeoWatch"       id="id_btnGeo"     />
+
+        <input id="id_btnGeoFine"       type="button" value="GeoFine" />
+        <input id="id_btnGeoCoarse"     type="button" value="GeoCoarse" />
+        <input id="id_btnGeo"           type="button" value="GeoWatch" />
+
         <br style="display: none;">
-        <input type="button" value="GeoFineXDK"     id="id_btnGeoFineXDK" style="display: none;"/>
-        <input type="button" value="GeoCoarseXDK"   id="id_btnGeoCoarseXDK" style="display: none;"/>
-        <input type="button" value="GeoWatchXDK"    id="id_btnGeoXDK"  style="display: none;"/>
+
+        <input id="id_btnGeoFineXDK"    type="button" value="GeoFineXDK"       style="display: none;" />
+        <input id="id_btnGeoCoarseXDK"  type="button" value="GeoCoarseXDK"   style="display: none;" />
+        <input id="id_btnGeoXDK"        type="button" value="GeoWatchXDK"          style="display: none;" />
 
      </p>
 
@@ -103,75 +116,75 @@
 
 <div class="columns">
 <!-- Accelerometer data display -->
-    <table class="column-left" id="accelOutput">
+    <table id="accelOutput" class="column-left">
         <colgroup><col width="25%" class="align-right"></colgroup>
         <colgroup><col width="75%" class="text"></colgroup>
         <tbody>
             <tr>
                 <td><label for="acceleration-x">AccelX:</label></td>
-                <td><input type="text" disabled="disabled" id="acceleration-x" /></td>
+                <td><input id="acceleration-x" type="text" disabled="disabled" /></td>
             </tr>
             <tr>
                 <td><label for="acceleration-y">AccelY:</label></td>
-                <td><input type="text" disabled="disabled" id="acceleration-y" /></td>
+                <td><input id="acceleration-y" type="text" disabled="disabled" /></td>
             </tr>
             <tr>
                 <td><label for="acceleration-z">AccelZ:</label></td>
-                <td><input type="text" disabled="disabled" id="acceleration-z" /></td>
+                <td><input id="acceleration-z" type="text" disabled="disabled" /></td>
             </tr>
             <tr>
                 <td><label for="acceleration-t">AccelT:</label></td>
-                <td><input type="text" disabled="disabled" id="acceleration-t" /></td>
+                <td><input id="acceleration-t" type="text" disabled="disabled" /></td>
             </tr>
             <tr>
                 <td><label for="compass-dir">Compass:</label></td>
-                <td><input type="text" disabled="disabled" id="compass-dir" /></td>
+                <td><input id="compass-dir" type="text" disabled="disabled" /></td>
             </tr>
             <tr>
                 <td><label for="geo-latitude">GeoInfo:</label></td>
-                <td><input type="text" disabled="disabled" id="geo-info" /></td>
+                <td><input id="geo-info" type="text" disabled="disabled" /></td>
             </tr>
             <tr>
                 <td><label for="geo-latitude">GeoMode:</label></td>
-                <td><input type="text" disabled="disabled" id="geo-mode" /></td>
+                <td><input id="geo-mode" type="text" disabled="disabled" /></td>
             </tr>
             <tr>
                 <td><label for="geo-latitude">GeoLatitude:</label></td>
-                <td><input type="text" disabled="disabled" id="geo-latitude" /></td>
+                <td><input id="geo-latitude" type="text" disabled="disabled" /></td>
             </tr>
             <tr>
                 <td><label for="geo-longitude">GeoLongitude:</label></td>
-                <td><input type="text" disabled="disabled" id="geo-longitude" /></td>
+                <td><input id="geo-longitude" type="text" disabled="disabled" /></td>
             </tr>
             <tr>
                 <td><label for="geo-accuracy">GeoAccuracy:</label></td>
-                <td><input type="text" disabled="disabled" id="geo-accuracy" /></td>
+                <td><input id="geo-accuracy" type="text" disabled="disabled" /></td>
             </tr>
             <tr>
                 <td><label for="geo-altitude">GeoAltitude:</label></td>
-                <td><input type="text" disabled="disabled" id="geo-altitude" /></td>
+                <td><input id="geo-altitude" type="text" disabled="disabled" /></td>
             </tr>
             <tr>
                 <td><label for="geo-altAcc">GeoAltAcc:</label></td>
-                <td><input type="text" disabled="disabled" id="geo-altAcc" /></td>
+                <td><input id="geo-altAcc" type="text" disabled="disabled" /></td>
             </tr>
             <tr>
                 <td><label for="geo-heading">GeoHeading:</label></td>
-                <td><input type="text" disabled="disabled" id="geo-heading" /></td>
+                <td><input id="geo-heading" type="text" disabled="disabled" /></td>
             </tr>
             <tr>
                 <td><label for="geo-speed">GeoSpeed:</label></td>
-                <td><input type="text" disabled="disabled" id="geo-speed" /></td>
+                <td><input id="geo-speed" type="text" disabled="disabled" /></td>
             </tr>
             <tr>
                 <td><label for="geo-timestamp">GeoTime:</label></td>
-                <td><input type="text" disabled="disabled" id="geo-timestamp" /></td>
+                <td><input id="geo-timestamp" type="text" disabled="disabled" /></td>
             </tr>
         </tbody>
     </table>
 
 <!-- Basic Cordova info -->
-    <table class="column-right" id="cordovaInfo">
+    <table id="cordovaInfo" class="column-right">
         <colgroup><col width="25%" class="align-right"></colgroup>
         <colgroup><col width="75%"></colgroup>
         <tbody>
