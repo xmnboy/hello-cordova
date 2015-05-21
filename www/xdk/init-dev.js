@@ -3,6 +3,11 @@
  */
 
 
+// This file is optional.
+// It is only required if you choose to use the app.Ready event it generates.
+// Note the reference that includes it in the index.html file.
+
+
 /*
  * NOTE: In most cases, you can leave the code in this file alone and use it as is.
  *
