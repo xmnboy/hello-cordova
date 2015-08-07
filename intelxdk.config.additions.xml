@@ -5,15 +5,27 @@
 
 <!-- see https://github.com/apache/cordova-plugin-splashscreen for details -->
 <platform name="android">
+    <!-- below requires the splash screen plugin -->
+    <!-- docs: https://github.com/apache/cordova-plugin-splashscreen -->
+    <preference name="AutoHideSplashScreen" value="true" />
     <preference name="SplashScreen" value="splash" />
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="SplashMaintainAspectRatio" value="true" />
 </platform>
 
 <platform name="ios">
+    <!-- below requires the splash screen plugin -->
+    <!-- docs: https://github.com/apache/cordova-plugin-splashscreen -->
+    <preference name="AutoHideSplashScreen" value="false" />
     <preference name="FadeSplashScreen" value="false"/>
     <preference name="FadeSplashScreenDuration" value="2"/>
     <preference name="ShowSplashScreenSpinner" value="false"/>
+
+    <!-- below requires the status bar plugin -->
+    <!-- docs: https://github.com/apache/cordova-plugin-statusbar -->
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <!-- <preference name="StatusBarBackgroundColor" value="#000000" /> -->
+    <preference name="StatusBarStyle" value="lightcontent" />
 </platform>
 
 <!-- use this feature to add command-lines to be used by Crosswalk builds on device -->
