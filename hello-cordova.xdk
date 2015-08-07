@@ -5,7 +5,7 @@
       "type": "Import",
       "src": "",
       "projectGuid": "00000000-0000-0000-0000-000000000000",
-      "lastModifiedDate": 1432241963392,
+      "lastModifiedDate": 1438477531034,
       "creationDate": 1394663301756,
       "projectTypeName": "com.intel.xdk.projecttype.jsapp"
     },
@@ -94,12 +94,11 @@
         "selectedState": "Included",
         "data": {},
         "paramvals": {},
-        "checksum": "96e1dba76cc348bda318988df9fe8e480540b9581815c443951e844d5d95c9a6",
         "dependsOn": [],
         "dependedBy": []
       },
       {
-        "id": "org.apache.cordova.file",
+        "id": "org.apache.cordova.dialogs",
         "version": "?",
         "selectedState": "Included",
         "data": {},
@@ -108,7 +107,7 @@
         "dependedBy": []
       },
       {
-        "id": "org.apache.cordova.dialogs",
+        "id": "org.apache.cordova.file",
         "version": "?",
         "selectedState": "Included",
         "data": {},
@@ -125,13 +124,14 @@
         "name_": "Android-Crosswalk",
         "preferences_": {
           "android-minSdkVersion": "14",
-          "android-targetSdkVersion": "21",
+          "android-targetSdkVersion": "19",
           "android-installLocation": "auto",
-          "Orientation": "portrait"
+          "Orientation": "portrait",
+          "android-signed": true
         },
         "isActive_": true,
         "appName_": "Hello, Crosswalk",
-        "appID_": "com.xmnboy.xdk.hellocordova.crosswalk",
+        "appID_": "com.intel.xdk.hellocordova.crosswalk",
         "appAccess_": [],
         "icons_": [],
         "splashes_": [],
@@ -140,25 +140,25 @@
         "iosProvs_": [],
         "cordovaCLIVersion_": "?",
         "crosswalkVersion_": "?",
-        "appVersion_": "15.05.21",
+        "appVersion_": "15.8.1",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation",
-        "appVersionCode_": "150521"
+        "appVersionCode_": "150801"
       },
       "Android": {
         "platform_": "android",
         "runtime_": "Cordova 3.x",
         "name_": "Android",
         "preferences_": {
-          "android-minSdkVersion": "10",
-          "android-targetSdkVersion": "21",
+          "android-minSdkVersion": "14",
+          "android-targetSdkVersion": "19",
           "Orientation": "portrait",
           "android-installLocation": "auto",
           "Fullscreen": false
         },
         "isActive_": true,
         "appName_": "Hello, Cordova",
-        "appID_": "com.xmnboy.xdk.hellocordova",
+        "appID_": "com.intel.xdk.hellocordova",
         "appAccess_": [],
         "icons_": [],
         "splashes_": [],
@@ -167,10 +167,10 @@
         "iosProvs_": [],
         "cordovaCLIVersion_": "?",
         "crosswalkVersion_": "?",
-        "appVersion_": "15.05.21",
+        "appVersion_": "15.8.1",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation",
-        "appVersionCode_": "150521"
+        "appVersionCode_": "150801"
       },
       "iOS": {
         "platform_": "ios",
@@ -183,8 +183,8 @@
           "Orientation": "portrait"
         },
         "isActive_": true,
-        "appName_": "Hello Cordova",
-        "appID_": "com.xmnboy.xdk.hellocordova",
+        "appName_": "Hello, Cordova",
+        "appID_": "com.intel.xdk.hellocordova",
         "appAccess_": [],
         "icons_": [],
         "splashes_": [],
@@ -193,22 +193,21 @@
         "iosProvs_": [],
         "cordovaCLIVersion_": "?",
         "crosswalkVersion_": "?",
-        "appVersion_": "15.05.21",
+        "appVersion_": "15.8.1",
         "appDescription_": "Cordova demonstration app.",
-        "appAuthor_": "Paul Fischer, Intel Corporation"
+        "appAuthor_": "Paul Fischer, Intel Corporation",
+        "appVersionCode_": "150801"
       },
       "Windows8": {
         "platform_": "windows8",
         "runtime_": "Cordova 3.x",
         "name_": "Windows8",
         "preferences_": {
-          "windows-publisher-id": "",
-          "windows-publisher-display-name": "xmnboy",
           "Orientation": "portrait"
         },
         "isActive_": true,
         "appName_": "Hello, Cordova",
-        "appID_": "com.xmnboy.xdk.hellocordova",
+        "appID_": "com.intel.xdk.hellocordova",
         "appAccess_": [],
         "icons_": [],
         "splashes_": [],
@@ -217,7 +216,7 @@
         "iosProvs_": [],
         "cordovaCLIVersion_": "?",
         "crosswalkVersion_": "?",
-        "appVersion_": "15.05.21",
+        "appVersion_": "15.8.1",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation"
       },
@@ -227,14 +226,14 @@
         "name_": "WebApp",
         "preferences_": {},
         "isActive_": false,
-        "appName_": "hello-cordova",
-        "appID_": "com.xmnboy.xdk.hellocordova",
+        "appName_": "Hello, Cordova",
+        "appID_": "com.intel.xdk.hellocordova",
         "appAccess_": [],
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "appVersion_": "15.05.21"
+        "appVersion_": "15.8.1"
       },
       "Firefox": {
         "platform_": "firefoxos",
@@ -242,14 +241,14 @@
         "name_": "Firefox",
         "preferences_": {},
         "isActive_": false,
-        "appName_": "hello-cordova",
-        "appID_": "com.xmnboy.xdk.hellocordova",
+        "appName_": "Hello, Cordova",
+        "appID_": "com.intel.xdk.hellocordova",
         "appAccess_": [],
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "appVersion_": "15.05.21"
+        "appVersion_": "15.8.1"
       },
       "Chrome": {
         "platform_": "chromeos",
@@ -257,14 +256,14 @@
         "name_": "Chrome",
         "preferences_": {},
         "isActive_": false,
-        "appName_": "hello-cordova",
-        "appID_": "com.xmnboy.xdk.hellocordova",
+        "appName_": "Hello, Cordova",
+        "appID_": "com.intel.xdk.hellocordova",
         "appAccess_": [],
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "appVersion_": "15.05.21"
+        "appVersion_": "15.8.1"
       },
       "Facebook": {
         "platform_": "facebook",
@@ -272,14 +271,14 @@
         "name_": "Facebook",
         "preferences_": {},
         "isActive_": false,
-        "appName_": "hello-cordova",
-        "appID_": "com.xmnboy.xdk.hellocordova",
+        "appName_": "Hello, Cordova",
+        "appID_": "com.intel.xdk.hellocordova",
         "appAccess_": [],
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "appVersion_": "15.05.21"
+        "appVersion_": "15.8.1"
       }
     },
     "gameAssetDirectory": "asset",
