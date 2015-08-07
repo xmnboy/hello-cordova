@@ -8,4 +8,6 @@
 !/LICENSE.md
 !/intelxdk.config.additions.xml
 !/*.xdk
+!/*.xdke
 !/.gitignore
+!/.jscodehints

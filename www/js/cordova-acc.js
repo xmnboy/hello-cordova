@@ -1,50 +1,61 @@
 /*
  * Copyright (c) 2013-2015, Paul Fischer, Intel Corporation. All rights reserved.
- * Please see http://software.intel.com/html5/license/samples
- * and the included README.md file for license terms and conditions.
+ * Please see included README.md file for license terms and conditions.
  */
 
 
 /*jslint browser:true, devel:true, white:true, vars:true */
-/*global $:false, intel:false, moment:false */
+/*global $:false, intel:false, acc:false, moment:false */
 /*global addClass:false, removeClass:false */
 
 
+window.acc = window.acc || {} ;         // don't clobber existing acc object
+
+
 // The console.log() messages sprinkled in this file are for instruction and debug.
-// If you reuse this code you do not need to include them as part of your app.
+// If you reuse this code you do not need to include them as part of your own app.
+// Set to "true" if you want the console.log messages to appear.
+
+acc.LOG = true ;
+acc.consoleLog = function() {           // only emits console.log messages if acc.LOG != false
+    "use strict" ;
+    if( acc.LOG ) {
+        var args = Array.prototype.slice.call(arguments, 0) ;
+        console.log.apply(console, args) ;
+    }
+} ;
+
 
 
 // TODO: add use of browser DeviceMotionEvent and DeviceOrientationEvent
 // see: http://www.html5rocks.com/en/tutorials/device/orientation/
 
-/* Accelerometer */
-var watchIdAccel = null ;
+acc.watchIdAccel = null ;               // holds the accelerometer "watch ID" handle
 
-function initAccel() {
+acc.initAccel = function() {
     "use strict" ;
-    var fName = "initAccel():" ;
-    console.log(fName, "entry") ;
+    var fName = "acc.initAccel():" ;
+    acc.consoleLog(fName, "entry") ;
 
     try {
-        navigator.accelerometer.clearWatch(watchIdAccel) ;
-        console.log(fName, "try succeeded.") ;
+        navigator.accelerometer.clearWatch(acc.watchIdAccel) ;
+        acc.consoleLog(fName, "try succeeded.") ;
     }
     catch(e) {
-        console.log(fName, "catch failed.") ;
+        acc.consoleLog(fName, "try failed:", e) ;
     }
 
-    console.log(fName, "exit") ;
-}
+    acc.consoleLog(fName, "exit") ;
+} ;
 
-/*
- * the following watch approach updates the accel values continuously
- * until the accel button is pushed a second time to stop the watch
- */
 
-function btnAccel() {
+// the following "watches" updates to accelerometer values continuously
+// until the accel button is pushed a second time, which stops the "watch"
+
+acc.btnAccel = function() {
     "use strict" ;
-    var fName = "btnAccel():" ;
-    console.log(fName, "entry") ;
+    var fName = "acc.btnAccel():" ;
+    acc.consoleLog(fName, "entry") ;
 
     function onSuccess(acceleration) {
         document.getElementById('acceleration-x').value = acceleration.x.toFixed(6) ;
@@ -54,87 +65,85 @@ function btnAccel() {
     }
 
     function onFail() {
-        console.log(fName, "Failed to get acceleration data.") ;
+        acc.consoleLog(fName, "Failed to get acceleration data.") ;
     }
 
 
-    if( watchIdAccel === null ) {
+    if( acc.watchIdAccel === null ) {
         try {                               // watch and update accelerometer values every 500 msecs
-            watchIdAccel = navigator.accelerometer.watchAcceleration(onSuccess, onFail, {frequency:500}) ;
+            acc.watchIdAccel = navigator.accelerometer.watchAcceleration(onSuccess, onFail, {frequency:500}) ;
             addClass("cl_btnOn", document.getElementById("id_btnAccel")) ;
-            console.log(fName, "btnAccel enabled.") ;
+            acc.consoleLog(fName, "btnAccel enabled.") ;
         }
         catch(e) {
-            console.log(fName, "try/catch failed - device API not present.") ;
+            acc.consoleLog(fName, "try failed - device API not present?", e) ;
         }
     }
     else {
-        navigator.accelerometer.clearWatch(watchIdAccel) ;
-        watchIdAccel = null ;
+        navigator.accelerometer.clearWatch(acc.watchIdAccel) ;
+        acc.watchIdAccel = null ;
         removeClass("cl_btnOn", document.getElementById("id_btnAccel")) ;
-        console.log(fName, "btnAccel disabled.") ;
+        acc.consoleLog(fName, "btnAccel disabled.") ;
     }
 
-    console.log(fName, "exit") ;
-}
+    acc.consoleLog(fName, "exit") ;
+} ;
 
 
 
 
-/* Compass */
-var watchIdCompass = null ;
+acc.watchIdCompass = null ;                 // holds the compass "watch ID" handle
 
-function initCompass() {
+acc.initCompass = function() {
     "use strict" ;
-    var fName = "initCompass():" ;
-    console.log(fName, "entry") ;
+    var fName = "acc.initCompass():" ;
+    acc.consoleLog(fName, "entry") ;
 
     try {
-        navigator.compass.clearWatch(watchIdCompass) ;
-        console.log(fName, "try succeeded.") ;
+        navigator.compass.clearWatch(acc.watchIdCompass) ;
+        acc.consoleLog(fName, "try succeeded.") ;
     }
     catch(e) {
-        console.log(fName, "catch failed.") ;
+        acc.consoleLog(fName, "try failed:", e) ;
     }
 
-    console.log(fName, "exit") ;
-}
+    acc.consoleLog(fName, "exit") ;
+} ;
 
-/*
- * the following watch approach updates the compass continuously
- * until the compass button is pushed a second time to stop the watch
- */
 
-function btnCompass() {
+// the following "watches" updates to the compass continuously
+// until the compass button is pushed a second time, which stops the "watch"
+
+acc.btnCompass = function() {
     "use strict" ;
-    var fName = "btnCompass():" ;
-    console.log(fName, "entry") ;
+    var fName = "acc.btnCompass():" ;
+    acc.consoleLog(fName, "entry") ;
 
     function onSuccess(heading) {
         document.getElementById('compass-dir').value = heading.magneticHeading.toFixed(6) ;
     }
 
     function onFail(compassError) {
-        console.log(fName, "Compass error: " + compassError.code) ;
+        acc.consoleLog(fName, "Compass error: " + compassError.code) ;
     }
 
 
-    if( watchIdCompass === null ) {
+    if( acc.watchIdCompass === null ) {
         try {                               // watch and update compass value every 500 msecs
-            watchIdCompass = navigator.compass.watchHeading(onSuccess, onFail, {frequency:500}) ;
+            acc.watchIdCompass = navigator.compass.watchHeading(onSuccess, onFail, {frequency:500}) ;
             addClass("cl_btnOn", document.getElementById("id_btnCompass")) ;
-            console.log(fName, "btnCompass enabled.") ;
+            acc.consoleLog(fName, "btnCompass enabled.") ;
         }
         catch(e) {
-            console.log(fName, "try/catch failed - device API not present.") ;
+            acc.consoleLog(fName, "try failed - device API not present?", e) ;
         }
     }
     else {
-        navigator.compass.clearWatch(watchIdCompass) ;
-        watchIdCompass = null ;
+        navigator.compass.clearWatch(acc.watchIdCompass) ;
+        acc.watchIdCompass = null ;
         removeClass("cl_btnOn", document.getElementById("id_btnCompass")) ;
-        console.log(fName, "btnCompass disabled.") ;
+        acc.consoleLog(fName, "btnCompass disabled.") ;
     }
 
-    console.log(fName, "exit") ;
-}
+    acc.consoleLog(fName, "exit") ;
+} ;

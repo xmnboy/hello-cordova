@@ -3,5 +3,63 @@
 <preference name="debuggable" value="true" />
 <!-- Change the debuggable preference to false before you build for the store. -->
 
-<!-- "value" is the minimum time, in milliseconds, to show the launch or splash screen -->
-<preference name="SplashScreenDelay" value="2000" />
+<!-- see https://github.com/apache/cordova-plugin-splashscreen for details -->
+<platform name="android">
+    <preference name="SplashScreen" value="splash" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+</platform>
+
+<platform name="ios">
+    <preference name="FadeSplashScreen" value="false"/>
+    <preference name="FadeSplashScreenDuration" value="2"/>
+    <preference name="ShowSplashScreenSpinner" value="false"/>
+</platform>
+
+<!-- use this feature to add command-lines to be used by Crosswalk builds on device -->
+<!-- see http://peter.sh/experiments/chromium-command-line-switches/ for complete list -->
+<intelxdk:crosswalk xwalk-command-line="--disable-pull-to-refresh-effect" />
+
+<!-- alternate way to add icons to Cordova builds, rather than using XDK GUI -->
+<!-- especially for adding icon resolutions that are not covered by the XDK GUI -->
+<!-- Android icons and splash screens -->
+    <icon platform="android" src="pkg/android/icon-ldpi.png" density="ldpi" />
+    <icon platform="android" src="pkg/android/icon-mdpi.png" density="mdpi" />
+    <icon platform="android" src="pkg/android/icon-hdpi.png" density="hdpi" />
+    <icon platform="android" src="pkg/android/icon-xhdpi.png" density="xhdpi" />
+    <icon platform="android" src="pkg/android/icon-xxhdpi.png" density="xxhdpi" />
+    <icon platform="android" src="pkg/android/icon-xxxhdpi.png" density="xxxhdpi" />
+
+<!-- iOS icons and splash screens -->
+<!-- Spotlight Icon -->
+    <icon platform="ios" src="pkg/ios/icon-40.png" width="40" height="40" />
+    <icon platform="ios" src="pkg/ios/icon-40@2x.png" width="80" height="80" />
+    <icon platform="ios" src="pkg/ios/icon-40@3x.png" width="120" height="120" />
+<!-- iPhone / iPod Touch -->
+    <icon platform="ios" src="pkg/ios/icon.png" width="57" height="57" />
+    <icon platform="ios" src="pkg/ios/icon@2x.png" width="114" height="114" />
+    <icon platform="ios" src="pkg/ios/icon-60.png" width="60" height="60" />
+    <icon platform="ios" src="pkg/ios/icon-60@2x.png" width="120" height="120" />
+    <icon platform="ios" src="pkg/ios/icon-60@3x.png" width="180" height="180" />
+<!-- iPad -->
+    <icon platform="ios" src="pkg/ios/icon-72.png" width="72" height="72" />
+    <icon platform="ios" src="pkg/ios/icon-72@2x.png" width="144" height="144" />
+    <icon platform="ios" src="pkg/ios/icon-76.png" width="76" height="76" />
+    <icon platform="ios" src="pkg/ios/icon-76@2x.png" width="152" height="152" />
+<!-- iPhone Spotlight and Settings Icon -->
+    <icon platform="ios" src="pkg/ios/icon-small.png" width="29" height="29" />
+    <icon platform="ios" src="pkg/ios/icon-small@2x.png" width="58" height="58" />
+    <icon platform="ios" src="pkg/ios/icon-small@3x.png" width="87" height="87" />
+<!-- iPad Spotlight and Settings Icon -->
+    <icon platform="ios" src="pkg/ios/icon-50.png" width="50" height="50" />
+    <icon platform="ios" src="pkg/ios/icon-50@2x.png" width="100" height="100" />
+
+<!-- Windows Phone 8 icons and splash screens -->
+    <icon platform="wp8" src="pkg/windows/logo.png" width="150" height="150" />
+    <icon platform="wp8" src="pkg/windows/logo-small.png" width="30" height="30" />
+    <icon platform="wp8" src="pkg/windows/logo-store.png" width="50" height="50" />
+
+<!-- Windows 8 icons and splash screens -->
+    <icon platform="windows8" src="pkg/windows/logo.png" width="150" height="150" />
+    <icon platform="windows8" src="pkg/windows/logo-small.png" width="30" height="30" />
+    <icon platform="windows8" src="pkg/windows/logo-store.png" width="50" height="50" />

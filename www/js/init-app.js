@@ -1,30 +1,29 @@
 /*
  * Copyright (c) 2013-2015, Paul Fischer, Intel Corporation. All rights reserved.
- * Please see http://software.intel.com/html5/license/samples
- * and included README.md file for license terms and conditions.
+ * Please see included README.md file for license terms and conditions.
  */
 
 
 /*jslint browser:true, devel:true, white:true, vars:true */
-/*global $:false, intel:false, app:false, dev:false, device:false, cordova:false */
-/*global moment:false, performance:false, UAParser:false */
-/*global initAccel:false, initCompass:false, updateDeviceInfo:false */
-/*global btnBeep:false, btnBark:false, btnAccel:false, btnVibrate:false, btnCompass:false */
-/*global btnBarkCordova:false, btnBarkXDK:false, btnBarkHTML5:false, geo:false */
+/*global $:false, intel:false, device:false, cordova:false */
+/*global app:false, dev:false, acc:false, geo:false */
+/*global UAParser:false */
 
 
 
-window.app = window.app || {} ;         // there should only be one of these, but...
+window.app = window.app || {} ;         // don't clobber existing app object
 
 
 app.uaParser = {} ;                     // for holding the user agent object
 
 
+// The console.log() messages sprinkled in this file are for instruction and debug.
+// If you reuse this code you do not need to include them as part of your app.
 // Set to "true" if you want the console.log messages to appear.
 
 app.LOG = true ;
-
 app.consoleLog = function() {           // only emits console.log messages if app.LOG != false
+    "use strict" ;
     if( app.LOG ) {
         var args = Array.prototype.slice.call(arguments, 0) ;
         console.log.apply(console, args) ;
@@ -53,10 +52,10 @@ app.initEvents = function() {
 
     // NOTE: initialize your application code
 
-    initAccel() ;
-    initCompass() ;
+    acc.initAccel() ;
+    acc.initCompass() ;
     geo.initGeoLocate() ;
-    updateDeviceInfo() ;
+    app.updateDeviceInfo() ;
 
     // NOTE: initialize your app event handlers
     // See main.js, cordova-acc.js and cordova-geo.js for event handlers.
@@ -72,20 +71,20 @@ app.initEvents = function() {
         evt = "touchend" ;                                          // not optimum, but works
 
     el = document.getElementById("id_btnBeep") ;
-    el.addEventListener(evt, btnBeep, false) ;
+    el.addEventListener(evt, app.btnBeep, false) ;
     el = document.getElementById("id_btnVibrate") ;
-    el.addEventListener(evt, btnVibrate, false) ;
+    el.addEventListener(evt, app.btnVibrate, false) ;
     el = document.getElementById("id_btnBarkCordova") ;
-    el.addEventListener(evt, btnBarkCordova, false) ;
+    el.addEventListener(evt, app.btnBarkCordova, false) ;
     el = document.getElementById("id_btnBarkXDK") ;
-    el.addEventListener(evt, btnBarkXDK, false) ;
+    el.addEventListener(evt, app.btnBarkXDK, false) ;
     el = document.getElementById("id_btnBarkHTML5") ;
-    el.addEventListener(evt, btnBarkHTML5, false) ;
+    el.addEventListener(evt, app.btnBarkHTML5, false) ;
 
     el = document.getElementById("id_btnAccel") ;
-    el.addEventListener(evt, btnAccel, false) ;
+    el.addEventListener(evt, acc.btnAccel, false) ;
     el = document.getElementById("id_btnCompass") ;
-    el.addEventListener(evt, btnCompass, false) ;
+    el.addEventListener(evt, acc.btnCompass, false) ;
 
     el = document.getElementById("id_btnGeoFine") ;
     el.addEventListener(evt, geo.btnGeoFine, false) ;
@@ -125,23 +124,37 @@ app.initDebug = function() {
     var fName = "app.initDebug():" ;
     app.consoleLog(fName, "entry") ;
 
-    if( window.device && device.cordova ) {                     // old Cordova 2.x version detection
-        app.consoleLog("device.version: " + device.cordova) ;   // print the cordova version string...
-        app.consoleLog("device.model: " + device.model) ;
-        app.consoleLog("device.platform: " + device.platform) ;
-        app.consoleLog("device.version: " + device.version) ;
+    if( window.device && device.cordova ) {                             // old Cordova 2.x version detection
+        app.consoleLog("device.cordova: "  + device.cordova) ;          // print the cordova version string...
+        app.consoleLog("device.model: "    + device.model) ;            // on Cordova 3.0+ these require that
+        app.consoleLog("device.platform: " + device.platform) ;         // the Cordova Device plugin is installed
+        app.consoleLog("device.version: "  + device.version) ;          // if not, they will not exist
     }
 
-    if( window.cordova && cordova.version ) {                   // only works in Cordova 3.x
-        app.consoleLog("cordova.version: " + cordova.version) ; // print new Cordova 3.x version string...
+    if( window.Cordova )                                                // Cordova webview detection test...
+            app.consoleLog("window.Cordova typeof: " + typeof window.Cordova ) ;
 
-        if( cordova.require ) {                                 // print included cordova plugins
+// Most useful property (below) is cordova.platformId, which can help you determine the precise platform
+// on which your Cordova app is running. As of June, 2015 the values you could encounter are:
+// amazon-fireos, android, blackberry10, browser, firefoxos, ios, osx, ubuntu, webos, windows, windowsphone, windows8
+// See cordova.platformId definition here: https://github.com/apache/cordova-js/blob/master/src/cordova.js
+// Example "id" definition: https://github.com/apache/cordova-android/blob/master/cordova-js-src/platform.js
+// To detect Crosswalk, detect "android" and look for the word "Crosswalk" in the navigator.userAgent string.
+
+    if( window.cordova && cordova.version ) {                           // only present in Cordova 3.0+
+        if( cordova.version )                                           // Cordova 3.0+ framework version string
+            app.consoleLog("cordova.version: " + cordova.version) ;
+        if( cordova.platformId )                                        // Cordova 3.1+ platform ID (see above)
+            app.consoleLog("cordova.platformId: " + cordova.platformId) ;
+
+        if( cordova.require ) {                                         // print included cordova plugins
             app.consoleLog(JSON.stringify(cordova.require('cordova/plugin_list').metadata, null, 1)) ;
         }
     }
 
-    // Following is for demonstration and debug.
-    // Update the "system ready" and "cordova present" indicators on our display.
+
+// Following is for demonstration and debug.
+// Update the "system ready" and "cordova present" indicators on our display.
 
     var el, text, node ;
 

@@ -12,7 +12,7 @@
  * NOTE: In most cases, you can leave the code in this file alone and use it as is.
  *
  * The functions in this file are designed to reliably detect various "ready" events
- * within a variety of containers (Intel XDK "legacy" container, Cordova 3.x container,
+ * within a variety of containers (Intel XDK "legacy" container, Cordova 3+ container,
  * standard browser, App Preview, Crosswalk, etc.). It "unifies" the commonly used
  * ready events and is very helpful for moving a "web app" to a "hybrid app" scenario.
  *
@@ -25,13 +25,14 @@
  * recommendations on the best placement of this file relative to other files and
  * for recommendations regarding the loading of other JavaScript files.
  *
- * There are a large number of console.log messages contained within this file.
- * They can be used to debug initialization problems and understand how it works.
+ * There are many console.log messages contained within this file. They can be used
+ * to debug initialization problems and understand how the code in this file works.
  * It is highly recommended that you leave them in your app, they will not unduly
- * slow down or burden your application.
+ * slow down or burden your application. The console.log messages in this file
+ * will only display if you set the dev.Log variable to "true" (see below).
  *
  * There are many comments in this file and the accompanying index.html file.
- * Please read the comments within for details and further documentation.
+ * Please read the comments within for details and for further documentation.
  *
  * BTW: "dev" means "device" in this context, not "develop," because it grew out
  * of a desire to build a more reliable and flexible "device ready" detector.
@@ -43,7 +44,7 @@
 
 
 
-window.dev = window.dev || {} ;         // could be predefined in index.html file...
+window.dev = window.dev || {} ;         // might be predefined in index.html file...
 
 
 
@@ -60,7 +61,7 @@ else {
 
 
 // Set to "true" if you want the console.log messages to appear.
-// Helpful for debugging and understanding how this thing works.
+// Helpful for debugging and understanding how this file works.
 
 dev.LOG = dev.LOG || false ;
 
@@ -73,7 +74,7 @@ dev.consoleLog = function() {       // only emits console.log messages if dev.LO
 
 
 
-// Defines some delays constants used throughout for ready detections.
+// Defines some delay constants used throughout for ready detections.
 // Each should be smaller than the next; most cases should work as is.
 // Lowering dev.BROWSER speeds up detection of browser scenario...
 // ...at expense of possible false detects of browser environment...
@@ -90,11 +91,12 @@ dev.FAIL_SAFE = dev.FAIL_SAFE || 10000 ;    // msecs, if all else fails, this sa
 
 
 
-// Used to keep track of time when each of these items was triggered.
+// Used to keep track of the moment when each of these items was triggered.
 // Sorry for the weird names in the isDeviceReady structure, it's done for
-// easier debugging and comparison of numbers when displayed in console.log messages.
+// easier debugging and comparison of numbers when displayed in the CDT console.
+// Only those that occurred will have a numberic value when inspected in CDT console.
 
-dev.isDeviceReady = {                   // listed in approximate order expected
+dev.isDeviceReady = {                   // listed in approximate expected order
     a_startTime______:dev.timeStamp(),  // when we started execution of this module
     b_fnDocumentReady:false,            // detected document.readyState == "complete"
     c_cordova_ready__:false,            // detected cordova device ready event
@@ -105,13 +107,13 @@ dev.isDeviceReady = {                   // listed in approximate order expected
 
 
 
-// Where the device ready event ultimately ends up, regardless of environment.
-// Runs after underlying device native code and browser is initialized.
-// Usually not much needed here, just additional "device init" code.
-// See initDeviceReady() below for code that kicks off this function.
-// This function works with Cordova and Intel XDK webview or in a browser.
+// Where the device ready event ultimately ends up, regardless of runtime environment.
+// This function runs after the underlying device native code and browser is initialized.
+// Usually not much needed here, just generates the unified app.Ready event.
+// initDeviceReady() sets up the onDeviceReady*() functions which all try to trigger this.
+// Technique works with Cordova, Crosswalk, App Preview, Intel XDK legacy and browser.
 
-// NOTE: Customize this function, if necessary, for low-level init of your app.
+// NOTE: Customize this function, if necessary, for early low-level init of your app.
 
 dev.onDeviceReady = function() {
     var fName = "dev.onDeviceReady():" ;
@@ -121,13 +123,14 @@ dev.onDeviceReady = function() {
     if( dev.isDeviceReady.e_fnDeviceReady__ ) {
         dev.consoleLog(fName, "function terminated") ;
         return ;
-    } else {
+    }
+    else {
         dev.isDeviceReady.e_fnDeviceReady__ = dev.timeStamp() ;
     }
 
-    // TODO: change this to use new custom events if I confirm it works in all webviews.
-    // All device initialization is done; create and issue custom event named "app.Ready".
-    // Using deprecated custom events until I can confirm new method works in all webviews...
+// TODO: change this to use new custom events if I can confirm it works in all webviews.
+// All device initialization is done; create and issue custom event named "app.Ready".
+// Using deprecated custom events until I can confirm new method works in all webviews...
 
     var evt = document.createEvent("Event") ;
     evt.initEvent("app.Ready", false, false) ;
@@ -170,6 +173,8 @@ dev.onDeviceReady = function() {
  *
  */
 
+
+
 // The following is not fool-proof, we're mostly interested in detecting one
 // or both events to insure device init is finished, detecting either will do.
 // Even though the timing should indicate which container, it does not always work.
@@ -192,7 +197,7 @@ dev.onDeviceReadyXDK = function() {
     window.setTimeout(dev.onDeviceReady, dev.INSURANCE) ;
 } ;
 
-// This is a faux onDeviceReady for browser scenario, mostly for code symmetry and fail-safe.
+// This is a faux onDeviceReady for browser scenario, for code symmetry and fail-safe.
 
 dev.onDeviceReadyBrowser = function() {
     dev.isDeviceReady.f_browser_ready__ = dev.timeStamp() ;
@@ -204,8 +209,8 @@ dev.onDeviceReadyBrowser = function() {
 
 
 // Runs after document is loaded, and sets up wait for native (device) init to finish.
-// If we're running in a browser we're ready to go when document is loaded, but...
-// if we're running on a device we need to wait for native code to finish its init.
+// If we are running in a browser we are ready to go when document is loaded, but...
+// if we are running on a device we need to wait for the native code to finish its init.
 
 dev.initDeviceReady = function() {
     var fName = "dev.initDeviceReady():" ;
@@ -223,15 +228,15 @@ dev.initDeviceReady = function() {
     document.addEventListener("deviceready", dev.onDeviceReadyCordova, false) ;
     window.setTimeout(dev.onDeviceReadyBrowser, dev.BROWSER) ;
 
-    // Last one, above, is fail-safe, in case we got no device ready event from Cordova or Intel XDK.
-    // Cordova will timeout after five seconds, so we use a longer timeout to be conservative.
-    // Very end of this file includes a "fail-safe, fail-safe" in case all else fails!
+// Last one, above, is a fail-safe, in case we get no device ready event from Cordova.
+// Cordova will timeout after five seconds, so we use a longer timeout to be conservative.
+// Very end of this file includes a "fail-safe, fail-safe" in case all else fails!
 
-    // TODO: might want to double-check for Cordova deviceready, shouldn't be required...
-    // "if" logic (below) needs further investigation in Cordova, legacy and debug containers
-    // 0 = Non-sticky, 1 = Sticky non-fired, 2 = Sticky fired.
-    // if( window.channel && channel.onCordovaReady && (channel.onCordovaReady.state === 2) )
-    //     dev.onDeviceReadyCordova() ;
+// TODO: might want to double-check for Cordova deviceready, shouldn't be required...
+// "if" logic (below) needs further investigation in Cordova, legacy and debug containers
+// 0 = Non-sticky, 1 = Sticky non-fired, 2 = Sticky fired.
+// if( window.channel && channel.onCordovaReady && (channel.onCordovaReady.state === 2) )
+//     dev.onDeviceReadyCordova() ;
 
     dev.consoleLog(fName, "navigator.vendor:", navigator.vendor) ;
     dev.consoleLog(fName, "navigator.platform:", navigator.platform) ;
@@ -270,7 +275,8 @@ if( document.addEventListener ) {
 if( window.addEventListener ) {
     dev.consoleLog("window.addEventListener:", dev.timeStamp()) ;
     window.addEventListener("load", dev.initDeviceReady, false) ;
-} else if( window.attachEvent ) {
+}
+else if( window.attachEvent ) {
     dev.consoleLog("window.attachEvent:", dev.timeStamp()) ;
     window.attachEvent("onload", dev.initDeviceReady) ;
 }

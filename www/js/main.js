@@ -1,70 +1,73 @@
 /*
- * Copyright (c) 2013-2014, Paul Fischer, Intel Corporation. All rights reserved.
- * Please see http://software.intel.com/html5/license/samples
- * and the included README.md file for license terms and conditions.
+ * Copyright (c) 2013-2015, Paul Fischer, Intel Corporation. All rights reserved.
+ * Please see included README.md file for license terms and conditions.
  */
 
 
 /*jslint browser:true, devel:true, white:true, vars:true */
 /*global $:false, intel:false, Media:false, moment:false */
-/*global getWebPath:false, getWebRoot:false */
+/*global app:false, getWebPath:false, getWebRoot:false */
+
+
+window.app = window.app || {} ;         // don't clobber existing app object
 
 
 // The console.log() messages sprinkled in this file are for instruction and debug.
-// If you reuse this code you do not need to include them as part of your app.
+// If you reuse this code you do not need to include them as part of your own app.
+// See init-app.js for control of console.log() messages.
 
 
 
-function btnBeep() {
+app.btnBeep = function() {
     "use strict" ;
-    var fName = "btnBeep():" ;
-    console.log(fName, "entry") ;
+    var fName = "app.btnBeep():" ;
+    app.consoleLog(fName, "entry") ;
 
     try {
         navigator.notification.beep(1) ;
-        console.log(fName, "try, success") ;
+        app.consoleLog(fName, "try succeeded.") ;
     }
     catch(e) {
-        console.log(fName, "catch, failure") ;
+        app.consoleLog(fName, "try failed", e) ;
     }
 
-    console.log(fName, "exit") ;
-}
+    app.consoleLog(fName, "exit") ;
+} ;
 
 
 
-function btnVibrate() {
+app.btnVibrate = function() {
     "use strict" ;
-    var fName = "btnVibrate():" ;
-    console.log(fName, "entry") ;
+    var fName = "app.btnVibrate():" ;
+    app.consoleLog(fName, "entry") ;
 
     try {
         navigator.notification.vibrate(250) ;
-        console.log(fName, "try, success") ;
+        app.consoleLog(fName, "try succeeded.") ;
     }
     catch(e) {
-        console.log(fName, "catch, failure") ;
+        app.consoleLog(fName, "try failed:", e) ;
     }
 
-    console.log(fName, "exit") ;
-}
+    app.consoleLog(fName, "exit") ;
+} ;
 
 
 
-function btnBarkCordova() {
+app.btnBarkCordova = function() {
     "use strict" ;
-    var fName = "btnBarkCordova():" ;
-    console.log(fName, "entry") ;
+    var fName = "app.btnBarkCordova():" ;
+    app.consoleLog(fName, "entry") ;
 
     try {
         var w = window.device && window.device.platform ;
         var x = navigator.userAgent ;
         var y = getWebPath() ;
         var z = getWebRoot() ;
-        console.log(fName, "platform = ", w) ;
-        console.log(fName, "userAgent = ", x) ;
-        console.log(fName, "getWebPath() => ", y) ;
-        console.log(fName, "getWebRoot() => ", z) ;
+        app.consoleLog(fName, "platform = ", w) ;
+        app.consoleLog(fName, "userAgent = ", x) ;
+        app.consoleLog(fName, "getWebPath() => ", y) ;
+        app.consoleLog(fName, "getWebRoot() => ", z) ;
 
         var media = "audio/bark.wav" ;
 //        if( z.match(/\/emulator.*\/ripple\/userapp/i) ) {           // if in the Emulate tab
@@ -79,12 +82,12 @@ function btnBarkCordova() {
         }
 
         media = new Media(media, mediaSuccess, mediaError, mediaStatus) ;
-        console.log(fName, "media.src = ", media.src) ;
+        app.consoleLog(fName, "media.src = ", media.src) ;
         media.play() ;
-        console.log(fName, "try, success") ;
+        app.consoleLog(fName, "try succeeded.") ;
     }
     catch(e) {
-        console.log(fName, "catch, failure") ;
+        app.consoleLog(fName, "try failed:", e) ;
     }
 
 // private functions for our media object
@@ -92,12 +95,12 @@ function btnBarkCordova() {
     function mediaSuccess() {
         media.stop() ;
         media.release() ;
-        console.log(fName, "mediaSuccess") ;
+        app.consoleLog(fName, "mediaSuccess") ;
     }
     function mediaError(err) {
         media.stop() ;
         media.release() ;
-        console.log(fName, "mediaError:err.code: " + err.code + " ; " + "mediaError:err.message: " + err.message) ;
+        app.consoleLog(fName, "mediaError:err.code: " + err.code + " ; " + "mediaError:err.message: " + err.message) ;
     }
     function mediaStatus(status) {
         var msg = "undefined" ;
@@ -109,28 +112,28 @@ function btnBarkCordova() {
             case 4:     msg = "MEDIA_STOPPED" ;     break ;
             default:    msg = "MEDIA_undefined" ;
         }
-        console.log(fName, "mediaStatus: " + status + " = " + msg) ;
+        app.consoleLog(fName, "mediaStatus: " + status + " = " + msg) ;
     }
 
-    console.log(fName, "exit") ;
-}
+    app.consoleLog(fName, "exit") ;
+} ;
 
 
 
-function btnBarkXDK() {
+app.btnBarkXDK = function() {
     "use strict" ;
-    var fName = "btnBarkXDK():" ;
-    console.log(fName, "entry") ;
+    var fName = "app.btnBarkXDK():" ;
+    app.consoleLog(fName, "entry") ;
 
     try {
         var w = window.device && window.device.platform ;
         var x = navigator.userAgent ;
         var y = getWebPath() ;
         var z = getWebRoot() ;
-        console.log(fName, "platform = ", w) ;
-        console.log(fName, "userAgent = ", x) ;
-        console.log(fName, "getWebPath() => ", y) ;
-        console.log(fName, "getWebRoot() => ", z) ;
+        app.consoleLog(fName, "platform = ", w) ;
+        app.consoleLog(fName, "userAgent = ", x) ;
+        app.consoleLog(fName, "getWebPath() => ", y) ;
+        app.consoleLog(fName, "getWebRoot() => ", z) ;
 
         var media = "audio/bark.wav" ;
 //        if( z.match(/\/emulator.*\/ripple\/userapp/i) ) {           // if in the Ripple emulator
@@ -138,34 +141,34 @@ function btnBarkXDK() {
             media = z + "/" + media ;                               // bug in the emulator...
         }
         intel.xdk.player.playSound(media) ;
-        console.log(fName, "try, success") ;
+        app.consoleLog(fName, "try succeeded.") ;
     }
     catch(e) {
-        console.log(fName, "catch, failure") ;
+        app.consoleLog(fName, "try failed:", e) ;
     }
 
-    console.log(fName, "exit") ;
-}
+    app.consoleLog(fName, "exit") ;
+} ;
 
 
 
-function btnBarkHTML5() {
+app.btnBarkHTML5 = function() {
     "use strict" ;
-    var fName = "btnBarkHTML5():" ;
-    console.log(fName, "entry") ;
+    var fName = "app.btnBarkHTML5():" ;
+    app.consoleLog(fName, "entry") ;
 
     var a = document.getElementsByTagName("audio")[0] ;
     a.play() ;
 
-    console.log(fName, "exit") ;
-}
+    app.consoleLog(fName, "exit") ;
+} ;
 
 
 
-function updateDeviceInfo() {
+app.updateDeviceInfo = function() {
     "use strict" ;
-    var fName = "updateDeviceReady():" ;
-    console.log(fName, "entry") ;
+    var fName = "app.updateDeviceInfo():" ;
+    app.consoleLog(fName, "entry") ;
 
     // "device" global object contains device capabilities (device.name, device.platform, device.uuid, etc.)
     // and is only present when we are running under Cordova (or an appropriate emulator)
@@ -194,5 +197,5 @@ function updateDeviceInfo() {
     document.getElementById("id_navigatorPlatform").textContent = navigator.platform ;
     document.getElementById("id_navigatorUserAgent").textContent = navigator.userAgent ;
 
-    console.log(fName, "exit") ;
-}
+    app.consoleLog(fName, "exit") ;
+} ;

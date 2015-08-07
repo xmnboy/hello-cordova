@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
-<!--
-  * Please see the included README.md file for license terms and conditions.
-  -->
+<!-- Please see the included README.md file for license terms and conditions. -->
 <head>
     <title>Hello, Apache Cordova!</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -54,12 +52,7 @@
         <input id="id_btnBeep"          type="button" value="Beep" />
         <input id="id_btnVibrate"       type="button" value="Vibrate" />
         <br>
-        <audio
-               src="audio/bark.wav"
-               preload="metadata"
-               style="width: 0; overflow: hidden; float: left; display: none;"
-               >
-        </audio>
+        <audio src="audio/bark.wav" preload="metadata" style="width: 0; overflow: hidden; float: left; display: none;" ></audio>
 <!--        <audio src="audio/bark.wav" preload="metadata" controls="controls" style="display: none;"></audio>-->
 <!--        <audio src="audio/bark.wav" preload="auto" ></audio>-->
         <br style="display: none;">
@@ -81,9 +74,9 @@
 
         <br style="display: none;">
 
-        <input id="id_btnGeoFineXDK"    type="button" value="GeoFineXDK"       style="display: none;" />
+        <input id="id_btnGeoFineXDK"    type="button" value="GeoFineXDK"     style="display: none;" />
         <input id="id_btnGeoCoarseXDK"  type="button" value="GeoCoarseXDK"   style="display: none;" />
-        <input id="id_btnGeoXDK"        type="button" value="GeoWatchXDK"          style="display: none;" />
+        <input id="id_btnGeoXDK"        type="button" value="GeoWatchXDK"    style="display: none;" />
 
      </p>
 
@@ -222,10 +215,11 @@
     <!-- IMPORTANT: Do not include your weinre script tag as part of your release builds! -->
     <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
     <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
-
     <!-- See <head> section above for additional JS libraries loaded as part of this application. -->
 
+    <script src="intelxdk.js"></script>         <!-- phantom library, needed for legacy XDK builds -->
     <script src="cordova.js"></script>          <!-- phantom library, needed for Cordova api calls -->
+    <script src="xhr.js"></script>              <!-- phantom library, needed for legacy XDK builds -->
 
     <script src="js/util.js"></script>
     <script src="js/main.js"></script>
