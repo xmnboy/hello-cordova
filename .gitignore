@@ -11,3 +11,6 @@
 !/*.xdke
 !/.gitignore
 !/.jscodehints
+!/app.json
+!/screenshot.png
+!/icon.png

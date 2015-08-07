@@ -1,0 +1,36 @@
+{
+    "title" : "Hello, Cordova",
+    "abbr" : "Hello Cordova",
+    "tooltip" : "Basics behind constructing a Cordova app with the Intel XDK",
+    "description" : "Illustrates the use of some common core Cordova APIs and, where possible, the equivalent HTML5 APIs within a hybrid mobile HTML5 app.",
+    "repoName" : "hello-cordova",
+    "articleUrl" : "https://github.com/gomobile/sample-hello-cordova/blob/master/docs/README.md",
+    "section" : "samples",
+    "group" : "",
+    "visible" : true,
+    "keywords" : [
+        "Accelerometer",
+        "Compass",
+        "Geolocation",
+        "Alerts",
+        "Media",
+        "Splashscreen",
+        "Icons",
+        "Cordova"
+    ],
+    "highlights" : [
+        "Accelerometer",
+        "Compass",
+        "Geolocation",
+        "Alerts",
+        "Media",
+        "Splashscreen",
+        "Icons",
+        "Cordova"
+    ],
+    "projectTypeName" : "com.intel.xdk.projecttype.jsapp",
+    "landscape" : false,
+    "appName" : "demo.hellocordova",
+    "appPreview" : false,
+    "mobile" : false
+}
