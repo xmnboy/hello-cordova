@@ -1,4 +1,4 @@
-# hello-cordova
+# Hello, Cordova
 
 See [LICENSE.md][] for license terms and conditions.
 
