@@ -13,8 +13,17 @@ window.app = window.app || {} ;         // don't clobber existing app object
 
 
 // The console.log() messages sprinkled in this file are for instruction and debug.
-// If you reuse this code you do not need to include them as part of your own app.
-// See init-app.js for control of console.log() messages.
+// If you reuse this code you do not need to include them as part of your app.
+// Set to "true" if you want the console.log messages to appear.
+
+app.LOG = true ;
+app.consoleLog = function() {           // only emits console.log messages if app.LOG != false
+    "use strict" ;
+    if( app.LOG ) {
+        var args = Array.prototype.slice.call(arguments, 0) ;
+        console.log.apply(console, args) ;
+    }
+} ;
 
 
 
