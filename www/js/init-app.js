@@ -12,6 +12,7 @@
 
 
 window.app = window.app || {} ;         // don't clobber existing app object
+app.init = app.init || {} ;             // don't clobber existing app.init object
 
 
 app.uaParser = {} ;                     // for holding the user agent object
@@ -21,10 +22,10 @@ app.uaParser = {} ;                     // for holding the user agent object
 // If you reuse this code you do not need to include them as part of your app.
 // Set to "true" if you want the console.log messages to appear.
 
-app.LOG = true ;
-app.consoleLog = function() {           // only emits console.log messages if app.LOG != false
+app.init.LOG = true ;
+app.init.consoleLog = function() {      // only emits console.log messages if app.init.LOG != false
     "use strict" ;
-    if( app.LOG ) {
+    if( app.init.LOG ) {
         var args = Array.prototype.slice.call(arguments, 0) ;
         console.log.apply(console, args) ;
     }
@@ -36,10 +37,10 @@ app.consoleLog = function() {           // only emits console.log messages if ap
 // Runs after underlying device native code and webview/browser is ready.
 // Where you should "kick off" your application by initializing app events, etc.
 
-app.initEvents = function() {
+app.init.events = function() {
     "use strict" ;
-    var fName = "app.initEvents():" ;
-    app.consoleLog(fName, "entry") ;
+    var fName = "app.init.events():" ;
+    app.init.consoleLog(fName, "entry") ;
 
 // Main app starting point (dev.onDeviceReady kicks off with "app.Ready" event).
 // Runs after underlying device native code and webview/browser is initialized.
@@ -48,7 +49,7 @@ app.initEvents = function() {
     // NOTE: initialize third-party libraries and event handlers
 
     app.uaParser = new UAParser() ;
-    app.consoleLog(fName, app.uaParser.getResult()) ;
+    app.init.consoleLog(fName, app.uaParser.getResult()) ;
 
     // NOTE: initialize your application code
 
@@ -103,36 +104,36 @@ app.initEvents = function() {
     // NOTE: ...you can put other miscellaneous init stuff in this function...
     // NOTE: ...and add whatever else you want to do now that the app has started...
 
-    app.initDebug() ;           // just for debug, not required; keep it if you want it or get rid of it
-    app.hideSplashScreen() ;    // after init is good time to remove splash screen; using a splash screen is optional
+    app.init.debug() ;              // just for debug, not required; keep it if you want it or get rid of it
+    app.init.hideSplashScreen() ;   // after init is good time to remove splash screen; using a splash screen is optional
 
     // app initialization is done
     // app event handlers are ready
     // exit to idle state and just wait for events...
 
-    app.consoleLog(fName, "exit") ;
+    app.init.consoleLog(fName, "exit") ;
 } ;
-document.addEventListener("app.Ready", app.initEvents, false) ;
+document.addEventListener("app.Ready", app.init.events, false) ;
 
 
 
 // Primarily for debug and demonstration.
 // Update our status in the main view. Are we running in a Cordova container or in a browser?
 
-app.initDebug = function() {
+app.init.debug = function() {
     "use strict" ;
-    var fName = "app.initDebug():" ;
-    app.consoleLog(fName, "entry") ;
+    var fName = "app.init.debug():" ;
+    app.init.consoleLog(fName, "entry") ;
 
     if( window.device && device.cordova ) {                             // old Cordova 2.x version detection
-        app.consoleLog("device.cordova: "  + device.cordova) ;          // print the cordova version string...
-        app.consoleLog("device.model: "    + device.model) ;            // on Cordova 3.0+ these require that
-        app.consoleLog("device.platform: " + device.platform) ;         // the Cordova Device plugin is installed
-        app.consoleLog("device.version: "  + device.version) ;          // if not, they will not exist
+        app.init.consoleLog("device.cordova: "  + device.cordova) ;     // print the cordova version string...
+        app.init.consoleLog("device.model: "    + device.model) ;       // on Cordova 3.0+ these require that
+        app.init.consoleLog("device.platform: " + device.platform) ;    // the Cordova Device plugin is installed
+        app.init.consoleLog("device.version: "  + device.version) ;     // if not, they will not exist
     }
 
     if( window.Cordova )                                                // Cordova webview detection test...
-            app.consoleLog("window.Cordova typeof: " + typeof window.Cordova ) ;
+            app.init.consoleLog("window.Cordova typeof: " + typeof window.Cordova ) ;
 
 // Most useful property (below) is cordova.platformId, which can help you determine the precise platform
 // on which your Cordova app is running. As of June, 2015 the values you could encounter are:
@@ -143,12 +144,12 @@ app.initDebug = function() {
 
     if( window.cordova && cordova.version ) {                           // only present in Cordova 3.0+
         if( cordova.version )                                           // Cordova 3.0+ framework version string
-            app.consoleLog("cordova.version: " + cordova.version) ;
+            app.init.consoleLog("cordova.version: " + cordova.version) ;
         if( cordova.platformId )                                        // Cordova 3.1+ platform ID (see above)
-            app.consoleLog("cordova.platformId: " + cordova.platformId) ;
+            app.init.consoleLog("cordova.platformId: " + cordova.platformId) ;
 
         if( cordova.require ) {                                         // print included cordova plugins
-            app.consoleLog(JSON.stringify(cordova.require('cordova/plugin_list').metadata, null, 1)) ;
+            app.init.consoleLog(JSON.stringify(cordova.require('cordova/plugin_list').metadata, null, 1)) ;
         }
     }
 
@@ -193,7 +194,7 @@ app.initDebug = function() {
         failedElement.setAttribute('style', 'display:block;') ;
     }
 
-    app.consoleLog(fName, "exit") ;
+    app.init.consoleLog(fName, "exit") ;
 } ;
 
 
@@ -201,10 +202,10 @@ app.initDebug = function() {
 // Using a splash screen is optional. This function will not fail if none is present.
 // This is also a simple study in the art of multi-platform device API detection.
 
-app.hideSplashScreen = function() {
+app.init.hideSplashScreen = function() {
     "use strict" ;
-    var fName = "app.hideSplashScreen():" ;
-    app.consoleLog(fName, "entry") ;
+    var fName = "app.init.hideSplashScreen():" ;
+    app.init.consoleLog(fName, "entry") ;
 
     // see https://github.com/01org/appframework/blob/master/documentation/detail/%24.ui.launch.md
     // Do the following if you disabled App Framework autolaunch (in index.html, for example)
@@ -218,5 +219,5 @@ app.hideSplashScreen = function() {
             intel.xdk.device.hideSplashScreen() ;
     }
 
-    app.consoleLog(fName, "exit") ;
+    app.init.consoleLog(fName, "exit") ;
 } ;
