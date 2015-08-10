@@ -8,7 +8,7 @@
     <!-- below requires the splash screen plugin -->
     <!-- docs: https://github.com/apache/cordova-plugin-splashscreen -->
     <preference name="AutoHideSplashScreen" value="true" />
-    <preference name="SplashScreen" value="splash" />
+    <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="SplashMaintainAspectRatio" value="true" />
 </platform>
@@ -41,6 +41,10 @@
     <icon platform="android" src="pkg/android/icon-xhdpi.png" density="xhdpi" />
     <icon platform="android" src="pkg/android/icon-xxhdpi.png" density="xxhdpi" />
     <icon platform="android" src="pkg/android/icon-xxxhdpi.png" density="xxxhdpi" />
+    <splash platform="android" src="pkg/android/splash-320x426.9.png" density="ldpi" orientation="portrait" />
+    <splash platform="android" src="pkg/android/splash-320x470.9.png" density="mdpi" orientation="portrait" />
+    <splash platform="android" src="pkg/android/splash-480x640.9.png" density="hdpi" orientation="portrait" />
+    <splash platform="android" src="pkg/android/splash-720x960.9.png" density="xhdpi" orientation="portrait" />
 
 <!-- iOS icons and splash screens -->
 <!-- Spotlight Icon -->

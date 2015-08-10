@@ -140,10 +140,10 @@
         "iosProvs_": [],
         "cordovaCLIVersion_": "?",
         "crosswalkVersion_": "?",
-        "appVersion_": "15.8.1",
+        "appVersion_": "15.8.9",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation",
-        "appVersionCode_": "150801"
+        "appVersionCode_": "150809"
       },
       "Android": {
         "platform_": "android",
@@ -167,10 +167,10 @@
         "iosProvs_": [],
         "cordovaCLIVersion_": "?",
         "crosswalkVersion_": "?",
-        "appVersion_": "15.8.1",
+        "appVersion_": "15.8.9",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation",
-        "appVersionCode_": "150801"
+        "appVersionCode_": "150809"
       },
       "iOS": {
         "platform_": "ios",
@@ -193,10 +193,10 @@
         "iosProvs_": [],
         "cordovaCLIVersion_": "?",
         "crosswalkVersion_": "?",
-        "appVersion_": "15.8.1",
+        "appVersion_": "15.8.9",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation",
-        "appVersionCode_": "150801"
+        "appVersionCode_": "150809"
       },
       "Windows8": {
         "platform_": "windows8",
@@ -216,7 +216,7 @@
         "iosProvs_": [],
         "cordovaCLIVersion_": "?",
         "crosswalkVersion_": "?",
-        "appVersion_": "15.8.1",
+        "appVersion_": "15.8.9",
         "appDescription_": "Cordova demonstration app.",
         "appAuthor_": "Paul Fischer, Intel Corporation"
       },
@@ -233,7 +233,7 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "appVersion_": "15.8.1"
+        "appVersion_": "15.8.9"
       },
       "Firefox": {
         "platform_": "firefoxos",
@@ -248,7 +248,7 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "appVersion_": "15.8.1"
+        "appVersion_": "15.8.9"
       },
       "Chrome": {
         "platform_": "chromeos",
@@ -263,7 +263,7 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "appVersion_": "15.8.1"
+        "appVersion_": "15.8.9"
       },
       "Facebook": {
         "platform_": "facebook",
@@ -278,7 +278,7 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "appVersion_": "15.8.1"
+        "appVersion_": "15.8.9"
       }
     },
     "gameAssetDirectory": "asset",
