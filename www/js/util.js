@@ -6,6 +6,24 @@
 
 /*jslint browser:true, devel:true, white:true, vars:true */
 /*global $:false, intel:false, moment:false, cordova:false, device:false */
+/*global utl:false */
+
+
+window.utl = window.utl || {} ;         // don't clobber existing utl object
+
+
+// The console.log() messages sprinkled in this file are for instruction and debug.
+// If you reuse this code you do not need to include them as part of your app.
+// Set to "true" if you want the console.log messages to appear.
+
+utl.LOG = true ;
+utl.consoleLog = function() {           // only emits console.log messages if utl.LOG != false
+    "use strict" ;
+    if( utl.LOG ) {
+        var args = Array.prototype.slice.call(arguments, 0) ;
+        console.log.apply(console, args) ;
+    }
+} ;
 
 
 
@@ -63,7 +81,7 @@ function getWebRoot() {
 
 // TODO: userAgent string detection, etc...
 
-function getPlatformInfo(info) {
+utl.getPlatformInfo = function(info) {
     "use strict" ;
 
     info.cordova = false ;          // true if running in Cordova webview, false if not, null if indeterminate
@@ -101,9 +119,10 @@ function getPlatformInfo(info) {
 //    else if( ...check for app preview... )
 //    else if( ...check for APX... )
 //    TODO: detect App Preview, Debug, Cordova app, Legacy container, etc.
+//    TODO: detect navigator.platform, navigator.maxTouchPoints, navigator.language, navigator.hardwareConcurrency
 
     return info ;
-}
+} ;
 
 
 
@@ -120,11 +139,12 @@ function copyObject(objIn) {
 // for printing console.log messages into HTML page directly as well as normal console
 // TODO: need to handle other console methods, just console.log() for now...
 // TODO: remove excess lines, https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement
-// NOTE: this implementation hides file:ln on log message, which really sucks...
 // TODO: http://stackoverflow.com/questions/11308239/console-log-wrapper-that-keeps-line-numbers-and-supports-most-methods
+// NOTE: investigate above because this implementation hides file:ln on log message, which really sucks...
 
-var orgConsoleLog = console.log ;
-var orgTime = Date.now() ;
+utl.orgConsoleLog = console.log ;
+utl.orgTime = Date.now() ;
+
 console.log = function() {
     "use strict" ;
 
@@ -134,9 +154,9 @@ console.log = function() {
         args.unshift(moment().format("HH:mm:ss.SSS")) ;
     }
     else {
-        args.unshift(((Date.now()-orgTime)/1000).toFixed(3)) ;
+        args.unshift(((Date.now()-utl.orgTime)/1000).toFixed(3)) ;
     }
-    orgConsoleLog.apply(this,args) ;
+    utl.orgConsoleLog.apply(this,args) ;
 
     var text = args.join(" ") ;
     var node ;
