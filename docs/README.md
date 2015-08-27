@@ -42,6 +42,12 @@ entry point into your application.
 
 [4]: <https://github.com/adobe/brackets/wiki/How-to-Use-Brackets>
 
+> **NOTE:** some of the images in this tutorial may not precisely match what
+> you see when using the app in the Emulate tab, in the Debug tab, in App
+> Preview or when the app is built and installed on your device. Please
+> ignore those differences, if what you see is close to the images shown
+> in this tutorial your app is working correctly.
+
 Using the Emulate Tab
 ---------------------
 
@@ -105,6 +111,15 @@ device-motion plugin][9] (which is included as part of the project by selecting
 If you want to inspect the accelerometer code, find the `cordova-acc.js` file
 inside the “hello-cordova” project.
 
+> **NOTE:** there is a known issue on some Android 5 devices where the accelerometer
+> plugin does not work. This is an Apache Cordova problem that currently has no
+> known solution. You will only see this problem when running on a real device. As
+> an alternative you can use the deprecated [Intel XDK accelerometer plugin][] or
+> the [HTML5 device orientation API][].
+
+[Intel XDK accelerometer plugin]: <https://github.com/01org/cordova-plugin-intel-xdk-accelerometer>
+[HTML5 device orientation API]: <http://www.html5rocks.com/en/tutorials/device/orientation/>
+
 ### Try the GeoLocation Simulator
 
 For this step make sure you have selected one of the iOS devices (such as an
@@ -133,6 +148,14 @@ If you want to inspect the code associated with the geolocation part of this
 app, find the `cordova-geo.js` file in the “hello-cordova” application’s project
 directory.
 
+> **NOTE:** some devices do not include GPS hardware or are built with very
+> ineffective geolocation hardware. Android devices allow the user to control
+> whether or not the GPS hardware is enabled. All devices allow users to block 
+> access to geolocation data (whether derived from GPS, wifi or mobile cell
+> tower signal information). Be aware that all of these caveats mean that you
+> may not always be able to get geolocation information from the device and
+> your application should accommodate this condition.
+
 ### Try the Compass Simulator
 
 Push the “Compass” button to enable monitoring the compass feature of the
@@ -146,8 +169,17 @@ the **GeoLocation** map rotate to indicate the relative direction of the
 compass, as specified by the **Heading** slider. Likewise, the compass field on
 the device’s simulated display will update to reflect the returned compass data.
 
+_Not all devices include the hardware necessary to provide compass heading data!_
+
 The code that is reading the compass data is located inside the `cordova-acc.js`
 file in the “hello-cordova” project directory.
+
+> **NOTE:** there is a known issue on some Android 5 devices where the compass
+> feature does not work. This is an Apache Cordova problem that currently has no
+> known solution. You will only see this problem when running on a real device. As
+> an alternative you can use the [HTML5 device orientation API][].
+
+[HTML5 device orientation API]: <http://www.html5rocks.com/en/tutorials/device/orientation/>
 
 ### Try to Debug some JavaScript, CSS and HTML
 
@@ -158,11 +190,11 @@ hear the short beep. Notice that the button does not turn green, like the
 being used to issue this audio alert has no “watch” feature, it is a simple
 call to a function that generates the audio alert.
 
-This is an easy function to test out your JavaScript debugging skills. You’ll
-find the function associated with that button inside the `main.js` file in the
+This is an easy function to test your JavaScript debugging skills. You’ll
+find the function associated with that button inside the `app.js` file in the
 “hello-cordova” project. The specific function you are looking for is called,
-appropriately, `btnBeep()`. It is a very simple function, so there’s not much
-debugging that can be done, but it will help you get started.
+appropriately, `app.btnBeep()`. It is a very simple function, so there’s not
+much debugging that can be done, but it will help you get started.
 
 From the **Emulate** tab, push the “debug” icon in the toolbar (at the upper
 left of the **Emulate** tab window, see the image above). Pushing the “debug”
@@ -193,24 +225,29 @@ files, so you can always get back to where you started by simply restarting the
 session with the “refresh” icon on the toolbar (the “refresh” icon is located to
 the left of the “debug” icon).
 
+> **NOTE:** each source code file includes a line of code similar to
+> `app.init.LOG = true ;` (near the top of each file) that can be used to enable 
+> and disable `console.log()` messages within that module.
+
 In order to debug JavaScript you need to select the **Sources** tab of CDT and
 find the source file of interest. In this case, we are going to set a breakpoint
-on the `btnBeep()` function, which is located in the `main.js` file. Once we
+on the `app.btnBeep()` function, which is located in the `app.js` file. Once we
 locate that file in CDT we can set a breakpoint on the entry line of the
-`btnBeep()` function by double-clicking that line in the source code display. A
+`app.btnBeep()` function by double-clicking that line in the source code display. A
 breakpoints panel on the right side of the CDT window contains any breakpoints
 that have been set in our test application.
 
-See the image below for an example:
+See the image below for an example (the image is slightly out of date, please
+find the `app.js` file and the `app.btnBeep()` function within that file):
 
 ![](<emulate-set-breakpoint.png>)
 
 Now push the “Beep” button on the simulated device. As soon as we enter the
-`btnBeep()` function we will encounter our breakpoint. This pauses the
+`app.btnBeep()` function we will encounter our breakpoint. This pauses the
 JavaScript execution, at the breakpoint.
 
 This image shows the application just as we have encountered the JavaScript
-breakpoint:
+breakpoint (as noted above, the image is slightly out of date):
 
 ![](<emulate-hit-breakpoint.png>)
 
@@ -223,8 +260,8 @@ panel (as shown below) and by using the JavaScript console.
 ![](<emulate-var-inspect.png>)
 
 To control execution following a break use the panel to the right of the of the
-source panel. The blue arrow (see image below) causes execution of the
-application to resume. Pushing the curved arrow that is jumping over a dot (to
+source panel. The blue arrow causes execution of the application to resume
+(see the image below). Pushing the curved arrow that is jumping over a dot (to
 the right of the blue "resume" icon) causes your code to single-step. Try
 single-stepping through the function.
 
@@ -235,8 +272,8 @@ learn more about debugging with CDT.
 
 [11]: <https://developer.chrome.com/devtools>
 
-Using the Debug Tab
--------------------
+Using the Debug Tab with a Real Device
+--------------------------------------
 
 For a quick overview of the **Debug** tab requirements and features, see this
 article:
@@ -246,7 +283,7 @@ A more detailed explanation of the **Debug** tab can be found here:
 
 ### Getting Started with the Debug Tab
 
-Switch to the **Debug** tab to start debugging this same app on a real Android
+Switch to the **Debug** tab to start debugging this same app on a real **Android**
 device attached to your workstation via a USB cable. If your device is ready for
 debugging the **Debug** tab will indicate that it can see a device in the upper
 left of the **Debug** tab’s toolbar, at the upper left of the window.
@@ -258,7 +295,12 @@ article][12] to configure your device and workstation for Android USB debugging.
 
 [12]: <https://software.intel.com/en-us/xdk/docs/configuring-your-windows-usb-android-debug-connection-for-the-intel-xdk>
 
-### Running Your App on the Device
+> **NOTE:** the **Debug** tab can also be used with an iOS device, but does
+> require that you have an Apple developer account in order to create the 
+> necessary certificates and provisioning files needed to debug an iOS app.
+> To learn how to use USB debugging it is best to start with an Android device.
+
+### Installing the App Preview Debug Module
 
 Once your device is recognized, you can load the “hello-cordova” application
 onto it by pushing either the “debug” or “run” icon on the toolbar, just to the
@@ -267,13 +309,12 @@ your app on the attached device. Pushing the “debug” icon will load and run 
 app and then start a copy of Chrome DevTools inside the **Debug** tab, similar
 to what you saw when using the **Emulate** tab.
 
-In order to run your app on the device a special version of App Preview must be
-present on your Android device. The Intel XDK will prompt you about this
-requirement and will automatically install that special version of App Preview
-(aka App Preview Crosswalk or APX) onto your device, if it is not already
-present, before it loads and starts your app.
+In order to run your app on the device a special App Preview debug module must
+first be installed on your Android device. The Intel XDK will prompt you about this
+requirement and will lead you through the process of installing that debug module
+onto your device, if it is not already present, before it loads and starts your app.
 
-### Debugging Your App on the Device
+### Debugging Your App on a Real Device
 
 After the **Debug** tab has started running your app on your device, and the CDT
 window is present, you can go through the same sequence of steps described in
@@ -284,14 +325,14 @@ to see the data displayed by the app change. In other words, you must rotate and
 move the device to see any results, because your app is now running on a real
 device!
 
-Note that not all devices are guaranteed to include the hardware necessary to
-use all the features of this simple "hello-cordova" application. For example, it
-is quite common to encounter devices that do not include compass or GPS hardware.
-In that case the "Compass" button will not read any data and the precision of
-the GPS data may be quite low or non-existent. The precise capabilities of
-geolocation hardware in Android devices can vary widely. In addition, the
-ability to read geolocation data on a real device can also be restricted by the
-Android "Location" settings, or mode. For example, if a device includes GPS
-hardware but that GPS hardware has been disabled in the Android settings, it may
-result in no "fine" geolocation data being returned from the device, or the data
-may be identical to the "coarse" geolocation data results.
+> **NOTE:** that not all devices are guaranteed to include the hardware necessary to
+> use all the features of this simple "hello-cordova" application. For example, it
+> is quite common to encounter devices that do not include compass or GPS hardware.
+> In that case the "Compass" button will not read any data and the precision of
+> the GPS data may be quite low or non-existent. The precise capabilities of
+> geolocation hardware in Android devices can vary widely. In addition, the
+> ability to read geolocation data on a real device can also be restricted by the
+> Android "Location" settings, or mode. For example, if a device includes GPS
+> hardware but that GPS hardware has been disabled in the Android settings, it may
+> result in no "fine" geolocation data being returned from the device, or the data
+> may be identical to the "coarse" geolocation data results.
