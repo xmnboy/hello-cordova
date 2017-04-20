@@ -1,6 +1,12 @@
 An Intel® XDK Debugging Tutorial
 ================================
 
+> *NOTE:* the screenshots in this tutorial may vary from those you see
+> in the Intel XDK that you are using and from the current versin of this
+> demo application. Despite any such differences, the content of this
+> tutorial still applies and can still be used to gain insight into how
+> to use the Intel XDK to debug your Cordova application.
+
 As the [table on this page][1] illustrates, there are many ways to debug a
 hybrid HTML5 app using the Intel XDK. In this article I’m going to go through
 just two of these options:
@@ -150,7 +156,7 @@ directory.
 
 > **NOTE:** some devices do not include GPS hardware or are built with very
 > ineffective geolocation hardware. Android devices allow the user to control
-> whether or not the GPS hardware is enabled. All devices allow users to block 
+> whether or not the GPS hardware is enabled. All devices allow users to block
 > access to geolocation data (whether derived from GPS, wifi or mobile cell
 > tower signal information). Be aware that all of these caveats mean that you
 > may not always be able to get geolocation information from the device and
@@ -226,7 +232,7 @@ session with the “refresh” icon on the toolbar (the “refresh” icon is lo
 the left of the “debug” icon).
 
 > **NOTE:** each source code file includes a line of code similar to
-> `app.init.LOG = true ;` (near the top of each file) that can be used to enable 
+> `app.init.LOG = true ;` (near the top of each file) that can be used to enable
 > and disable `console.log()` messages within that module.
 
 In order to debug JavaScript you need to select the **Sources** tab of CDT and
@@ -296,7 +302,7 @@ article][12] to configure your device and workstation for Android USB debugging.
 [12]: <https://software.intel.com/en-us/xdk/docs/configuring-your-windows-usb-android-debug-connection-for-the-intel-xdk>
 
 > **NOTE:** the **Debug** tab can also be used with an iOS device, but does
-> require that you have an Apple developer account in order to create the 
+> require that you have an Apple developer account in order to create the
 > necessary certificates and provisioning files needed to debug an iOS app.
 > To learn how to use USB debugging it is best to start with an Android device.
 

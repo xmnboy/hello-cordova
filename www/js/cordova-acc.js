@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2013-2015, Paul Fischer, Intel Corporation. All rights reserved.
- * Please see included README.md file for license terms and conditions.
+ * Copyright (c) 2013-2016, Paul Fischer, Intel Corporation. All rights reserved.
+ * Please see included README.md and LICENSE.md files for license terms and conditions.
  */
 
 
@@ -58,10 +58,10 @@ acc.btnAccel = function() {
     acc.consoleLog(fName, "entry") ;
 
     function onSuccess(acceleration) {
-        document.getElementById('acceleration-x').value = acceleration.x.toFixed(6) ;
-        document.getElementById('acceleration-y').value = acceleration.y.toFixed(6) ;
-        document.getElementById('acceleration-z').value = acceleration.z.toFixed(6) ;
-        document.getElementById('acceleration-t').value = acceleration.timestamp ;
+        document.getElementById('acceleration-x').textContent = acceleration.x.toFixed(6) ;
+        document.getElementById('acceleration-y').textContent = acceleration.y.toFixed(6) ;
+        document.getElementById('acceleration-z').textContent = acceleration.z.toFixed(6) ;
+        document.getElementById('acceleration-t').textContent = acceleration.timestamp ;
     }
 
     function onFail() {
@@ -85,6 +85,12 @@ acc.btnAccel = function() {
         removeClass("cl_btnOn", document.getElementById("id_btnAccel")) ;
         acc.consoleLog(fName, "btnAccel disabled.") ;
     }
+
+
+// need an experiment to compare HTML5 accel API results, esp. since the Cordova
+// version of this stuff keeps breaking on new Android OS releases...
+
+
 
     acc.consoleLog(fName, "exit") ;
 } ;
@@ -120,10 +126,11 @@ acc.btnCompass = function() {
     acc.consoleLog(fName, "entry") ;
 
     function onSuccess(heading) {
-        document.getElementById('compass-dir').value = heading.magneticHeading.toFixed(6) ;
+        document.getElementById('compass-dir').textContent = heading.magneticHeading.toFixed(6) ;
     }
 
     function onFail(compassError) {
+        document.getElementById('compass-dir').textContent = "Compass error: " + compassError.code ;
         acc.consoleLog(fName, "Compass error: " + compassError.code) ;
     }
 

@@ -1,6 +1,6 @@
 /*
- * Copyright © 2012-2015, Intel Corporation. All rights reserved.
- * Please see the included README.md file for license terms and conditions.
+ * Copyright © 2012-2017, Paul Fischer, Intel Corporation. All rights reserved.
+ * Please see the included LICENSE.md file for license terms and conditions.
  */
 
 
@@ -36,7 +36,7 @@
  * Please read the comments within for details and for further documentation.
  *
  * BTW: "dev" means "device" in this context, not "develop," because it grew out
- * of a desire to build a more reliable and flexible "device ready" detector.
+ * of a desire to build a more reliable and flexible "deviceready" detector.
  */
 
 
@@ -144,8 +144,10 @@ dev.onDeviceReady = function() {
 
 
 /*
- * The following is an excerpt from the 3.3.0 cordova.js file and is useful for understanding
- * Cordova events. The order of events during page load and Cordova startup is as follows:
+ * The following is an excerpt from the Cordova channel.js file and is useful for understanding
+ * Cordova events. See https://github.com/apache/cordova-js/blob/master/src/common/channel.js for details.
+ * 
+ * The order of events during page load and Cordova startup is as follows:
  *
  * onDOMContentLoaded*         Internal event that is received when the web page is loaded and parsed.
  * onNativeReady*              Internal event that indicates the Cordova native side is ready.
@@ -153,7 +155,6 @@ dev.onDeviceReady = function() {
  * onDeviceReady*              User event fired to indicate that Cordova is ready
  * onResume                    User event fired to indicate a start/resume lifecycle event
  * onPause                     User event fired to indicate a pause lifecycle event
- * onDestroy*                  Internal event fired when app is being destroyed (User should use window.onunload event, not this one).
  *
  * The events marked with an * are sticky. Once they have fired, they will stay in the fired state.
  * All listeners that subscribe after the event is fired will be executed right away.
@@ -171,9 +172,7 @@ dev.onDeviceReady = function() {
  * The DOM lifecycle events should be used for saving and restoring state
  *      window.onload
  *      window.onunload
- *
  */
-
 
 
 // The following is not fool-proof, we're mostly interested in detecting one

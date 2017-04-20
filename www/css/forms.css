@@ -11,7 +11,7 @@
  *
  * blueprint-css license terms:
  *
- * Copyright (c) 2007 - 2010 blueprintcss.org
+ * Copyright (c) 2007-2010 blueprintcss.org
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -37,22 +37,17 @@
 -------------------------------------------------------------- */
 
 /*
- * Copyright (c) 2013, Intel Corporation. All rights reserved.
- * Please see http://software.intel.com/html5/license/samples
- * and the included README.md file for license terms and conditions.
- */
-
-/*
-  A special hack is included for IE8 since it does not apply padding
-  correctly on fieldsets
+ * Copyright (c) 2013-2016, Paul Fischer, Intel Corporation. All rights reserved.
+ * Please see https://software.intel.com/en-us/xdk/article/intel-html5-samples-license-terms-and-conditions
+ * and the included README.md and LICENSE.md files for license terms and conditions.
  */
 
 label    { font-weight: bold; }
-fieldset { padding:0 1.4rem 1.4rem 1.4rem; margin: 0 0 1.5rem 0; border: 1px solid #ccc; }
-legend   { font-weight: bold; font-size:1.2rem; margin-top:-0.2rem; margin-bottom:1rem; }
+fieldset { border: 1px solid #999 ; margin: 0 0 1.5rem 0; padding:0 1.4rem 1.4rem 1.4rem; }
+legend   { font-size:1.2rem; font-weight: bold; margin-bottom:1rem; margin-top:-0.2rem; }
 
-fieldset, #IE8#HACK { padding-top:1.4rem; }
-legend, #IE8#HACK { margin-top:0; margin-bottom:0; }
+fieldset { padding-top:1.4rem; }
+legend   { margin-bottom:0; margin-top:0; }
 
 /* Form fields
 -------------------------------------------------------------- */
@@ -67,35 +62,42 @@ legend, #IE8#HACK { margin-top:0; margin-bottom:0; }
 input[type=text], input[type=password], input[type=url], input[type=email], input[type=button],
 input.text, input.title,
 textarea {
-    background-color:#fff;
-    border:1px solid #bbb;
-    color:#000;
+    background-color: #eee ;
+    border: 1px solid #999 ;
+    color: #333 ;
+    opacity: 1 ;
 }
-input[type=text]:focus, input[type=password]:focus, input[type=url]:focus, input[type=email]:focus,  input[type=button]:focus,
+input[type=text]:focus, input[type=password]:focus, input[type=url]:focus, input[type=email]:focus, input[type=button]:focus,
 input.text:focus, input.title:focus,
 textarea:focus {
-    border-color:#666;
+    border-color: #999 ;
+    outline: none ;
 }
 
-input[type=text]:hover, input[type=password]:hover, input[type=url]:hover, input[type=email]:hover,  input[type=button]:hover,
+input[type=text]:hover, input[type=password]:hover, input[type=url]:hover, input[type=email]:hover, input[type=button]:hover,
 input.text:hover, input.title:hover,
 textarea:hover {
-    background-color:#fff6bf;
-    border-color:#666;
+    background-color: #eee ;
+    border-color: #999 ;
+    outline: none ;
 }
 
-select { background-color:#fff; border-width:1px; border-style:solid; }
+select {
+    background-color: #eee ;
+    border-style: solid ;
+    border-width: 1px ;
+}
 
 input[type=text], input[type=password], input[type=url], input[type=email],  input[type=button],
 input.text, input.title,
 textarea, select {
-    margin:0.5rem 0;
+    margin: 0.5rem 0 ;
 }
 
 input.text,
-input.title { width: 30.0rem; padding:0.5rem; }
+input.title { padding:0.5rem; width: 30.0rem; }
 input.title { font-size:1.5rem; }
-textarea    { width: 39.0rem; height: 25.0rem; padding:0.5rem; }
+textarea    { height: 25.0rem; padding:0.5rem; width: 39.0rem; }
 
 /*
   This is to be used on forms where a variety of elements are
@@ -112,12 +114,12 @@ form.inline p   { margin-bottom:0; }
 .alert,
 .notice,
 .success,
-.info               { padding: 0.8rem; margin-bottom: 1rem; border: 2px solid #ddd; }
+.info               { border: 2px solid #ddd; margin-bottom: 1rem; padding: 0.8rem; }
 
-.error, .alert      { background: #fbe3e4; color: #8a1f11; border-color: #fbc2c4; }
-.notice             { background: #fff6bf; color: #514721; border-color: #ffd324; }
-.success            { background: #e6efc2; color: #264409; border-color: #c6d880; }
-.info               { background: #d5edf8; color: #205791; border-color: #92cae4; }
+.error, .alert      { background: #fbe3e4; border-color: #fbc2c4; color: #8a1f11; }
+.notice             { background: #fff6bf; border-color: #ffd324; color: #514721; }
+.success            { background: #e6efc2; border-color: #c6d880; color: #264409; }
+.info               { background: #d5edf8; border-color: #92cae4; color: #205791; }
 .error a, .alert a  { color: #8a1f11; }
 .notice a           { color: #514721; }
 .success a          { color: #264409; }

@@ -1,0 +1,7 @@
+{
+  "name": "hello-cordova",
+  "dependencies": {
+    "ua-parser-js": "0.7.10",
+    "moment": "2.13.0"
+  }
+}

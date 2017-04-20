@@ -1,10 +1,13 @@
 /*
- * Copyright (c) 2014, Intel Corporation. All rights reserved.
- * Please see http://software.intel.com/html5/license/samples
- * and the included README.md file for license terms and conditions.
+ * Copyright (c) 2014-2016, Paul Fischer, Intel Corporation. All rights reserved.
+ * Please see https://software.intel.com/en-us/xdk/article/intel-html5-samples-license-terms-and-conditions
+ * and the included README.md and LICENSE.md files for license terms and conditions.
  */
+
+/*csslint import:false */
 
 @import "../css/normalize.css" ;
 @import "../css/typography.css" ;
 @import "../css/forms.css" ;
+@import "../css/grid.css" ;
 @import "../css/app.css" ;

@@ -1,12 +1,12 @@
 /*
- * Copyright (c) 2013-2015, Paul Fischer, Intel Corporation. All rights reserved.
- * Please see included README.md file for license terms and conditions.
+ * Copyright (c) 2013-2016, Paul Fischer, Intel Corporation. All rights reserved.
+ * Please see included README.md and LICENSE.md files for license terms and conditions.
  */
 
 
 /*jslint browser:true, devel:true, white:true, vars:true */
 /*global $:false, intel:false, moment:false, geo:false */
-/*global copyObject:false, addClass:false, removeClass:false */
+/*global copyObject:false, addClass:false, removeClass:false, tinyHippos:false */
 
 
 window.geo = window.geo || {} ;     // don't clobber existing geo object
@@ -33,13 +33,48 @@ geo.opts = {
     watchId : null                  // holds handle for watchPosition(), pass as null to clearWatch() to terminate the watch
 } ;
 
-geo.optsXDK = {
-    enableHighAccuracy : true,      // true for "fine" position (GPS), false for "coarse" position (network, et al)
-    timeout : 2000,                 // milliseconds interval to return a result (default is 10,000 msecs)
-    maximumAge : 60000,             // max age in milliseconds to wait for position before returning error
-    watchId : null                  // holds handle for watchPosition(), pass as null to clearWatch() to terminate the watch
-} ;
+geo.demoOffset = {                  // a simple mock offset from the current location, to protect privacy during recorded demos
+    latitude : 0,                   // info: latitude values are bounded by ±90°, +latitudes are north of the equator
+    longitude : 0,                  // info: longitude values are bounded by ±180°, +longitudes are east of the Prime Meridian
+    applyOffsetLat : function(lat) {
+        if( window.tinyHippos )     // if running in Emulate tab, no offsets applied
+            return (lat) ;
 
+        if( this.latitude ) {
+            if( this.latitude > 90 )    // just to simplify the math
+                this.latitude = 90 ;
+            if( this.latitude < -90 )   // ditto
+                this.latitude = -90 ;
+
+            lat += this.latitude ;
+
+            if( lat > 90 )              // correct for any overflow
+                lat = 180 - lat ;
+            if( lat < -90 )             // ditto
+                lat = -180 - lat ;
+        }
+        return (lat) ;
+    },
+    applyOffsetLong : function(long) {
+        if( window.tinyHippos )         // if running in Emulate tab, no offsets applied
+            return (long) ;
+
+        if( this.longitude ) {
+            if( this.longitude > 180 )  // just to simplify the math
+                this.longitude = 180 ;
+            if( this.longitude < -180 ) // ditto
+                this.longitude = -180 ;
+
+            long += this.longitude ;
+
+            if( long > 180 )            // correct for any overflow
+                long = 360 - long ;
+            if( long < -180 )           // ditto
+                long = -360 - long ;
+        }
+        return (long) ;
+    }
+} ;
 
 
 // Called by init-app.js
@@ -56,14 +91,6 @@ geo.initGeoLocate = function() {
     }
     catch(e) {
         geo.consoleLog(fName, "navigator try failed:", e) ;
-    }
-
-    try {
-        intel.xdk.geolocation.clearWatch(geo.optsXDK.watchId = null) ;
-        geo.consoleLog(fName, "intel.xdk try succeeded.") ;
-    }
-    catch(e) {
-        geo.consoleLog(fName, "intel.xdk try failed:", e) ;
     }
 
     geo.consoleLog(fName, "exit") ;
@@ -106,36 +133,6 @@ geo.btnGeoCoarse = function() {
     geo.consoleLog(fName, "exit") ;
 } ;
 
-geo.btnGeoFineXDK = function() {
-    "use strict" ;
-    var fName = "geo.btnGeoFineXDK():" ;
-    geo.consoleLog(fName, "entry") ;
-
-    var geoOpts = copyObject(geo.optsXDK) ;
-    if( geoOpts.maximumAge < 0 )
-        geoOpts.maximumAge = Infinity ;         // force use of cached geo values if "cachAge" is negative
-    geoOpts.enableHighAccuracy = true ;         // force use of high accuracy measurement (e.g., GPS)
-    geo.optsXDK.enableHighAccuracy = true ;     // set to high accuracy for next use by watch function
-
-    geo.locateXDK(geoOpts) ;                    // do a single geo request
-    geo.consoleLog(fName, "exit") ;
-} ;
-
-geo.btnGeoCoarseXDK = function() {
-    "use strict" ;
-    var fName = "geo.btnGeoCoarseXDK():" ;
-    geo.consoleLog(fName, "entry") ;
-
-    var geoOpts = copyObject(geo.optsXDK) ;
-    if( geoOpts.maximumAge < 0 )
-        geoOpts.maximumAge = Infinity ;         // force use of cached geo values if "cachAge" is negative
-    geoOpts.enableHighAccuracy = false ;        // force use of low accuracy measurement (e.g., network location)
-    geo.optsXDK.enableHighAccuracy = false ;    // set to low accuracy for next use by watch function
-
-    geo.locateXDK(geoOpts) ;                    // do a single geo request
-    geo.consoleLog(fName, "exit") ;
-} ;
-
 
 
 // Perform a single geo request (no watch).
@@ -153,36 +150,37 @@ geo.locate = function(geoOpts) {
 
     function onSuccess(pos) {
         geo.consoleLog(fName, "onSuccess") ;
-        document.getElementById("geo-info").value = fName + " onSuccess " ;
+        document.getElementById("geo-info").textContent = fName + " onSuccess " ;
         if( window.moment )
-            document.getElementById("geo-mode").value = accuracy + " " + moment().format("HH:mm:ss.SSS") ;
+            document.getElementById("geo-mode").textContent = accuracy + " " + moment().format("HH:mm:ss.SSS") ;
         else
-            document.getElementById("geo-mode").value = accuracy ;
-        document.getElementById("geo-latitude").value = pos.coords.latitude ;
-        document.getElementById("geo-longitude").value = pos.coords.longitude ;
-        document.getElementById("geo-accuracy").value = pos.coords.accuracy ;
-        document.getElementById("geo-altitude").value = pos.coords.altitude ;
-        document.getElementById("geo-altAcc").value = pos.coords.altitudeAccuracy ;
-        document.getElementById("geo-heading").value = pos.coords.heading ;
-        document.getElementById("geo-speed").value = pos.coords.speed ;
-        document.getElementById("geo-timestamp").value = pos.timestamp ;
+            document.getElementById("geo-mode").textContent = accuracy ;
+
+        document.getElementById("geo-latitude").textContent = geo.demoOffset.applyOffsetLat(pos.coords.latitude) ;
+        document.getElementById("geo-longitude").textContent = geo.demoOffset.applyOffsetLong(pos.coords.longitude) ;
+        document.getElementById("geo-accuracy").textContent = pos.coords.accuracy ;
+        document.getElementById("geo-altitude").textContent = pos.coords.altitude ;
+        document.getElementById("geo-altAcc").textContent = pos.coords.altitudeAccuracy ;
+        document.getElementById("geo-heading").textContent = pos.coords.heading ;
+        document.getElementById("geo-speed").textContent = pos.coords.speed ;
+        document.getElementById("geo-timestamp").textContent = pos.timestamp ;
     }
 
     function onFail(err) {
         geo.consoleLog(fName, "onFail") ;
-        document.getElementById("geo-info").value = fName + " onFail " ;
+        document.getElementById("geo-info").textContent = fName + " onFail " ;
         if( window.moment )
-            document.getElementById("geo-mode").value = accuracy + " " + moment().format("HH:mm:ss.SSS") ;
+            document.getElementById("geo-mode").textContent = accuracy + " " + moment().format("HH:mm:ss.SSS") ;
         else
-            document.getElementById("geo-mode").value = accuracy ;
-        document.getElementById("geo-latitude").value = err.code ;
-        document.getElementById("geo-longitude").value = err.message ;
-        document.getElementById("geo-accuracy").value = "" ;
-        document.getElementById("geo-altitude").value = "" ;
-        document.getElementById("geo-altAcc").value = "" ;
-        document.getElementById("geo-heading").value = "" ;
-        document.getElementById("geo-speed").value = "" ;
-        document.getElementById("geo-timestamp").value = "" ;
+            document.getElementById("geo-mode").textContent = accuracy ;
+        document.getElementById("geo-latitude").textContent = err.code ;
+        document.getElementById("geo-longitude").textContent = err.message ;
+        document.getElementById("geo-accuracy").textContent = "" ;
+        document.getElementById("geo-altitude").textContent = "" ;
+        document.getElementById("geo-altAcc").textContent = "" ;
+        document.getElementById("geo-heading").textContent = "" ;
+        document.getElementById("geo-speed").textContent = "" ;
+        document.getElementById("geo-timestamp").textContent = "" ;
         geo.consoleLog(fName, 'geoError(' + err.code + '): ' + err.message) ;
         // 1: PERMISSION_DENIED
         // 2: POSITION_UNAVAILABLE
@@ -191,61 +189,6 @@ geo.locate = function(geoOpts) {
 
     try {
         navigator.geolocation.getCurrentPosition(onSuccess, onFail, geoOpts) ;
-    }
-    catch(e) {
-        geo.consoleLog(fName, "try failed - device API not present?", e) ;
-    }
-
-    geo.consoleLog(fName, "exit") ;
-} ;
-
-// Perform a single geo request (no watch).
-// This function is based on the XDK geoLocate API.
-
-geo.locateXDK = function(geoOpts) {
-    "use strict" ;
-    var fName = "geo.locateXDK():" ;
-    geo.consoleLog(fName, "entry") ;
-
-    var accuracy = geoOpts.enableHighAccuracy ? "fine" : "coarse" ;
-
-    function onSuccess(pos) {
-        geo.consoleLog(fName, "onSuccess") ;
-        document.getElementById("geo-info").value = fName + " onSuccess " ;
-        if( window.moment )
-            document.getElementById("geo-mode").value = accuracy + " " + moment().format("HH:mm:ss.SSS") ;
-        else
-            document.getElementById("geo-mode").value = accuracy ;
-        document.getElementById("geo-latitude").value = pos.coords.latitude ;
-        document.getElementById("geo-longitude").value = pos.coords.longitude ;
-        document.getElementById("geo-accuracy").value = pos.coords.accuracy ;
-        document.getElementById("geo-altitude").value = pos.coords.altitude ;
-        document.getElementById("geo-altAcc").value = pos.coords.altitudeAccuracy ;
-        document.getElementById("geo-heading").value = pos.coords.heading ;
-        document.getElementById("geo-speed").value = pos.coords.speed ;
-        document.getElementById("geo-timestamp").value = pos.timestamp ;
-    }
-
-    function onFail(err) {
-        geo.consoleLog(fName, "onFail") ;
-        document.getElementById("geo-info").value = fName + " onFail " ;
-        if( window.moment )
-            document.getElementById("geo-mode").value = accuracy + " " + moment().format("HH:mm:ss.SSS") ;
-        else
-            document.getElementById("geo-mode").value = accuracy ;
-        document.getElementById("geo-latitude").value = err ;
-        document.getElementById("geo-longitude").value = "" ;
-        document.getElementById("geo-accuracy").value = "" ;
-        document.getElementById("geo-altitude").value = "" ;
-        document.getElementById("geo-altAcc").value = "" ;
-        document.getElementById("geo-heading").value = "" ;
-        document.getElementById("geo-speed").value = "" ;
-        document.getElementById("geo-timestamp").value = "" ;
-        geo.consoleLog(fName, "geoError(" + err + ")") ;
-    }
-
-    try {
-        intel.xdk.geolocation.getCurrentPosition(onSuccess, onFail, geoOpts) ;
     }
     catch(e) {
         geo.consoleLog(fName, "try failed - device API not present?", e) ;
@@ -274,36 +217,36 @@ geo.btnGeo = function() {
 
     function onSuccess(pos) {
         geo.consoleLog(fName, "onSuccess") ;
-        document.getElementById("geo-info").value = fName + " onSuccess " ;
+        document.getElementById("geo-info").textContent = fName + " onSuccess " ;
         if( window.moment )
-            document.getElementById("geo-mode").value = accuracy + " " + moment().format("HH:mm:ss.SSS") ;
+            document.getElementById("geo-mode").textContent = accuracy + " " + moment().format("HH:mm:ss.SSS") ;
         else
-            document.getElementById("geo-mode").value = accuracy ;
-        document.getElementById("geo-latitude").value = pos.coords.latitude ;
-        document.getElementById("geo-longitude").value = pos.coords.longitude ;
-        document.getElementById("geo-accuracy").value = pos.coords.accuracy ;
-        document.getElementById("geo-altitude").value = pos.coords.altitude ;
-        document.getElementById("geo-altAcc").value = pos.coords.altitudeAccuracy ;
-        document.getElementById("geo-heading").value = pos.coords.heading ;
-        document.getElementById("geo-speed").value = pos.coords.speed ;
-        document.getElementById("geo-timestamp").value = pos.timestamp ;
+            document.getElementById("geo-mode").textContent = accuracy ;
+        document.getElementById("geo-latitude").textContent = geo.demoOffset.applyOffsetLat(pos.coords.latitude) ;
+        document.getElementById("geo-longitude").textContent = geo.demoOffset.applyOffsetLong(pos.coords.longitude) ;
+        document.getElementById("geo-accuracy").textContent = pos.coords.accuracy ;
+        document.getElementById("geo-altitude").textContent = pos.coords.altitude ;
+        document.getElementById("geo-altAcc").textContent = pos.coords.altitudeAccuracy ;
+        document.getElementById("geo-heading").textContent = pos.coords.heading ;
+        document.getElementById("geo-speed").textContent = pos.coords.speed ;
+        document.getElementById("geo-timestamp").textContent = pos.timestamp ;
     }
 
     function onFail(err) {
         geo.consoleLog(fName, "onFail") ;
-        document.getElementById("geo-info").value = fName + " onFail " ;
+        document.getElementById("geo-info").textContent = fName + " onFail " ;
         if( window.moment )
-            document.getElementById("geo-mode").value = accuracy + " " + moment().format("HH:mm:ss.SSS") ;
+            document.getElementById("geo-mode").textContent = accuracy + " " + moment().format("HH:mm:ss.SSS") ;
         else
-            document.getElementById("geo-mode").value = accuracy ;
-        document.getElementById("geo-latitude").value = err.code ;
-        document.getElementById("geo-longitude").value = err.message ;
-        document.getElementById("geo-accuracy").value = "" ;
-        document.getElementById("geo-altitude").value = "" ;
-        document.getElementById("geo-altAcc").value = "" ;
-        document.getElementById("geo-heading").value = "" ;
-        document.getElementById("geo-speed").value = "" ;
-        document.getElementById("geo-timestamp").value = "" ;
+            document.getElementById("geo-mode").textContent = accuracy ;
+        document.getElementById("geo-latitude").textContent = err.code ;
+        document.getElementById("geo-longitude").textContent = err.message ;
+        document.getElementById("geo-accuracy").textContent = "" ;
+        document.getElementById("geo-altitude").textContent = "" ;
+        document.getElementById("geo-altAcc").textContent = "" ;
+        document.getElementById("geo-heading").textContent = "" ;
+        document.getElementById("geo-speed").textContent = "" ;
+        document.getElementById("geo-timestamp").textContent = "" ;
         geo.consoleLog(fName, "geoError(" + err.code + "): " + err.message) ;
     }
 
@@ -327,80 +270,6 @@ geo.btnGeo = function() {
         geo.opts.watchId = null ;
         removeClass("cl_btnOn", document.getElementById("id_btnGeo")) ;
         geo.consoleLog(fName, "btnGeo disabled.") ;
-    }
-
-    geo.consoleLog(fName, "exit") ;
-} ;
-
-// Watch function that updates geo location continuously.
-// Stops when the geo button is pushed a second time.
-// This function uses the XDK browser geoLocate API.
-
-geo.btnGeoXDK = function() {
-    "use strict" ;
-    var fName = "geo.btnGeoXDK():" ;
-    geo.consoleLog(fName, "entry") ;
-
-    var geoOpts = copyObject(geo.optsXDK) ;
-    if( geoOpts.maximumAge < 0 )
-        geoOpts.maximumAge = Infinity ;    // force use of cached geo values if "cachAge" is negative
-    var accuracy = geoOpts.enableHighAccuracy ? "fine" : "coarse" ;
-
-    function onSuccess(pos) {
-        geo.consoleLog(fName, "onSuccess") ;
-        document.getElementById("geo-info").value = fName + " onSuccess " ;
-        if( window.moment )
-            document.getElementById("geo-mode").value = accuracy + " " + moment().format("HH:mm:ss.SSS") ;
-        else
-            document.getElementById("geo-mode").value = accuracy ;
-        document.getElementById("geo-latitude").value = pos.coords.latitude ;
-        document.getElementById("geo-longitude").value = pos.coords.longitude ;
-        document.getElementById("geo-accuracy").value = pos.coords.accuracy ;
-        document.getElementById("geo-altitude").value = pos.coords.altitude ;
-        document.getElementById("geo-altAcc").value = pos.coords.altitudeAccuracy ;
-        document.getElementById("geo-heading").value = pos.coords.heading ;
-        document.getElementById("geo-speed").value = pos.coords.speed ;
-        document.getElementById("geo-timestamp").value = pos.timestamp ;
-    }
-
-    function onFail(err) {
-        geo.consoleLog(fName, "onFail") ;
-        document.getElementById("geo-info").value = fName + " onFail " ;
-        if( window.moment )
-            document.getElementById("geo-mode").value = accuracy + " " + moment().format("HH:mm:ss.SSS") ;
-        else
-            document.getElementById("geo-mode").value = accuracy ;
-        document.getElementById("geo-latitude").value = err ;
-        document.getElementById("geo-longitude").value = "" ;
-        document.getElementById("geo-accuracy").value = "" ;
-        document.getElementById("geo-altitude").value = "" ;
-        document.getElementById("geo-altAcc").value = "" ;
-        document.getElementById("geo-heading").value = "" ;
-        document.getElementById("geo-speed").value = "" ;
-        document.getElementById("geo-timestamp").value = "" ;
-        geo.consoleLog(fName, "geoError(" + err + ")") ;
-    }
-
-    if( geo.optsXDK.watchId === null ) {            // let's start watching geo position
-        try {                                       // watch and update geo at timeout or on change
-            geo.optsXDK.watchId = intel.xdk.geolocation.watchPosition(onSuccess, onFail, geoOpts) ;
-            addClass("cl_btnOn", document.getElementById("id_btnGeoXDK")) ;
-            geo.consoleLog(fName, "btnGeoXDK enabled.") ;
-        }
-        catch(e) {
-            geo.consoleLog(fName, "try failed - device API not present?", e) ;
-        }
-    }
-    else {
-        try {
-            intel.xdk.geolocation.clearWatch(geo.optsXDK.watchId) ;
-        }
-        catch(e) {
-            geo.consoleLog(fName, "try failed - device API not present?", e) ;
-        }
-        geo.optsXDK.watchId = null ;
-        removeClass("cl_btnOn", document.getElementById("id_btnGeoXDK")) ;
-        geo.consoleLog(fName, "btnGeoXDK disabled.") ;
     }
 
     geo.consoleLog(fName, "exit") ;

@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2013-2015, Paul Fischer, Intel Corporation. All rights reserved.
- * Please see included README.md file for license terms and conditions.
+ * Copyright (c) 2013-2016, Paul Fischer, Intel Corporation. All rights reserved.
+ * Please see included README.md and LICENSE.md files for license terms and conditions.
  */
 
 
@@ -49,7 +49,7 @@ app.init.events = function() {
     // NOTE: initialize third-party libraries and event handlers
 
     app.uaParser = new UAParser() ;
-    app.init.consoleLog(fName, app.uaParser.getResult()) ;
+    app.init.consoleLog(fName, "UAParserJS results object:", app.uaParser.getResult()) ;
 
     // NOTE: initialize your application code
 
@@ -57,6 +57,7 @@ app.init.events = function() {
     acc.initCompass() ;
     geo.initGeoLocate() ;
     app.updateDeviceInfo() ;
+    app.updateViewportInfo() ;
 
     // NOTE: initialize your app event handlers
     // See main.js, cordova-acc.js and cordova-geo.js for event handlers.
@@ -77,8 +78,6 @@ app.init.events = function() {
     el.addEventListener(evt, app.btnVibrate, false) ;
     el = document.getElementById("id_btnBarkCordova") ;
     el.addEventListener(evt, app.btnBarkCordova, false) ;
-    el = document.getElementById("id_btnBarkXDK") ;
-    el.addEventListener(evt, app.btnBarkXDK, false) ;
     el = document.getElementById("id_btnBarkHTML5") ;
     el.addEventListener(evt, app.btnBarkHTML5, false) ;
 
@@ -93,13 +92,6 @@ app.init.events = function() {
     el.addEventListener(evt, geo.btnGeoCoarse, false) ;
     el = document.getElementById("id_btnGeo") ;
     el.addEventListener(evt, geo.btnGeo, false) ;
-
-    el = document.getElementById("id_btnGeoFineXDK") ;
-    el.addEventListener(evt, geo.btnGeoFineXDK, false) ;
-    el = document.getElementById("id_btnGeoCoarseXDK") ;
-    el.addEventListener(evt, geo.btnGeoCoarseXDK, false) ;
-    el = document.getElementById("id_btnGeoXDK") ;
-    el.addEventListener(evt, geo.btnGeoXDK, false) ;
 
     // NOTE: ...you can put other miscellaneous init stuff in this function...
     // NOTE: ...and add whatever else you want to do now that the app has started...

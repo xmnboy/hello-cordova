@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2015, Paul Fischer, Intel Corporation. All rights reserved.
+ * Copyright (c) 2013-2016, Paul Fischer, Intel Corporation. All rights reserved.
  * Please see included README.md file for license terms and conditions.
  */
 
@@ -120,6 +120,29 @@ utl.getPlatformInfo = function(info) {
 //    else if( ...check for APX... )
 //    TODO: detect App Preview, Debug, Cordova app, Legacy container, etc.
 //    TODO: detect navigator.platform, navigator.maxTouchPoints, navigator.language, navigator.hardwareConcurrency
+
+// To ID Windows platforms:
+// from https://github.com/apache/cordova-windows/blob/master/cordova-js-src/platform.js
+// id: (navigator.appVersion.indexOf("MSAppHost/1.0") !== -1) ? 'windows8' : 'windows',
+// above translates to: 'windows8' on Windows 8.0 and 'windows' on Windows 8.1 and Windows Phone 8.1
+// below provides the real meat...
+/*
+    if (navigator.appVersion.indexOf('MSAppHost/3.0') !== -1) {
+        // Windows 10 UWP
+        scriptElem.src = '/www/WinJS/js/base.js';
+    } else if (navigator.appVersion.indexOf("Windows Phone 8.1;") !== -1) {
+        // windows phone 8.1 + Mobile IE 11
+        scriptElem.src = "//Microsoft.Phone.WinJS.2.1/js/base.js";
+    } else if (navigator.appVersion.indexOf("MSAppHost/2.0;") !== -1) {
+        // windows 8.1 + IE 11
+        scriptElem.src = "//Microsoft.WinJS.2.0/js/base.js";
+    } else {
+        // windows 8.0 + IE 10
+        scriptElem.src = "//Microsoft.WinJS.1.0/js/base.js";
+    }
+*/
+// and probably search for IEMobile10 in userAgent string for Windows Phone 8.0 ???
+// plus, check for window.MSApp object and, possibly, window.WinJS object
 
     return info ;
 } ;

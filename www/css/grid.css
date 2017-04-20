@@ -1,0 +1,56 @@
+/*
+ * Copyright (c) 2016, Paul Fischer, Intel Corporation. All rights reserved.
+ * Please see https://software.intel.com/en-us/xdk/article/intel-html5-samples-license-terms-and-conditions
+ * and the included README.md and LICENSE.md files for license terms and conditions.
+ */
+
+/*csslint order-alphabetical:false */
+
+.flex-container {
+  margin: 0 5% ;
+  padding: 0 ;
+}
+
+.flex-row {
+  display: flex ;
+  flex-direction: row ;
+  align-content: center ;
+  align-items: center ;
+  justify-content: center ;
+}
+
+.wrap {
+  flex-wrap: wrap ;
+}
+
+.nowrap {
+  flex-wrap: nowrap ;
+}
+
+.flex-item-left, .flex-item-right {
+  align-items: center ;
+  display: flex ;
+  min-height: 3rem ;
+}
+
+.flex-item-left {
+  flex-grow: 1 ;
+  flex-shrink: 1 ;
+  min-width: 50% ;
+}
+
+.flex-item-right {
+  flex-grow: 1 ;
+  flex-shrink: 1 ;
+  min-width: 50% ;
+}
+
+.left-justify {
+  text-align: left ;
+  justify-content: flex-start ;
+}
+
+.right-justify {
+  text-align: right ;
+  justify-content: flex-end ;
+}

@@ -1,81 +1,335 @@
-<!-- Change the debuggable preference to true to build a remote CDT debuggable app for -->
-<!-- Crosswalk apps on Android 4.0+ devices and Cordova apps on Android 4.4+ devices. -->
-<preference name="debuggable" value="true" />
-<!-- Change the debuggable preference to false before you build for the store. -->
+<!-- Many Cordova config.xml preferences can be added thru this file, see: -->
+<!-- http://cordova.apache.org/docs/en/latest/config_ref/index.html -->
+<!-- https://cordova.apache.org/docs/en/5.4.0/config_ref/index.html#link-3 -->
+<!-- https://cordova.apache.org/docs/en/5.4.0/guide/platforms/ios/config.html -->
+<!-- https://cordova.apache.org/docs/en/5.4.0/guide/platforms/android/config.html -->
+<!-- https://cordova.apache.org/docs/en/5.4.0/guide/platforms/win8/index.html -->
 
-<!-- see https://github.com/apache/cordova-plugin-splashscreen for details -->
+<!-- Set the debuggable preference to true to build a remote CDT debuggable Android app. -->
+<!-- Crosswalk apps on Android 4.0+ devices and Cordova apps on Android 4.4+ devices. -->
+<!-- Set the debuggable preference to false before you build for the store. -->
+<preference name="debuggable" value="true" />
+
+<!-- Set the Crosswalk embedded library to something other than those listed in the UI -->
+<!-- https://github.com/crosswalk-project/crosswalk-website/wiki/Release-dates -->
+<!-- https://download.01.org/crosswalk/releases/crosswalk/android/maven2/org/xwalk/xwalk_core_library/ -->
+<!-- https://download.01.org/crosswalk/releases/crosswalk/android/maven2/org/xwalk/xwalk_core_library_beta/ -->
+<!-- https://github.com/crosswalk-project/cordova-plugin-crosswalk-webview#configure -->
+<!--<preference name="xwalkVersion" value="18+"/>-->
+<!--<preference name="xwalkVersion" value="14.43.343.24" />-->
+<!--<preference name="xwalkVersion" value="org.xwalk:xwalk_core_library_beta:19+" />-->
+
+<!-- use following to perform a Crosswalk 64-bit build (include the 64-bit library) -->
+<!--<preference name="xwalk64bit" value="true" />-->
+
+<!-- Force a Windows Phone 8.0 (XAP) build when choosing Windows Phone 8.1 build option -->
+<!--<preference name="windows-target-version" value="8.0"/>-->
+
+<!-- use this feature to add command-lines to be used by Crosswalk builds at runtime -->
+<!-- see http://peter.sh/experiments/chromium-command-line-switches/ for complete list -->
+<!-- ignore gpu blacklist for larger collection of gpu accelerated devices -->
+<intelxdk:crosswalk xwalk-command-line="--ignore-gpu-blacklist" />
+
+<!-- Also worth trying for performance issues in Crosswalk: -->
+<!-- enable-gpu-rasterization: respects blacklist -->
+<!-- force-gpu-rasterization: ignores gpu blacklist -->
+<!-- disable-gpu-rasterization: for comparing to gpu-enabled -->
+<!-- Don't forget to prepend the above options with a double-dash when using! -->
+
+<!-- Because XML parsers deal with double-dashes as a comment indicator: -->
+<!-- * you must remove the space between option dashes "- -" to uncomment an option -->
+<!-- * you must add a space between the option dashes "- -" to comment out an option -->
+<!-- For example: -->
+<!--<intelxdk:crosswalk xwalk-command-line="- -disable-pull-to-refresh-effect" />-->
+<!-- becomes -->
+<intelxdk:crosswalk xwalk-command-line="--disable-pull-to-refresh-effect" />
+<!--<intelxdk:crosswalk xwalk-command-line="- -show-fps-counter" />-->
+
+<!-- Configure Crosswalk-Android "SurfaceView" or "TextureView" option. -->
+<!-- https://github.com/crosswalk-project/crosswalk-website/wiki/Android-SurfaceView-vs-TextureView -->
+<!-- https://crosswalk-project.org/jira/browse/XWALK-2233?focusedCommentId=37250&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-37250 -->
+<!-- default is SurfaceView if >= CW15 and TextureView if <= CW14 -->
+<!-- SurfaceView is preferred, TextureView should only be used in special cases. -->
+<!-- Enable TextureView by setting CrosswalkAnimatable to true. -->
+<preference name="CrosswalkAnimatable" value="false" />
+
 <platform name="android">
-    <!-- below requires the splash screen plugin -->
-    <!-- docs: https://github.com/apache/cordova-plugin-splashscreen -->
-    <preference name="AutoHideSplashScreen" value="true" />
+    <!-- following requires the splash screen plugin -->
+    <!-- see https://github.com/apache/cordova-plugin-splashscreen for details -->
     <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="3000" />
-    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <!-- <preference name="SplashScreenDelay" value="10000" /> -->
+    <preference name="FadeSplashScreen" value="false"/>
+    <!-- <preference name="FadeSplashScreenDuration" value="3000"/> -->
+    <preference name="ShowSplashScreenSpinner" value="false"/>
+    <preference name="SplashMaintainAspectRatio" value="false" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+
+    <!-- following requires the status bar plugin -->
+    <!-- see https://github.com/apache/cordova-plugin-statusbar for details -->
+    <!-- see http://devgirl.org/2014/07/31/phonegap-developers-guid -->
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#000000" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+
+    <!-- to set Crosswalk or Android webview default background color -->
+    <!-- see http://developer.android.com/reference/android/graphics/Color.html -->
+    <!-- use all zeroes to get rid of annoying white flash on some devices -->
+    <preference name="BackgroundColor" value="0x00000000" />
+
+    <!-- following requires the file plugin -->
+    <!-- see http://makina-corpus.com/blog/metier/2014/the-right-location-for-your-cordova-app-files -->
+    <!-- see https://github.com/apache/cordova-plugin-file#android-persistent-storage-location -->
+    <!-- <preference name="AndroidPersistentFileLocation" value="Compatibility" /> -->
+    <preference name="AndroidPersistentFileLocation" value="Internal" />
+
+    <!-- see https://developer.android.com/guide/topics/manifest/activity-element.html#wsoft -->
+    <preference name="android-windowSoftInputMode" value="adjustPan" />
+
+    <!-- http://cordova.apache.org/docs/en/latest/config_ref/index.html#preference -->
+    <!-- http://cordova.apache.org/docs/en/5.4.0/guide/platforms/android/config.html -->
+    <!-- add these preferences with default values for improved security -->
+    <!-- see http://bit.ly/1dz3FjD for details regarding the security issues -->
+    <preference name="AndroidLaunchMode" value="singleTop" />
+    <preference name="AppendUserAgent" value="" />
+    <preference name="DefaultVolumeStream" value="media" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="ErrorUrl" value="" />
+    <preference name="InAppBrowserStorageEnabled" value="true" />
+    <preference name="KeepRunning" value="true" />
+    <preference name="LoadUrlTimeoutValue" value="20000" />
+    <preference name="LoadingDialog" value="" />
+    <preference name="LoadingPageDialog" value="" />
+    <preference name="LogLevel" value="ERROR" />
+    <preference name="OverrideUserAgent" value="" />
+    <preference name="ShowTitle" value="false" />
 </platform>
 
 <platform name="ios">
-    <!-- below requires the splash screen plugin -->
-    <!-- docs: https://github.com/apache/cordova-plugin-splashscreen -->
-    <preference name="AutoHideSplashScreen" value="false" />
+    <!-- following requires the splash screen plugin -->
+    <!-- see https://github.com/apache/cordova-plugin-splashscreen for details -->
+    <preference name="AutoHideSplashScreen" value="true" />
+    <!-- <preference name="FadeSplashScreenDuration" value="10000"/> -->
     <preference name="FadeSplashScreen" value="false"/>
-    <preference name="FadeSplashScreenDuration" value="2"/>
+    <!-- <preference name="FadeSplashScreenDuration" value="3000"/> -->
     <preference name="ShowSplashScreenSpinner" value="false"/>
 
-    <!-- below requires the status bar plugin -->
-    <!-- docs: https://github.com/apache/cordova-plugin-statusbar -->
+    <!-- following requires the status bar plugin -->
+    <!-- see https://github.com/apache/cordova-plugin-statusbar for details -->
+    <!-- see http://devgirl.org/2014/07/31/phonegap-developers-guid -->
     <preference name="StatusBarOverlaysWebView" value="false" />
-    <!-- <preference name="StatusBarBackgroundColor" value="#000000" /> -->
+    <preference name="StatusBarBackgroundColor" value="#000000" />
     <preference name="StatusBarStyle" value="lightcontent" />
+
+    <!-- to select between building for iPhone, iPad or both -->
+    <!-- https://cordova.apache.org/docs/en/5.4.0/guide/platforms/ios/config.html -->
+    <!-- valid values are handset, tablet and universal -->
+    <preference name="target-device" value="universal" />
+
+    <!-- following requires the file plugin -->
+    <!-- see http://makina-corpus.com/blog/metier/2014/the-right-location-for-your-cordova-app-files -->
+    <!-- see https://github.com/apache/cordova-plugin-file#ios-persistent-storage-location -->
+    <!-- <preference name="iosPersistentFileLocation" value="Compatibility" /> -->
+    <preference name="iosPersistentFileLocation" value="Library" />
+
+    <!-- http://cordova.apache.org/docs/en/latest/config_ref/index.html#preference -->
+    <!-- http://cordova.apache.org/docs/en/5.4.0/guide/platforms/ios/config.html -->
+    <preference name="AllowInlineMediaPlayback" value="false" />
+    <preference name="AppendUserAgent" value="" />
+    <preference name="BackgroundColor" value="0x00000000" />
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="CDVSystemSchemesOverride" value="maps,tel,telprompt" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="EnableViewportScale" value="false" />
+    <preference name="ErrorUrl" value="" />
+    <preference name="GapBetweenPages" value="0" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="true" />
+    <preference name="MediaPlaybackAllowsAirPlay" value="true" />
+    <preference name="MediaPlaybackRequiresUserAction" value="false" />
+    <preference name="PageLength" value="0" />
+    <preference name="PaginationBreakingMode" value="page" />
+    <preference name="PaginationMode" value="unpaginated" />
+    <preference name="Suppresses3DTouchGesture" value="false" />
+    <preference name="SuppressesIncrementalRendering" value="false" />
+    <preference name="SuppressesLongPressGesture" value="false" />
+    <preference name="TopActivityIndicator" value="gray" />
+    <preference name="UIWebViewDecelerationSpeed" value="normal" />
 </platform>
 
-<!-- use this feature to add command-lines to be used by Crosswalk builds on device -->
-<!-- see http://peter.sh/experiments/chromium-command-line-switches/ for complete list -->
-<intelxdk:crosswalk xwalk-command-line="--disable-pull-to-refresh-effect" />
+<platform name="windows">
+    <!-- following requires the splash screen plugin -->
+    <!-- see https://github.com/apache/cordova-plugin-splashscreen for details -->
+    <preference name="SplashScreen" value="SplashScreen" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashMaintainAspectRatio" value="false" />
+
+    <!-- following requires the status bar plugin -->
+    <!-- see https://github.com/apache/cordova-plugin-statusbar for details -->
+    <!-- see http://devgirl.org/2014/07/31/phonegap-developers-guid -->
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#000000" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+
+    <!-- http://cordova.apache.org/docs/en/latest/config_ref/index.html#preference -->
+    <!-- https://cordova.apache.org/docs/en/5.4.0/guide/platforms/win8/index.html -->
+    <preference name="BackgroundColor" value="0x00000000" />
+    <preference name="SplashScreenBackgroundColor" value="#464646" />
+    <!-- <preference name="WindowsDefaultUriPrefix" value="ms-appx-web://" /> -->
+    <!-- <preference name="WindowsStoreDisplayName" value="Windows" /> -->
+    <!-- <preference name="WindowsStoreIdentityName" value="Windows" /> -->
+    <preference name="WindowsToastCapable" value="false" />
+</platform>
+
 
 <!-- alternate way to add icons to Cordova builds, rather than using XDK GUI -->
 <!-- especially for adding icon resolutions that are not covered by the XDK GUI -->
 <!-- Android icons and splash screens -->
-    <icon platform="android" src="pkg/android/icon-ldpi.png" density="ldpi" />
-    <icon platform="android" src="pkg/android/icon-mdpi.png" density="mdpi" />
-    <icon platform="android" src="pkg/android/icon-hdpi.png" density="hdpi" />
-    <icon platform="android" src="pkg/android/icon-xhdpi.png" density="xhdpi" />
-    <icon platform="android" src="pkg/android/icon-xxhdpi.png" density="xxhdpi" />
-    <icon platform="android" src="pkg/android/icon-xxxhdpi.png" density="xxxhdpi" />
-    <splash platform="android" src="pkg/android/splash-320x426.9.png" density="ldpi" orientation="portrait" />
-    <splash platform="android" src="pkg/android/splash-320x470.9.png" density="mdpi" orientation="portrait" />
-    <splash platform="android" src="pkg/android/splash-480x640.9.png" density="hdpi" orientation="portrait" />
-    <splash platform="android" src="pkg/android/splash-720x960.9.png" density="xhdpi" orientation="portrait" />
+<platform name="android">
+<!--
+    <icon src="package-assets/android/icon-ldpi.png" density="ldpi" width="36" height="36" />
+    <icon src="package-assets/android/icon-mdpi.png" density="mdpi" width="48" height="48" />
+    <icon src="package-assets/android/icon-hdpi.png" density="hdpi" width="72" height="72" />
+    <icon src="package-assets/android/icon-xhdpi.png" density="xhdpi" width="96" height="96" />
+-->
+    <icon src="package-assets/android/icon-xxhdpi.png" density="xxhdpi" width="144" height="144" />
+    <icon src="package-assets/android/icon-xxxhdpi.png" density="xxxhdpi" width="192" height="192" />
+<!--
+    <splash src="package-assets/android/splash-320x426.9.png" density="ldpi" orientation="portrait" />
+    <splash src="package-assets/android/splash-320x470.9.png" density="mdpi" orientation="portrait" />
+    <splash src="package-assets/android/splash-480x640.9.png" density="hdpi" orientation="portrait" />
+    <splash src="package-assets/android/splash-720x960.9.png" density="xhdpi" orientation="portrait" />
+-->
+</platform>
 
 <!-- iOS icons and splash screens -->
-<!-- Spotlight Icon -->
-    <icon platform="ios" src="pkg/ios/icon-40.png" width="40" height="40" />
-    <icon platform="ios" src="pkg/ios/icon-40@2x.png" width="80" height="80" />
-    <icon platform="ios" src="pkg/ios/icon-40@3x.png" width="120" height="120" />
-<!-- iPhone / iPod Touch -->
-    <icon platform="ios" src="pkg/ios/icon.png" width="57" height="57" />
-    <icon platform="ios" src="pkg/ios/icon@2x.png" width="114" height="114" />
-    <icon platform="ios" src="pkg/ios/icon-60.png" width="60" height="60" />
-    <icon platform="ios" src="pkg/ios/icon-60@2x.png" width="120" height="120" />
-    <icon platform="ios" src="pkg/ios/icon-60@3x.png" width="180" height="180" />
-<!-- iPad -->
-    <icon platform="ios" src="pkg/ios/icon-72.png" width="72" height="72" />
-    <icon platform="ios" src="pkg/ios/icon-72@2x.png" width="144" height="144" />
-    <icon platform="ios" src="pkg/ios/icon-76.png" width="76" height="76" />
-    <icon platform="ios" src="pkg/ios/icon-76@2x.png" width="152" height="152" />
-<!-- iPhone Spotlight and Settings Icon -->
-    <icon platform="ios" src="pkg/ios/icon-small.png" width="29" height="29" />
-    <icon platform="ios" src="pkg/ios/icon-small@2x.png" width="58" height="58" />
-    <icon platform="ios" src="pkg/ios/icon-small@3x.png" width="87" height="87" />
-<!-- iPad Spotlight and Settings Icon -->
-    <icon platform="ios" src="pkg/ios/icon-50.png" width="50" height="50" />
-    <icon platform="ios" src="pkg/ios/icon-50@2x.png" width="100" height="100" />
+<!-- https://developer.apple.com/ios/human-interface-guidelines/graphics/app-icon -->
+<!-- https://developer.apple.com/ios/human-interface-guidelines/graphics/launch-screen -->
 
-<!-- Windows Phone 8 icons and splash screens -->
-    <icon platform="wp8" src="pkg/windows/logo.png" width="150" height="150" />
-    <icon platform="wp8" src="pkg/windows/logo-small.png" width="30" height="30" />
-    <icon platform="wp8" src="pkg/windows/logo-store.png" width="50" height="50" />
+<platform name="ios">
+    <!-- iPhone and iPod Touch App Icons -->
+<!--
+    <icon src="package-assets/ios/icon.png" width="57" height="57" />
+    <icon src="package-assets/ios/icon-60.png" width="60" height="60" />
+    <icon src="package-assets/ios/icon@2x.png" width="114" height="114" />
+    <icon src="package-assets/ios/icon-60@2x.png" width="120" height="120" />
+    <icon src="package-assets/ios/icon-60@3x.png" width="180" height="180" />
+-->
+    <!-- iPad, iPad Mini and iPad Pro App Icons -->
+<!--
+    <icon src="package-assets/ios/icon-72.png" width="72" height="72" />
+    <icon src="package-assets/ios/icon-76.png" width="76" height="76" />
+    <icon src="package-assets/ios/icon-72@2x.png" width="144" height="144" />
+    <icon src="package-assets/ios/icon-76@2x.png" width="152" height="152" />
+    <icon src="package-assets/ios/icon-83.5@2x.png" width="167" height="167" />
+-->
+    <icon src="package-assets/ios/icon-187.png" width="187" height="187" />
+    <!-- Spotlight Icons -->
+<!--
+    <icon src="package-assets/ios/icon-40.png" width="40" height="40" />
+    <icon src="package-assets/ios/icon-60.png" width="60" height="60" />
+    <icon src="package-assets/ios/icon-40@2x.png" width="80" height="80" />
+    <icon src="package-assets/ios/icon-40@3x.png" width="120" height="120" />
+    <icon src="package-assets/ios/icon-60@3x.png" width="180" height="180" />
+-->
+    <!-- Settings Icons -->
+<!--
+    <icon src="package-assets/ios/icon-small.png" width="29" height="29" />
+    <icon src="package-assets/ios/icon-small@2x.png" width="58" height="58" />
+    <icon src="package-assets/ios/icon-small@3x.png" width="87" height="87" />
+    <icon src="package-assets/ios/icon-50.png" width="50" height="50" />
+    <icon src="package-assets/ios/icon-50@2x.png" width="100" height="100" />
+-->
 
-<!-- Windows 8 icons and splash screens -->
-    <icon platform="windows8" src="pkg/windows/logo.png" width="150" height="150" />
-    <icon platform="windows8" src="pkg/windows/logo-small.png" width="30" height="30" />
-    <icon platform="windows8" src="pkg/windows/logo-store.png" width="50" height="50" />
+    <!-- iPad Splash Screens -->
+<!--
+    <splash src="package-assets/ios/default-portrait~ipad.png" width="768" height="1024"/>
+    <splash src="package-assets/ios/default-landscape~ipad.png" width="1024" height="768"/>
+    <splash src="package-assets/ios/default-portrait@2x~ipad.png" width="1536" height="2048"/>
+    <splash src="package-assets/ios/default-landscape@2x~ipad.png" width="2048" height="1536"/>
+    <splash src="package-assets/ios/default-portrait~ipad-pro.png" width="2048" height="2732"/>
+    <splash src="package-assets/ios/default-landscape~ipad-pro.png" width="2732" height="2048"/>
+-->
+    <!-- iPhone 6 and 6 Plus Splash Screens -->
+    <splash src="package-assets/ios/default-667h.png" width="750" height="1334"/>
+<!--
+    <splash src="package-assets/ios/default-736h.png" width="1242" height="2208"/>
+    <splash src="package-assets/ios/default-landscape-736h.png" width="2208" height="1242"/>
+-->
+    <!-- iPhone 5, iPhone 4s, iPhone Retina and iPhone Splash Screens -->
+<!--
+    <splash src="package-assets/ios/default~iphone.png" width="320" height="480"/>
+    <splash src="package-assets/ios/default@2x~iphone.png" width="640" height="960"/>
+    <splash src="package-assets/ios/default-568h@2x~iphone.png" width="640" height="1136"/>
+-->
+</platform>
+
+<!-- Guidelines for Windows 8.x and Windows Phone 8.1 platforms -->
+<!-- https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh781198.aspx -->
+
+<!-- Windows Phone 8.1 minimum icons and splash screens -->
+<platform name="windows">
+<!--
+    <icon src="package-assets/windows/Square44x44Logo.scale-240.png"   width="106" height="106"/>
+    <icon src="package-assets/windows/Store50x50Logo.scale-240.png"    width="120" height="120" />
+    <icon src="package-assets/windows/Square71x71Logo.scale-240.png"   width="170" height="170" />
+    <icon src="package-assets/windows/Square150x150Logo.scale-240.png" width="360" height="360" />
+    <icon src="package-assets/windows/Wide310x150Logo.scale-240.png"   width="744" height="360"/>
+    <splash src="package-assets/windows/SplashScreenImage480x800.scale-240.png" width="1152" height="1920" orientation="landscape"/>
+-->
+</platform>
+
+<!-- Windows 8.x minimum icons and splash screens -->
+<platform name="windows">
+<!--
+    <icon src="package-assets/windows/Square30x30Logo.scale-100.png"   width="30" height="30" />
+    <icon src="package-assets/windows/Store50x50Logo.scale-100.png"    width="50" height="50" />
+    <icon src="package-assets/windows/Square70x70Logo.scale-100.png"   width="70" height="70" />
+    <icon src="package-assets/windows/Square150x150Logo.scale-100.png" width="150" height="150" />
+    <icon src="package-assets/windows/Square310x310Logo.scale-100.png" width="310" height="310" />
+    <icon src="package-assets/windows/Wide310x150Logo.scale-100.png"   width="310" height="150" />
+    <splash src="package-assets/windows/SplashScreenImage620x300.scale-100.png" width="620" height="300"/>
+-->
+</platform>
+
+<!-- Windows 8.x additional recommended icons and splash screens -->
+<platform name="windows">
+<!--
+    <icon src="package-assets/windows/Square30x30Logo.scale-180.png"   width="54" height="54" />
+    <icon src="package-assets/windows/Store50x50Logo.scale-180.png"    width="90" height="90" />
+    <icon src="package-assets/windows/Square70x70Logo.scale-180.png"   width="126" height="126" />
+    <icon src="package-assets/windows/Square150x150Logo.scale-180.png" width="270" height="270" />
+    <icon src="package-assets/windows/Square310x310Logo.scale-180.png" width="558" height="558" />
+    <icon src="package-assets/windows/Wide310x150Logo.scale-180.png"   width="558" height="270" />
+    <splash src="package-assets/windows/SplashScreenImage620x300.scale-180.png" width="1116" height="540"/>
+-->
+</platform>
+
+<!-- Guidelines for Windows 10 Universal App platforms -->
+<!-- https://msdn.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-app-assets -->
+
+<!-- Windows 10 Universal additional minimum icons and splash screens (added to above) -->
+<!-- Assumes Windows 8.x and Windows Phone 8.1 icons and splash screens are provided -->
+<platform name="windows">
+<!--
+    <icon src="package-assets/windows/Square44x44Logo.scale-100.png"   width="44" height="44"/>
+    <icon src="package-assets/windows/Square71x71Logo.scale-100.png"   width="71" height="71" />
+-->
+</platform>
+
+<!-- Windows 10 additional recommended icons and splash screens -->
+<platform name="windows">
+<!--
+    <icon src="package-assets/windows/Square44x44Logo.scale-200.png"   width="88" height="88"/>
+    <icon src="package-assets/windows/Square44x44Logo.scale-400.png"   width="176" height="176"/>
+    <icon src="package-assets/windows/Square71x71Logo.scale-200.png"   width="142" height="142" />
+    <icon src="package-assets/windows/Square71x71Logo.scale-400.png"   width="248" height="248" />
+    <icon src="package-assets/windows/Square150x150Logo.scale-200.png" width="300" height="300" />
+    <icon src="package-assets/windows/Square150x150Logo.scale-400.png" width="600" height="600" />
+    <icon src="package-assets/windows/Wide310x150Logo.scale-200.png"   width="620" height="300" />
+    <icon src="package-assets/windows/Wide310x150Logo.scale-400.png"   width="1240" height="600" />
+    <icon src="package-assets/windows/Square310x310Logo.scale-200.png" width="620" height="620" />
+    <icon src="package-assets/windows/Square310x310Logo.scale-400.png" width="1240" height="1240" />
+-->
+</platform>
+
