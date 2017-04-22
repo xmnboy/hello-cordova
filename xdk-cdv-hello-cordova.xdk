@@ -90,8 +90,8 @@
           "android-signed": true
         },
         "isActive_": true,
-        "appName_": "HelloCordova",
-        "appID_": "xdk.intel.demo.hellocordova",
+        "appName_": "Intel XDK Sample",
+        "appID_": "xdk.intel.sample",
         "appAccess_": {
           "mode": "whitelist",
           "network": ["*"],
@@ -167,7 +167,7 @@
         "cordovaCLIVersion_": "?",
         "crosswalkVersion_": "?",
         "appVersion_": "0.0.1",
-        "appDescription_": "Cordova Demonstration App",
+        "appDescription_": "Intel XDK Sample",
         "appAuthor_": "Intel XDK",
         "appVersionCode_": "1"
       },
@@ -183,8 +183,8 @@
           "Orientation": "portrait"
         },
         "isActive_": true,
-        "appName_": "HelloCordova",
-        "appID_": "xdk.intel.demo.hellocordova",
+        "appName_": "Intel XDK Sample",
+        "appID_": "xdk.intel.sample",
         "appAccess_": {
           "mode": "whitelist",
           "network": ["*"],
@@ -339,7 +339,7 @@
         "cordovaCLIVersion_": "?",
         "crosswalkVersion_": "?",
         "appVersion_": "0.0.1",
-        "appDescription_": "Cordova Demonstration App",
+        "appDescription_": "Intel XDK Sample",
         "appAuthor_": "Intel XDK",
         "appVersionCode_": "1"
       },
@@ -353,8 +353,8 @@
           "Orientation": "portrait"
         },
         "isActive_": true,
-        "appName_": "HelloCordova",
-        "appID_": "xdk.intel.demo.hellocordova",
+        "appName_": "Intel XDK Sample",
+        "appID_": "xdk.intel.sample",
         "appAccess_": {
           "mode": "whitelist",
           "network": ["*"],
@@ -391,7 +391,7 @@
         "cordovaCLIVersion_": "?",
         "crosswalkVersion_": "?",
         "appVersion_": "0.0.0.1",
-        "appDescription_": "Cordova Demonstration App",
+        "appDescription_": "Intel XDK Sample",
         "appAuthor_": "Intel XDK"
       },
       "WebApp": {
@@ -400,8 +400,9 @@
         "name_": "WebApp",
         "preferences_": {},
         "isActive_": false,
-        "appName_": "HelloCordova",
-        "appID_": "xdk.intel.demo.hellocordova",
+        "certificateId_": "",
+        "appName_": "Intel XDK Sample",
+        "appID_": "xdk.intel.sample",
         "appAccess_": {
           "mode": "whitelist",
           "network": ["*"],
@@ -422,8 +423,9 @@
         "name_": "Chrome",
         "preferences_": {},
         "isActive_": false,
-        "appName_": "HelloCordova",
-        "appID_": "xdk.intel.demo.hellocordova",
+        "certificateId_": "",
+        "appName_": "Intel XDK Sample",
+        "appID_": "xdk.intel.sample",
         "appAccess_": {
           "mode": "whitelist",
           "network": ["*"],
